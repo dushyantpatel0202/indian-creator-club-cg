@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chhattisgarh Creator Network - Hyperlocal Creator Marketplace</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="home">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>CG Creator Network</span>
+                </div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#home" class="active"><i class="fas fa-home"></i> Home</a>
+                    <a href="#creators"><i class="fas fa-users"></i> Creators</a>
+                    <a href="#nearby"><i class="fas fa-map-marker-alt"></i> Near Me</a>
+                    <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+                </div>
+                <div class="nav-actions">
+                    <button class="btn-primary" onclick="openJoinModal()">
+                        <i class="fas fa-plus-circle"></i> List Your Profile
+                    </button>
+                    <i class="fas fa-user-circle user-icon"></i>
+                    <button class="mobile-menu" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-rocket"></i> 
+                    Chhattisgarh's #1 Hyperlocal Creator Marketplace
+                </div>
+                <h1>Discover & Connect with <span>Local Creators</span> in Chhattisgarh</h1>
+                <p>Find influencers, content creators, and digital artists near you. Filter by niche, location, and budget.</p>
+                
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <div class="search-input-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search creators by name, niche, or city... (Ctrl+K)" onkeyup="searchCreators()">
+                    </div>
+                    <button class="btn-primary" onclick="searchCreators()">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+
+                <!-- Quick Filters -->
+                <div class="quick-filters">
+                    <span class="filter-label">Popular Niches:</span>
+                    <button class="filter-chip" onclick="filterByNiche('Travel')">✈️ Travel</button>
+                    <button class="filter-chip" onclick="filterByNiche('Food')">🍜 Food</button>
+                    <button class="filter-chip" onclick="filterByNiche('Beauty')">💄 Beauty</button>
+                    <button class="filter-chip" onclick="filterByNiche('Fashion')">👗 Fashion</button>
+                    <button class="filter-chip" onclick="filterByNiche('Tech')">💻 Tech</button>
+                    <button class="filter-chip" onclick="filterByNiche('Fitness')">💪 Fitness</button>
+                    <button class="filter-chip" onclick="filterByNiche('Hotel Promotion')">🏨 Hotels</button>
+                    <button class="filter-chip" onclick="filterByNiche('Health & Wellness')">🌿 Health</button>
+                    <button class="filter-chip" onclick="filterByNiche('Parenting')">👶 Parenting</button>
+                    <button class="filter-chip" onclick="filterByNiche('Sustainable Living')">🌍 Eco-Living</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section">
+        <div class="container">
+            <div class="filters-wrapper">
+                <div class="filter-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Near Me</label>
+                    <button class="filter-btn gps-btn" onclick="findNearbyCreators()">
+                        <i class="fas fa-location-dot"></i> Use GPS
+                    </button>
+                </div>
+                <div class="filter-group">
+                    <label><i class="fas fa-city"></i> District</label>
+                    <select id="districtFilter" onchange="applyFilters()">
+                        <option value="">All Districts</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label><i class="fas fa-tag"></i> Niche</label>
+                    <select id="nicheFilter" onchange="applyFilters()">
+                        <option value="">All Niches</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label><i class="fas fa-briefcase"></i> Service</label>
+                    <select id="serviceFilter" onchange="applyFilters()">
+                        <option value="">All Services</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label><i class="fas fa-coin"></i> Budget (Reel)</label>
+                    <select id="budgetFilter" onchange="applyFilters()">
+                        <option value="">Any Budget</option>
+                        <option value="1000">Under ₹1,000</option>
+                        <option value="3000">Under ₹3,000</option>
+                        <option value="5000">Under ₹5,000</option>
+                        <option value="10000">Under ₹10,000</option>
+                        <option value="20000">Under ₹20,000</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label><i class="fas fa-sort"></i> Sort By</label>
+                    <select id="sortFilter" onchange="applyFilters()">
+                        <option value="engagement">Top Engagement</option>
+                        <option value="followers">Most Followers</option>
+                        <option value="views">Most Views</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="distance">Nearest First</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creators Grid -->
+    <section class="creators-section" id="creators">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> Featured Creators</h2>
+                <span class="creator-count" id="creatorCount">Loading...</span>
+            </div>
+            <div class="creators-grid" id="creatorsGrid">
+                <div class="loading-state">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading creators...</p>
+                </div>
+            </div>
+            <div class="load-more" id="loadMoreContainer">
+                <button class="btn-secondary" onclick="loadMoreCreators()">
+                    <i class="fas fa-arrow-down"></i> Load More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nearby Creators Section -->
+    <section class="nearby-section" id="nearby">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-location-dot"></i> Creators Near You</h2>
+                <div class="section-actions">
+                    <span class="creator-count" id="nearbyCount">Loading...</span>
+                    <button class="btn-primary" onclick="findNearbyCreators()">
+                        <i class="fas fa-rotate"></i> Refresh Location
+                    </button>
+                </div>
+            </div>
+            <div class="nearby-grid" id="nearbyGrid">
+                <div class="empty-state">
+                    <i class="fas fa-map-pin"></i>
+                    <h3>Find Creators Near You</h3>
+                    <p>Click the "Use GPS" button to find creators in your area</p>
+                    <button class="btn-primary" onclick="findNearbyCreators()">
+                        <i class="fas fa-location-dot"></i> Find Near Me
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-number" id="totalCreators">0</div>
+                    <div class="stat-label">Total Creators</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-city"></i></div>
+                    <div class="stat-number" id="totalDistricts">0</div>
+                    <div class="stat-label">Districts Covered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-tag"></i></div>
+                    <div class="stat-number" id="totalNiches">0</div>
+                    <div class="stat-label">Niches Available</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-handshake"></i></div>
+                    <div class="stat-number" id="totalCollaborations">0</div>
+                    <div class="stat-label">Monthly Collaborations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Chhattisgarh Creator Network</h2>
+                <p>Chhattisgarh Creator Network is the first hyperlocal platform dedicated to connecting businesses with the most talented content creators from Chhattisgarh. Whether you need a travel influencer for tourism promotion, a beauty creator for product reviews, or a tech reviewer for gadget launches - we've got you covered.</p>
+                <div class="about-features">
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>28+ verified creators from 12 districts</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>20+ content niches including Health, Parenting & Sustainable Living</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Real-time GPS location finder</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Direct WhatsApp & Email contact</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-crown"></i> CG Creator Network</h3>
+                    <p>Chhattisgarh's premier hyperlocal creator marketplace</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="#creators">Browse Creators</a>
+                    <a href="#nearby">Near Me</a>
+                    <a href="#about">About Us</a>
+                    <a href="#" onclick="openJoinModal()">List Your Profile</a>
+                </div>
+                <div class="footer-links">
+                    <h4>For Businesses</h4>
+                    <a href="#">Hire Creators</a>
+                    <a href="#">Post Campaign</a>
+                    <a href="#">Pricing</a>
+                    <a href="#">Success Stories</a>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay Updated</h4>
+                    <p>Get the latest creator news and opportunities</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Your email">
+                        <button class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Chhattisgarh Creator Network. All rights reserved.</p>
+                <p>Made with ❤️ in Chhattisgarh</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Creator Profile Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeProfileModal()">&times;</span>
+            <div id="modalBody">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Join Modal -->
+    <div id="joinModal" class="modal">
+        <div class="modal-content join-modal">
+            <span class="close-modal" onclick="closeJoinModal()">&times;</span>
+            <h2><i class="fas fa-user-plus"></i> List Your Profile</h2>
+            <p>Fill in your details to get listed on Chhattisgarh Creator Network</p>
+            
+            <form id="joinForm" onsubmit="submitJoinForm(event)">
+                <input type="hidden" id="whatsappNumber" value="919999999999">
+                
+                <div class="form-group">
+                    <label>Full Name *</label>
+                    <input type="text" id="fullName" required placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" id="email" required placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp Number *</label>
+                    <input type="tel" id="whatsapp" required placeholder="919999999999">
+                </div>
+                <div class="form-group">
+                    <label>District *</label>
+                    <select id="district" required>
+                        <option value="">Select District</option>
+                        <option>Raipur</option>
+                        <option>Bilaspur</option>
+                        <option>Durg</option>
+                        <option>Bhilai</option>
+                        <option>Korba</option>
+                        <option>Rajnandgaon</option>
+                        <option>Jagdalpur</option>
+                        <option>Ambikapur</option>
+                        <option>Raigarh</option>
+                        <option>Mahasamund</option>
+                        <option>Dhamtari</option>
+                        <option>Kabirdham</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Niche *</label>
+                    <select id="niche" required>
+                        <option value="">Select Niche</option>
+                        <option>Travel</option>
+                        <option>Beauty</option>
+                        <option>Food</option>
+                        <option>Fashion</option>
+                        <option>Tech</option>
+                        <option>Education</option>
+                        <option>Finance</option>
+                        <option>Fitness</option>
+                        <option>Automobile</option>
+                        <option>Real Estate</option>
+                        <option>Hotel Promotion</option>
+                        <option>Restaurant Promotion</option>
+                        <option>Store Promotion</option>
+                        <option>Tourism</option>
+                        <option>Wedding</option>
+                        <option>Local News</option>
+                        <option>Gaming</option>
+                        <option>Photography</option>
+                        <option>Lifestyle</option>
+                        <option>Event Coverage</option>
+                        <option>Health & Wellness</option>
+                        <option>Parenting</option>
+                        <option>Sustainable Living</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Instagram Followers</label>
+                        <input type="number" id="instagramFollowers" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label>YouTube Subscribers</label>
+                        <input type="number" id="youtubeSubscribers" placeholder="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Average Reel Views</label>
+                        <input type="number" id="avgViews" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Engagement Rate (%)</label>
+                        <input type="number" step="0.1" id="engagementRate" placeholder="5.0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Reel Charge (₹)</label>
+                        <input type="number" id="reelCharge" placeholder="5000">
+                    </div>
+                    <div class="form-group">
+                        <label>Story Charge (₹)</label>
+                        <input type="number" id="storyCharge" placeholder="1000">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Feed Post Charge (₹)</label>
+                        <input type="number" id="postCharge" placeholder="3000">
+                    </div>
+                    <div class="form-group">
+                        <label>Collaboration Charge (₹)</label>
+                        <input type="number" id="collabCharge" placeholder="7000">
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary submit-btn">
+                    <i class="fab fa-whatsapp"></i> Submit via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

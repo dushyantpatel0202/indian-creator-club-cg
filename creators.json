@@ -1,0 +1,1432 @@
+{
+  "creators": [
+    {
+      "id": 1,
+      "name": "Rahul Verma",
+      "city": "Raipur",
+      "district": "Raipur",
+      "latitude": 21.2514,
+      "longitude": 81.6296,
+      "niche": "Travel",
+      "profileImage": "https://res.cloudinary.com/dlyzup9qp/image/upload/q_auto/f_auto/v1781682778/photo_vcvyrv.jpg",
+      "instagramFollowers": 150000,
+      "youtubeSubscribers": 50000,
+      "facebookFollowers": 25000,
+      "avgReelViews": 85000,
+      "engagementRate": 6.5,
+      "availableDistricts": ["Raipur", "Durg", "Bilaspur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/rahulverma_travel",
+        "youtube": "https://youtube.com/@rahulvermatravel",
+        "facebook": "https://facebook.com/rahulvermatravel"
+      },
+      "pricingInfo": {
+        "model": "starting_from",
+        "startingPrice": 3000,
+        "isNegotiable": true,
+        "description": "Prices vary based on project scope. Contact for custom quotes."
+      },
+      "charges": {
+        "reel": 5000,
+        "story": 1000,
+        "post": 3000,
+        "collaboration": 7000,
+        "reelMaking": 4000
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 5000, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 1000, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 3000, "model": "fixed", "negotiable": false },
+        { "service": "UGC Video", "charge": 4500, "model": "range", "min": 3500, "max": 6000, "negotiable": true },
+        { "service": "Professional Reel Shoot", "charge": 4000, "model": "starting_from", "startingPrice": 3000, "negotiable": true },
+        { "service": "Brand Collaboration", "charge": 7000, "model": "negotiable", "negotiable": true },
+        { "service": "Live Session", "charge": 8000, "model": "fixed", "negotiable": false },
+        { "service": "Product Review", "charge": 3500, "model": "range", "min": 2500, "max": 5000, "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "919999999999",
+        "email": "rahul@example.com"
+      },
+      "description": "Travel influencer exploring the hidden gems of Chhattisgarh. Specializes in tourism promotion and cultural content.",
+      "verified": true,
+      "featured": true,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Professional Reel Shoot", "Brand Collaboration", "Live Session", "Product Review"]
+    },
+    {
+      "id": 2,
+      "name": "Priya Sharma",
+      "city": "Bilaspur",
+      "district": "Bilaspur",
+      "latitude": 22.0796,
+      "longitude": 82.1409,
+      "niche": "Beauty",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-girl.jpg",
+      "instagramFollowers": 90000,
+      "youtubeSubscribers": 25000,
+      "facebookFollowers": 12000,
+      "avgReelViews": 45000,
+      "engagementRate": 7.2,
+      "availableDistricts": ["Bilaspur", "Raipur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/priyasharma_beauty",
+        "youtube": "https://youtube.com/@priyasharmabeauty",
+        "facebook": "https://facebook.com/priyasharmabeauty"
+      },
+      "pricingInfo": {
+        "model": "negotiable",
+        "isNegotiable": true,
+        "description": "Open to negotiation based on project requirements and budget"
+      },
+      "charges": {
+        "reel": 3500,
+        "story": 800,
+        "post": 2500,
+        "collaboration": 5000,
+        "reelMaking": 3000
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 3500, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 800, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 2500, "model": "fixed", "negotiable": false },
+        { "service": "UGC Video", "charge": 4000, "model": "negotiable", "negotiable": true },
+        { "service": "Professional Reel Shoot", "charge": 3000, "model": "starting_from", "startingPrice": 2500, "negotiable": true },
+        { "service": "Brand Collaboration", "charge": 5000, "model": "negotiable", "negotiable": true },
+        { "service": "Makeup Tutorial", "charge": 4500, "model": "fixed", "negotiable": false },
+        { "service": "Product Unboxing", "charge": 2800, "model": "range", "min": 2000, "max": 4000, "negotiable": true },
+        { "service": "Skincare Routine", "charge": 3200, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "918888888888",
+        "email": "priya@example.com"
+      },
+      "description": "Beauty and lifestyle creator from Bilaspur. Expert in makeup tutorials, skincare, and product reviews.",
+      "verified": true,
+      "featured": true,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Professional Reel Shoot", "Brand Collaboration", "Makeup Tutorial", "Product Unboxing", "Skincare Routine"]
+    },
+    {
+      "id": 3,
+      "name": "Amit Patel",
+      "city": "Durg",
+      "district": "Durg",
+      "latitude": 21.1904,
+      "longitude": 81.2849,
+      "niche": "Food",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-with-hat.jpg",
+      "instagramFollowers": 85000,
+      "youtubeSubscribers": 35000,
+      "facebookFollowers": 18000,
+      "avgReelViews": 55000,
+      "engagementRate": 5.8,
+      "availableDistricts": ["Durg", "Bhilai", "Raipur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/amitpatel_food",
+        "youtube": "https://youtube.com/@amitpatelfood",
+        "facebook": "https://facebook.com/amitpatelfood"
+      },
+      "pricingInfo": {
+        "model": "range",
+        "minPrice": 1500,
+        "maxPrice": 6000,
+        "isNegotiable": true,
+        "description": "Pricing depends on content complexity and production requirements"
+      },
+      "charges": {
+        "reel": 4000,
+        "story": 900,
+        "post": 2800,
+        "collaboration": 6000,
+        "reelMaking": 3500
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 4000, "model": "range", "min": 3000, "max": 5000, "negotiable": true },
+        { "service": "Story Promotion", "charge": 900, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 2800, "model": "fixed", "negotiable": false },
+        { "service": "Restaurant Promotion", "charge": 6000, "model": "negotiable", "negotiable": true },
+        { "service": "Professional Reel Shoot", "charge": 3500, "model": "starting_from", "startingPrice": 2500, "negotiable": true },
+        { "service": "Food Review", "charge": 4500, "model": "fixed", "negotiable": false },
+        { "service": "Recipe Video", "charge": 3800, "model": "range", "min": 3000, "max": 5000, "negotiable": true },
+        { "service": "Cooking Demo", "charge": 5000, "model": "negotiable", "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "917777777777",
+        "email": "amit@example.com"
+      },
+      "description": "Food blogger exploring Chhattisgarh's unique cuisine. Specializes in restaurant reviews and food content.",
+      "verified": false,
+      "featured": true,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "Restaurant Promotion", "Professional Reel Shoot", "Food Review", "Recipe Video", "Cooking Demo"]
+    },
+    {
+      "id": 4,
+      "name": "Neha Verma",
+      "city": "Bhilai",
+      "district": "Durg",
+      "latitude": 21.1932,
+      "longitude": 81.3508,
+      "niche": "Fashion",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/smiling-woman.jpg",
+      "instagramFollowers": 120000,
+      "youtubeSubscribers": 40000,
+      "facebookFollowers": 20000,
+      "avgReelViews": 68000,
+      "engagementRate": 6.9,
+      "availableDistricts": ["Durg", "Bhilai", "Raipur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/nehaverma_fashion",
+        "youtube": "https://youtube.com/@nehavermafashion",
+        "facebook": "https://facebook.com/nehavermafashion"
+      },
+      "pricingInfo": {
+        "model": "fixed",
+        "isNegotiable": false,
+        "description": "Fixed pricing for all services. No negotiation."
+      },
+      "charges": {
+        "reel": 5500,
+        "story": 1200,
+        "post": 3500,
+        "collaboration": 8000,
+        "reelMaking": 4500
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 5500, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 1200, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 3500, "model": "fixed", "negotiable": false },
+        { "service": "UGC Video", "charge": 5000, "model": "fixed", "negotiable": false },
+        { "service": "Brand Collaboration", "charge": 8000, "model": "fixed", "negotiable": false },
+        { "service": "Professional Reel Shoot", "charge": 4500, "model": "fixed", "negotiable": false },
+        { "service": "Fashion Styling", "charge": 6000, "model": "fixed", "negotiable": false },
+        { "service": "Outfit Review", "charge": 4000, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "916666666666",
+        "email": "neha@example.com"
+      },
+      "description": "Fashion influencer from Bhilai. Specializes in fashion styling, clothing brands, and lifestyle content.",
+      "verified": true,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Brand Collaboration", "Professional Reel Shoot", "Fashion Styling", "Outfit Review"]
+    },
+    {
+      "id": 5,
+      "name": "Vikram Singh",
+      "city": "Korba",
+      "district": "Korba",
+      "latitude": 22.3595,
+      "longitude": 82.7501,
+      "niche": "Tech",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-businessman.jpg",
+      "instagramFollowers": 60000,
+      "youtubeSubscribers": 80000,
+      "facebookFollowers": 15000,
+      "avgReelViews": 42000,
+      "engagementRate": 4.5,
+      "availableDistricts": ["Korba", "Raipur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/vikramtech_reviews",
+        "youtube": "https://youtube.com/@vikramtech",
+        "facebook": "https://facebook.com/vikramtech"
+      },
+      "pricingInfo": {
+        "model": "starting_from",
+        "startingPrice": 4000,
+        "isNegotiable": true,
+        "description": "Starting price for basic package. Premium services cost extra."
+      },
+      "charges": {
+        "reel": 6000,
+        "story": 1500,
+        "post": 4000,
+        "collaboration": 9000,
+        "reelMaking": 5000
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 6000, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 1500, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 4000, "model": "starting_from", "startingPrice": 3000, "negotiable": true },
+        { "service": "UGC Video", "charge": 5500, "model": "range", "min": 4000, "max": 7000, "negotiable": true },
+        { "service": "Professional Reel Shoot", "charge": 5000, "model": "starting_from", "startingPrice": 3500, "negotiable": true },
+        { "service": "Tech Review", "charge": 8000, "model": "negotiable", "negotiable": true },
+        { "service": "Product Unboxing", "charge": 6500, "model": "fixed", "negotiable": false },
+        { "service": "Gadget Demo", "charge": 7000, "model": "range", "min": 5000, "max": 9000, "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "915555555555",
+        "email": "vikram@example.com"
+      },
+      "description": "Tech reviewer and gadget enthusiast from Korba. Specializes in tech reviews, unboxing, and product demonstrations.",
+      "verified": false,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Professional Reel Shoot", "Tech Review", "Product Unboxing", "Gadget Demo"]
+    },
+    {
+      "id": 6,
+      "name": "Sneha Yadav",
+      "city": "Rajnandgaon",
+      "district": "Rajnandgaon",
+      "latitude": 21.0965,
+      "longitude": 81.0290,
+      "niche": "Fitness",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-sport.jpg",
+      "instagramFollowers": 75000,
+      "youtubeSubscribers": 20000,
+      "facebookFollowers": 10000,
+      "avgReelViews": 35000,
+      "engagementRate": 8.1,
+      "availableDistricts": ["Rajnandgaon", "Durg"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/snehayadav_fitness",
+        "youtube": "https://youtube.com/@snehayadavfitness",
+        "facebook": "https://facebook.com/snehayadavfitness"
+      },
+      "pricingInfo": {
+        "model": "negotiable",
+        "isNegotiable": true,
+        "description": "Flexible pricing based on client requirements and package selection"
+      },
+      "charges": {
+        "reel": 3000,
+        "story": 700,
+        "post": 2000,
+        "collaboration": 4500,
+        "reelMaking": 2500
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 3000, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 700, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 2000, "model": "fixed", "negotiable": false },
+        { "service": "UGC Video", "charge": 3500, "model": "range", "min": 2800, "max": 4500, "negotiable": true },
+        { "service": "Professional Reel Shoot", "charge": 2500, "model": "starting_from", "startingPrice": 2000, "negotiable": true },
+        { "service": "Workout Video", "charge": 4000, "model": "fixed", "negotiable": false },
+        { "service": "Nutrition Tips", "charge": 3500, "model": "range", "min": 2800, "max": 4500, "negotiable": true },
+        { "service": "Fitness Challenge", "charge": 5000, "model": "negotiable", "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "914444444444",
+        "email": "sneha@example.com"
+      },
+      "description": "Fitness trainer promoting healthy lifestyle in Rajnandgaon. Specializes in workout videos, nutrition tips, and fitness challenges.",
+      "verified": false,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Professional Reel Shoot", "Workout Video", "Nutrition Tips", "Fitness Challenge"]
+    },
+    {
+      "id": 7,
+      "name": "Arjun Mishra",
+      "city": "Jagdalpur",
+      "district": "Bastar",
+      "latitude": 19.0811,
+      "longitude": 82.0210,
+      "niche": "Photography",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-photographer.jpg",
+      "instagramFollowers": 45000,
+      "youtubeSubscribers": 15000,
+      "facebookFollowers": 8000,
+      "avgReelViews": 18000,
+      "engagementRate": 5.2,
+      "availableDistricts": ["Bastar", "Jagdalpur", "Dantewada"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/arjunmishra_photography",
+        "youtube": "https://youtube.com/@arjunmishraphoto",
+        "facebook": "https://facebook.com/arjunmishraphoto"
+      },
+      "pricingInfo": {
+        "model": "range",
+        "minPrice": 2000,
+        "maxPrice": 15000,
+        "isNegotiable": true,
+        "description": "Prices vary based on project type, duration, and location"
+      },
+      "charges": {
+        "reel": 2500,
+        "story": 600,
+        "post": 1800,
+        "collaboration": 3500,
+        "reelMaking": 2000
+      },
+      "serviceCharges": [
+        { "service": "Photography", "charge": 5000, "model": "range", "min": 3000, "max": 8000, "negotiable": true },
+        { "service": "Event Coverage", "charge": 8000, "model": "negotiable", "negotiable": true },
+        { "service": "Professional Reel Shoot", "charge": 2000, "model": "starting_from", "startingPrice": 1500, "negotiable": true },
+        { "service": "Wedding Photography", "charge": 15000, "model": "fixed", "negotiable": false },
+        { "service": "Portrait Shoot", "charge": 3000, "model": "fixed", "negotiable": false },
+        { "service": "Nature Photography", "charge": 4000, "model": "range", "min": 3000, "max": 6000, "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "913333333333",
+        "email": "arjun@example.com"
+      },
+      "description": "Photographer capturing the beauty of Bastar region. Specializes in travel photography, nature, and cultural events.",
+      "verified": false,
+      "featured": false,
+      "services": ["Photography", "Event Coverage", "Professional Reel Shoot", "Wedding Photography", "Portrait Shoot", "Nature Photography"]
+    },
+    {
+      "id": 8,
+      "name": "Meera Tiwari",
+      "city": "Ambikapur",
+      "district": "Surguja",
+      "latitude": 23.1197,
+      "longitude": 83.1951,
+      "niche": "Education",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-teacher.jpg",
+      "instagramFollowers": 30000,
+      "youtubeSubscribers": 100000,
+      "facebookFollowers": 20000,
+      "avgReelViews": 38000,
+      "engagementRate": 6.0,
+      "availableDistricts": ["Surguja", "Ambikapur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/meeratiwari_education",
+        "youtube": "https://youtube.com/@meeratiwari",
+        "facebook": "https://facebook.com/meeratiwari"
+      },
+      "pricingInfo": {
+        "model": "fixed",
+        "isNegotiable": false,
+        "description": "Standard fixed pricing for educational content"
+      },
+      "charges": {
+        "reel": 2000,
+        "story": 500,
+        "post": 1500,
+        "collaboration": 3000,
+        "reelMaking": 1800
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 2000, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 500, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 1500, "model": "fixed", "negotiable": false },
+        { "service": "UGC Video", "charge": 2500, "model": "fixed", "negotiable": false },
+        { "service": "Study Tips", "charge": 3000, "model": "fixed", "negotiable": false },
+        { "service": "Exam Prep", "charge": 4000, "model": "fixed", "negotiable": false },
+        { "service": "Educational Content", "charge": 3500, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "912222222222",
+        "email": "meera@example.com"
+      },
+      "description": "Educational content creator for competitive exams in Ambikapur. Specializes in study tips, exam preparation, and educational content.",
+      "verified": true,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Study Tips", "Exam Prep", "Educational Content"]
+    },
+    {
+      "id": 9,
+      "name": "Rohit Das",
+      "city": "Raigarh",
+      "district": "Raigarh",
+      "latitude": 21.8975,
+      "longitude": 83.3967,
+      "niche": "Automobile",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-car-mechanic.jpg",
+      "instagramFollowers": 50000,
+      "youtubeSubscribers": 60000,
+      "facebookFollowers": 12000,
+      "avgReelViews": 35000,
+      "engagementRate": 4.8,
+      "availableDistricts": ["Raigarh", "Korba"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/rohitdas_auto",
+        "youtube": "https://youtube.com/@rohitdasauto",
+        "facebook": "https://facebook.com/rohitdasauto"
+      },
+      "pricingInfo": {
+        "model": "starting_from",
+        "startingPrice": 3000,
+        "isNegotiable": true,
+        "description": "Base price for standard reviews. Premium vehicles and detailed reviews cost extra."
+      },
+      "charges": {
+        "reel": 4500,
+        "story": 1000,
+        "post": 3000,
+        "collaboration": 6500,
+        "reelMaking": 3800
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 4500, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 1000, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 3000, "model": "starting_from", "startingPrice": 2500, "negotiable": true },
+        { "service": "UGC Video", "charge": 4800, "model": "range", "min": 3500, "max": 6000, "negotiable": true },
+        { "service": "Professional Reel Shoot", "charge": 3800, "model": "starting_from", "startingPrice": 2800, "negotiable": true },
+        { "service": "Car Review", "charge": 7000, "model": "negotiable", "negotiable": true },
+        { "service": "Bike Review", "charge": 5500, "model": "fixed", "negotiable": false },
+        { "service": "Test Drive", "charge": 6000, "model": "range", "min": 4500, "max": 8000, "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "911111111111",
+        "email": "rohit@example.com"
+      },
+      "description": "Automobile reviewer and car enthusiast from Raigarh. Specializes in car reviews, bike reviews, and automotive content.",
+      "verified": false,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Professional Reel Shoot", "Car Review", "Bike Review", "Test Drive"]
+    },
+    {
+      "id": 10,
+      "name": "Pooja Patel",
+      "city": "Raipur",
+      "district": "Raipur",
+      "latitude": 21.2514,
+      "longitude": 81.6296,
+      "niche": "Store Promotion",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-business.jpg",
+      "instagramFollowers": 80000,
+      "youtubeSubscribers": 30000,
+      "facebookFollowers": 15000,
+      "avgReelViews": 42000,
+      "engagementRate": 5.5,
+      "availableDistricts": ["Raipur", "Durg", "Bilaspur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/poojapatel_store",
+        "youtube": "https://youtube.com/@poojapatelstore",
+        "facebook": "https://facebook.com/poojapatelstore"
+      },
+      "pricingInfo": {
+        "model": "range",
+        "minPrice": 2200,
+        "maxPrice": 6000,
+        "isNegotiable": true,
+        "description": "Pricing depends on store size, location, and promotion duration"
+      },
+      "charges": {
+        "reel": 3200,
+        "story": 750,
+        "post": 2200,
+        "collaboration": 4800,
+        "reelMaking": 2800
+      },
+      "serviceCharges": [
+        { "service": "Store Promotion", "charge": 4800, "model": "negotiable", "negotiable": true },
+        { "service": "Reel Promotion", "charge": 3200, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 750, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 2200, "model": "starting_from", "startingPrice": 1800, "negotiable": true },
+        { "service": "Event Coverage", "charge": 5000, "model": "range", "min": 3500, "max": 7000, "negotiable": true },
+        { "service": "Product Launch", "charge": 6000, "model": "negotiable", "negotiable": true },
+        { "service": "Retail Review", "charge": 4000, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "919999999998",
+        "email": "pooja@example.com"
+      },
+      "description": "Store promotion specialist for local businesses in Raipur. Specializes in retail promotion, product launches, and store events.",
+      "verified": false,
+      "featured": false,
+      "services": ["Store Promotion", "Reel Promotion", "Story Promotion", "Feed Post", "Event Coverage", "Product Launch", "Retail Review"]
+    },
+    {
+      "id": 11,
+      "name": "Sanjay Kumar",
+      "city": "Chirmiri",
+      "district": "Koriya",
+      "latitude": 23.2183,
+      "longitude": 82.3456,
+      "niche": "Hotel Promotion",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-hotel.jpg",
+      "instagramFollowers": 25000,
+      "youtubeSubscribers": 12000,
+      "facebookFollowers": 8000,
+      "avgReelViews": 15000,
+      "engagementRate": 4.2,
+      "availableDistricts": ["Koriya", "Surguja"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/sanjaykumar_hotel",
+        "youtube": "https://youtube.com/@sanjaykumarhotel",
+        "facebook": "https://facebook.com/sanjaykumarhotel"
+      },
+      "pricingInfo": {
+        "model": "negotiable",
+        "isNegotiable": true,
+        "description": "Custom pricing based on hotel category and promotion package"
+      },
+      "charges": {
+        "reel": 2800,
+        "story": 600,
+        "post": 1800,
+        "collaboration": 4000,
+        "reelMaking": 2200
+      },
+      "serviceCharges": [
+        { "service": "Hotel Promotion", "charge": 4000, "model": "negotiable", "negotiable": true },
+        { "service": "Reel Promotion", "charge": 2800, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 600, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 1800, "model": "starting_from", "startingPrice": 1500, "negotiable": true },
+        { "service": "Hotel Review", "charge": 5000, "model": "range", "min": 3500, "max": 7000, "negotiable": true },
+        { "service": "Room Tour", "charge": 3500, "model": "fixed", "negotiable": false },
+        { "service": "Travel Vlog", "charge": 4500, "model": "negotiable", "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "919777777777",
+        "email": "sanjay@example.com"
+      },
+      "description": "Hotel and hospitality promoter from Chirmiri. Specializes in hotel reviews, travel content, and hospitality promotion.",
+      "verified": false,
+      "featured": false,
+      "services": ["Hotel Promotion", "Reel Promotion", "Story Promotion", "Feed Post", "Hotel Review", "Room Tour", "Travel Vlog"]
+    },
+    {
+      "id": 12,
+      "name": "Anjali Sahu",
+      "city": "Mahasamund",
+      "district": "Mahasamund",
+      "latitude": 21.1100,
+      "longitude": 82.1000,
+      "niche": "Tourism",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-traveler.jpg",
+      "instagramFollowers": 65000,
+      "youtubeSubscribers": 22000,
+      "facebookFollowers": 11000,
+      "avgReelViews": 38000,
+      "engagementRate": 6.3,
+      "availableDistricts": ["Mahasamund", "Raipur", "Durg"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/anjalitravels_cg",
+        "youtube": "https://youtube.com/@anjalitravels",
+        "facebook": "https://facebook.com/anjalitravels"
+      },
+      "pricingInfo": {
+        "model": "starting_from",
+        "startingPrice": 2600,
+        "isNegotiable": true,
+        "description": "Starting price for basic tourism promotion. Custom packages available."
+      },
+      "charges": {
+        "reel": 3800,
+        "story": 850,
+        "post": 2600,
+        "collaboration": 5500,
+        "reelMaking": 3200
+      },
+      "serviceCharges": [
+        { "service": "Tourism Promotion", "charge": 5500, "model": "negotiable", "negotiable": true },
+        { "service": "Reel Promotion", "charge": 3800, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 850, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 2600, "model": "starting_from", "startingPrice": 2200, "negotiable": true },
+        { "service": "Professional Reel Shoot", "charge": 3200, "model": "range", "min": 2500, "max": 4500, "negotiable": true },
+        { "service": "Travel Vlog", "charge": 5000, "model": "fixed", "negotiable": false },
+        { "service": "Cultural Content", "charge": 4500, "model": "range", "min": 3500, "max": 6000, "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "918666666666",
+        "email": "anjali@example.com"
+      },
+      "description": "Tourism influencer promoting Chhattisgarh's cultural heritage. Specializes in travel, tourism, and cultural content.",
+      "verified": true,
+      "featured": true,
+      "services": ["Tourism Promotion", "Reel Promotion", "Story Promotion", "Feed Post", "Professional Reel Shoot", "Travel Vlog", "Cultural Content"]
+    },
+    {
+      "id": 13,
+      "name": "Vivek Pandey",
+      "city": "Dhamtari",
+      "district": "Dhamtari",
+      "latitude": 20.7071,
+      "longitude": 81.5494,
+      "niche": "Real Estate",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-businessman-2.jpg",
+      "instagramFollowers": 18000,
+      "youtubeSubscribers": 9000,
+      "facebookFollowers": 5000,
+      "avgReelViews": 8000,
+      "engagementRate": 3.8,
+      "availableDistricts": ["Dhamtari", "Raipur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/vivekpandey_realestate",
+        "youtube": "https://youtube.com/@vivekpandeyre",
+        "facebook": "https://facebook.com/vivekpandeyre"
+      },
+      "pricingInfo": {
+        "model": "fixed",
+        "isNegotiable": false,
+        "description": "Standard fixed rates for real estate content"
+      },
+      "charges": {
+        "reel": 3500,
+        "story": 700,
+        "post": 2200,
+        "collaboration": 4800,
+        "reelMaking": 2800
+      },
+      "serviceCharges": [
+        { "service": "Real Estate Promotion", "charge": 4800, "model": "fixed", "negotiable": false },
+        { "service": "Reel Promotion", "charge": 3500, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 700, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 2200, "model": "fixed", "negotiable": false },
+        { "service": "Property Review", "charge": 6000, "model": "fixed", "negotiable": false },
+        { "service": "Investment Tips", "charge": 4500, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "919555555555",
+        "email": "vivek@example.com"
+      },
+      "description": "Real estate expert and property promoter in Dhamtari. Specializes in property reviews, real estate tips, and investment advice.",
+      "verified": false,
+      "featured": false,
+      "services": ["Real Estate Promotion", "Reel Promotion", "Story Promotion", "Feed Post", "Property Review", "Investment Tips"]
+    },
+    {
+      "id": 14,
+      "name": "Kavita Rathore",
+      "city": "Kawardha",
+      "district": "Kabirdham",
+      "latitude": 21.9958,
+      "longitude": 81.0652,
+      "niche": "Lifestyle",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-lifestyle.jpg",
+      "instagramFollowers": 55000,
+      "youtubeSubscribers": 18000,
+      "facebookFollowers": 9000,
+      "avgReelViews": 32000,
+      "engagementRate": 5.9,
+      "availableDistricts": ["Kabirdham", "Raipur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/kavitarathore_lifestyle",
+        "youtube": "https://youtube.com/@kavitarathore",
+        "facebook": "https://facebook.com/kavitarathore"
+      },
+      "pricingInfo": {
+        "model": "range",
+        "minPrice": 2000,
+        "maxPrice": 4200,
+        "isNegotiable": true,
+        "description": "Price varies based on content type and production value"
+      },
+      "charges": {
+        "reel": 3000,
+        "story": 650,
+        "post": 2000,
+        "collaboration": 4200,
+        "reelMaking": 2500
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 3000, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 650, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 2000, "model": "starting_from", "startingPrice": 1500, "negotiable": true },
+        { "service": "UGC Video", "charge": 3500, "model": "range", "min": 2500, "max": 4500, "negotiable": true },
+        { "service": "Lifestyle Content", "charge": 4200, "model": "negotiable", "negotiable": true },
+        { "service": "Wellness Tips", "charge": 3800, "model": "fixed", "negotiable": false },
+        { "service": "Daily Vlog", "charge": 4000, "model": "range", "min": 3000, "max": 5000, "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "914444444444",
+        "email": "kavita@example.com"
+      },
+      "description": "Lifestyle and wellness influencer from Kawardha. Specializes in lifestyle content, wellness tips, and daily vlogs.",
+      "verified": false,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Lifestyle Content", "Wellness Tips", "Daily Vlog"]
+    },
+    {
+      "id": 15,
+      "name": "Deepak Soni",
+      "city": "Rajnandgaon",
+      "district": "Rajnandgaon",
+      "latitude": 21.0965,
+      "longitude": 81.0290,
+      "niche": "Gaming",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-gamer.jpg",
+      "instagramFollowers": 20000,
+      "youtubeSubscribers": 65000,
+      "facebookFollowers": 8000,
+      "avgReelViews": 25000,
+      "engagementRate": 4.9,
+      "availableDistricts": ["Rajnandgaon", "Durg"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/deepaksoni_gaming",
+        "youtube": "https://youtube.com/@deepaksonigaming",
+        "facebook": "https://facebook.com/deepaksonigaming"
+      },
+      "pricingInfo": {
+        "model": "starting_from",
+        "startingPrice": 1500,
+        "isNegotiable": true,
+        "description": "Basic package starts from ₹1500. Premium gaming content costs more."
+      },
+      "charges": {
+        "reel": 2200,
+        "story": 500,
+        "post": 1500,
+        "collaboration": 3200,
+        "reelMaking": 2000
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 2200, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 500, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 1500, "model": "starting_from", "startingPrice": 1200, "negotiable": true },
+        { "service": "UGC Video", "charge": 2800, "model": "range", "min": 2000, "max": 4000, "negotiable": true },
+        { "service": "Gaming Stream", "charge": 5000, "model": "negotiable", "negotiable": true },
+        { "service": "Game Review", "charge": 4000, "model": "fixed", "negotiable": false },
+        { "service": "Live Gameplay", "charge": 6000, "model": "range", "min": 4000, "max": 8000, "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "913333333333",
+        "email": "deepak@example.com"
+      },
+      "description": "Gaming content creator and streamer from Rajnandgaon. Specializes in gaming streams, game reviews, and gaming content.",
+      "verified": false,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Gaming Stream", "Game Review", "Live Gameplay"]
+    },
+    {
+      "id": 16,
+      "name": "Mona Gupta",
+      "city": "Bilaspur",
+      "district": "Bilaspur",
+      "latitude": 22.0796,
+      "longitude": 82.1409,
+      "niche": "Finance",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-finance.jpg",
+      "instagramFollowers": 35000,
+      "youtubeSubscribers": 45000,
+      "facebookFollowers": 12000,
+      "avgReelViews": 22000,
+      "engagementRate": 5.1,
+      "availableDistricts": ["Bilaspur", "Raipur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/monagupta_finance",
+        "youtube": "https://youtube.com/@monaguptafinance",
+        "facebook": "https://facebook.com/monaguptafinance"
+      },
+      "pricingInfo": {
+        "model": "fixed",
+        "isNegotiable": false,
+        "description": "Fixed pricing for all financial content services"
+      },
+      "charges": {
+        "reel": 4000,
+        "story": 900,
+        "post": 2800,
+        "collaboration": 5800,
+        "reelMaking": 3500
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 4000, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 900, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 2800, "model": "fixed", "negotiable": false },
+        { "service": "UGC Video", "charge": 4500, "model": "fixed", "negotiable": false },
+        { "service": "Finance Tips", "charge": 5000, "model": "fixed", "negotiable": false },
+        { "service": "Investment Advice", "charge": 6000, "model": "fixed", "negotiable": false },
+        { "service": "Money Management", "charge": 5500, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "912222222222",
+        "email": "mona@example.com"
+      },
+      "description": "Finance and investment advisor content creator from Bilaspur. Specializes in finance tips, investment advice, and money management.",
+      "verified": true,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Finance Tips", "Investment Advice", "Money Management"]
+    },
+    {
+      "id": 17,
+      "name": "Ravi Sharma",
+      "city": "Korba",
+      "district": "Korba",
+      "latitude": 22.3595,
+      "longitude": 82.7501,
+      "niche": "Event Coverage",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-event-planner.jpg",
+      "instagramFollowers": 40000,
+      "youtubeSubscribers": 28000,
+      "facebookFollowers": 15000,
+      "avgReelViews": 28000,
+      "engagementRate": 4.5,
+      "availableDistricts": ["Korba", "Raipur", "Bilaspur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/ravisharma_events",
+        "youtube": "https://youtube.com/@ravisharmaevents",
+        "facebook": "https://facebook.com/ravisharmaevents"
+      },
+      "pricingInfo": {
+        "model": "range",
+        "minPrice": 2800,
+        "maxPrice": 12000,
+        "isNegotiable": true,
+        "description": "Price depends on event type, duration, and coverage requirements"
+      },
+      "charges": {
+        "reel": 3200,
+        "story": 750,
+        "post": 2200,
+        "collaboration": 4800,
+        "reelMaking": 2800
+      },
+      "serviceCharges": [
+        { "service": "Event Coverage", "charge": 4800, "model": "negotiable", "negotiable": true },
+        { "service": "Wedding Photography", "charge": 12000, "model": "fixed", "negotiable": false },
+        { "service": "Professional Reel Shoot", "charge": 2800, "model": "starting_from", "startingPrice": 2000, "negotiable": true },
+        { "service": "Photography", "charge": 5000, "model": "range", "min": 3500, "max": 7000, "negotiable": true },
+        { "service": "Corporate Event", "charge": 8000, "model": "negotiable", "negotiable": true },
+        { "service": "Live Streaming", "charge": 6000, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "911111111111",
+        "email": "ravi@example.com"
+      },
+      "description": "Event coverage and wedding photography specialist in Korba. Specializes in events, weddings, and professional photography.",
+      "verified": false,
+      "featured": false,
+      "services": ["Event Coverage", "Wedding Photography", "Professional Reel Shoot", "Photography", "Corporate Event", "Live Streaming"]
+    },
+    {
+      "id": 18,
+      "name": "Swati Verma",
+      "city": "Raipur",
+      "district": "Raipur",
+      "latitude": 21.2514,
+      "longitude": 81.6296,
+      "niche": "Wedding",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-wedding-planner.jpg",
+      "instagramFollowers": 70000,
+      "youtubeSubscribers": 32000,
+      "facebookFollowers": 18000,
+      "avgReelViews": 45000,
+      "engagementRate": 6.8,
+      "availableDistricts": ["Raipur", "Bilaspur", "Durg"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/swativerma_wedding",
+        "youtube": "https://youtube.com/@swativermawedding",
+        "facebook": "https://facebook.com/swativermawedding"
+      },
+      "pricingInfo": {
+        "model": "negotiable",
+        "isNegotiable": true,
+        "description": "Custom wedding packages available. Contact for detailed quote."
+      },
+      "charges": {
+        "reel": 4500,
+        "story": 1000,
+        "post": 3200,
+        "collaboration": 6500,
+        "reelMaking": 4000
+      },
+      "serviceCharges": [
+        { "service": "Wedding Planning", "charge": 15000, "model": "negotiable", "negotiable": true },
+        { "service": "Event Coverage", "charge": 6500, "model": "range", "min": 5000, "max": 9000, "negotiable": true },
+        { "service": "Reel Promotion", "charge": 4500, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 1000, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 3200, "model": "starting_from", "startingPrice": 2500, "negotiable": true },
+        { "service": "Wedding Decor", "charge": 8000, "model": "fixed", "negotiable": false },
+        { "service": "Pre-Wedding Shoot", "charge": 10000, "model": "range", "min": 7000, "max": 15000, "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "919999999997",
+        "email": "swati@example.com"
+      },
+      "description": "Wedding planner and decor influencer from Raipur. Specializes in wedding planning, decor, and wedding content.",
+      "verified": true,
+      "featured": true,
+      "services": ["Wedding Planning", "Event Coverage", "Reel Promotion", "Story Promotion", "Feed Post", "Wedding Decor", "Pre-Wedding Shoot"]
+    },
+    {
+      "id": 19,
+      "name": "Alok Tiwari",
+      "city": "Jagdalpur",
+      "district": "Bastar",
+      "latitude": 19.0811,
+      "longitude": 82.0210,
+      "niche": "Local News",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-journalist.jpg",
+      "instagramFollowers": 15000,
+      "youtubeSubscribers": 35000,
+      "facebookFollowers": 25000,
+      "avgReelViews": 12000,
+      "engagementRate": 3.9,
+      "availableDistricts": ["Bastar", "Jagdalpur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/aloktiwari_news",
+        "youtube": "https://youtube.com/@aloktiwarinews",
+        "facebook": "https://facebook.com/aloktiwarinews"
+      },
+      "pricingInfo": {
+        "model": "fixed",
+        "isNegotiable": false,
+        "description": "Fixed pricing for news and community content"
+      },
+      "charges": {
+        "reel": 1800,
+        "story": 400,
+        "post": 1200,
+        "collaboration": 2500,
+        "reelMaking": 1500
+      },
+      "serviceCharges": [
+        { "service": "Local News", "charge": 2500, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 400, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 1200, "model": "fixed", "negotiable": false },
+        { "service": "Community Stories", "charge": 3000, "model": "fixed", "negotiable": false },
+        { "service": "News Coverage", "charge": 4000, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "918888888887",
+        "email": "alok@example.com"
+      },
+      "description": "Local news and current affairs creator from Jagdalpur. Specializes in local news, community stories, and current affairs.",
+      "verified": false,
+      "featured": false,
+      "services": ["Local News", "Story Promotion", "Feed Post", "Community Stories", "News Coverage"]
+    },
+    {
+      "id": 20,
+      "name": "Neelam Yadav",
+      "city": "Ambikapur",
+      "district": "Surguja",
+      "latitude": 23.1197,
+      "longitude": 83.1951,
+      "niche": "Food",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-chef.jpg",
+      "instagramFollowers": 48000,
+      "youtubeSubscribers": 32000,
+      "facebookFollowers": 10000,
+      "avgReelViews": 30000,
+      "engagementRate": 5.6,
+      "availableDistricts": ["Surguja", "Ambikapur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/neelamyadav_food",
+        "youtube": "https://youtube.com/@neelamyadavfood",
+        "facebook": "https://facebook.com/neelamyadavfood"
+      },
+      "pricingInfo": {
+        "model": "range",
+        "minPrice": 1900,
+        "maxPrice": 5000,
+        "isNegotiable": true,
+        "description": "Pricing based on recipe complexity and production requirements"
+      },
+      "charges": {
+        "reel": 2800,
+        "story": 600,
+        "post": 1900,
+        "collaboration": 4000,
+        "reelMaking": 2300
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 2800, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 600, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 1900, "model": "starting_from", "startingPrice": 1500, "negotiable": true },
+        { "service": "UGC Video", "charge": 3200, "model": "range", "min": 2500, "max": 4200, "negotiable": true },
+        { "service": "Professional Reel Shoot", "charge": 2300, "model": "starting_from", "startingPrice": 1800, "negotiable": true },
+        { "service": "Traditional Recipe", "charge": 4500, "model": "fixed", "negotiable": false },
+        { "service": "Cooking Class", "charge": 5000, "model": "negotiable", "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "917777777776",
+        "email": "neelam@example.com"
+      },
+      "description": "Food and recipe creator focusing on Chhattisgarhi cuisine. Specializes in traditional recipes, cooking videos, and food content.",
+      "verified": false,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Professional Reel Shoot", "Traditional Recipe", "Cooking Class"]
+    },
+    {
+      "id": 21,
+      "name": "Prakash Singh",
+      "city": "Bhilai",
+      "district": "Durg",
+      "latitude": 21.1932,
+      "longitude": 81.3508,
+      "niche": "Automobile",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-biker.jpg",
+      "instagramFollowers": 32000,
+      "youtubeSubscribers": 48000,
+      "facebookFollowers": 9000,
+      "avgReelViews": 22000,
+      "engagementRate": 4.3,
+      "availableDistricts": ["Durg", "Bhilai", "Raipur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/prakashsingh_auto",
+        "youtube": "https://youtube.com/@prakashsinghauto",
+        "facebook": "https://facebook.com/prakashsinghauto"
+      },
+      "pricingInfo": {
+        "model": "starting_from",
+        "startingPrice": 2900,
+        "isNegotiable": true,
+        "description": "Base price for standard vehicle reviews. Premium bikes cost extra."
+      },
+      "charges": {
+        "reel": 4200,
+        "story": 950,
+        "post": 2900,
+        "collaboration": 6000,
+        "reelMaking": 3600
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 4200, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 950, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 2900, "model": "starting_from", "startingPrice": 2200, "negotiable": true },
+        { "service": "UGC Video", "charge": 4800, "model": "range", "min": 3500, "max": 6500, "negotiable": true },
+        { "service": "Professional Reel Shoot", "charge": 3600, "model": "starting_from", "startingPrice": 2800, "negotiable": true },
+        { "service": "Bike Review", "charge": 6000, "model": "negotiable", "negotiable": true },
+        { "service": "Road Trip Vlog", "charge": 5500, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "916666666665",
+        "email": "prakash@example.com"
+      },
+      "description": "Automobile vlogger and bike enthusiast from Bhilai. Specializes in bike reviews, automobile content, and road trips.",
+      "verified": false,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Professional Reel Shoot", "Bike Review", "Road Trip Vlog"]
+    },
+    {
+      "id": 22,
+      "name": "Ritu Jain",
+      "city": "Raipur",
+      "district": "Raipur",
+      "latitude": 21.2514,
+      "longitude": 81.6296,
+      "niche": "Beauty",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-makeup.jpg",
+      "instagramFollowers": 95000,
+      "youtubeSubscribers": 38000,
+      "facebookFollowers": 22000,
+      "avgReelViews": 52000,
+      "engagementRate": 7.5,
+      "availableDistricts": ["Raipur", "Durg", "Bilaspur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/ritujain_beauty",
+        "youtube": "https://youtube.com/@ritujainbeauty",
+        "facebook": "https://facebook.com/ritujainbeauty"
+      },
+      "pricingInfo": {
+        "model": "fixed",
+        "isNegotiable": false,
+        "description": "Premium beauty content with fixed pricing"
+      },
+      "charges": {
+        "reel": 4800,
+        "story": 1100,
+        "post": 3400,
+        "collaboration": 6800,
+        "reelMaking": 4200
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 4800, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 1100, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 3400, "model": "fixed", "negotiable": false },
+        { "service": "UGC Video", "charge": 5200, "model": "fixed", "negotiable": false },
+        { "service": "Brand Collaboration", "charge": 6800, "model": "fixed", "negotiable": false },
+        { "service": "Professional Reel Shoot", "charge": 4200, "model": "fixed", "negotiable": false },
+        { "service": "Makeup Tutorial", "charge": 5000, "model": "fixed", "negotiable": false },
+        { "service": "Skincare Review", "charge": 4500, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "915555555554",
+        "email": "ritu@example.com"
+      },
+      "description": "Beauty and makeup artist with a large following in Raipur. Specializes in makeup tutorials, skincare, and beauty products.",
+      "verified": true,
+      "featured": true,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Brand Collaboration", "Professional Reel Shoot", "Makeup Tutorial", "Skincare Review"]
+    },
+    {
+      "id": 23,
+      "name": "Gopal Das",
+      "city": "Durg",
+      "district": "Durg",
+      "latitude": 21.1904,
+      "longitude": 81.2849,
+      "niche": "Travel",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-traveler.jpg",
+      "instagramFollowers": 38000,
+      "youtubeSubscribers": 22000,
+      "facebookFollowers": 8000,
+      "avgReelViews": 22000,
+      "engagementRate": 4.8,
+      "availableDistricts": ["Durg", "Bhilai", "Raipur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/gopaldas_travel",
+        "youtube": "https://youtube.com/@gopaldastravel",
+        "facebook": "https://facebook.com/gopaldastravel"
+      },
+      "pricingInfo": {
+        "model": "negotiable",
+        "isNegotiable": true,
+        "description": "Flexible pricing for travel content. Contact for custom quotes."
+      },
+      "charges": {
+        "reel": 2900,
+        "story": 650,
+        "post": 2000,
+        "collaboration": 4200,
+        "reelMaking": 2400
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 2900, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 650, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 2000, "model": "starting_from", "startingPrice": 1500, "negotiable": true },
+        { "service": "UGC Video", "charge": 3500, "model": "range", "min": 2500, "max": 4500, "negotiable": true },
+        { "service": "Professional Reel Shoot", "charge": 2400, "model": "starting_from", "startingPrice": 1800, "negotiable": true },
+        { "service": "Budget Travel", "charge": 4200, "model": "negotiable", "negotiable": true },
+        { "service": "Hidden Gems", "charge": 4500, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "914444444443",
+        "email": "gopal@example.com"
+      },
+      "description": "Travel blogger exploring offbeat destinations in Chhattisgarh. Specializes in budget travel, hidden gems, and travel vlogs.",
+      "verified": false,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Professional Reel Shoot", "Budget Travel", "Hidden Gems"]
+    },
+    {
+      "id": 24,
+      "name": "Suman Patel",
+      "city": "Korba",
+      "district": "Korba",
+      "latitude": 22.3595,
+      "longitude": 82.7501,
+      "niche": "Store Promotion",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-store-manager.jpg",
+      "instagramFollowers": 28000,
+      "youtubeSubscribers": 12000,
+      "facebookFollowers": 6000,
+      "avgReelViews": 15000,
+      "engagementRate": 4.0,
+      "availableDistricts": ["Korba", "Raipur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/sumanpatel_store",
+        "youtube": "https://youtube.com/@sumanpatelstore",
+        "facebook": "https://facebook.com/sumanpatelstore"
+      },
+      "pricingInfo": {
+        "model": "range",
+        "minPrice": 1700,
+        "maxPrice": 4000,
+        "isNegotiable": true,
+        "description": "Pricing depends on store size and promotion requirements"
+      },
+      "charges": {
+        "reel": 2500,
+        "story": 550,
+        "post": 1700,
+        "collaboration": 3600,
+        "reelMaking": 2100
+      },
+      "serviceCharges": [
+        { "service": "Store Promotion", "charge": 3600, "model": "negotiable", "negotiable": true },
+        { "service": "Reel Promotion", "charge": 2500, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 550, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 1700, "model": "starting_from", "startingPrice": 1400, "negotiable": true },
+        { "service": "Retail Review", "charge": 4000, "model": "range", "min": 3000, "max": 5000, "negotiable": true },
+        { "service": "Local Business", "charge": 3500, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "913333333332",
+        "email": "suman@example.com"
+      },
+      "description": "Local store promoter and small business advocate in Korba. Specializes in retail promotion, local businesses, and community content.",
+      "verified": false,
+      "featured": false,
+      "services": ["Store Promotion", "Reel Promotion", "Story Promotion", "Feed Post", "Retail Review", "Local Business"]
+    },
+    {
+      "id": 25,
+      "name": "Arvind Mishra",
+      "city": "Rajnandgaon",
+      "district": "Rajnandgaon",
+      "latitude": 21.0965,
+      "longitude": 81.0290,
+      "niche": "Tech",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-tech.jpg",
+      "instagramFollowers": 22000,
+      "youtubeSubscribers": 38000,
+      "facebookFollowers": 7000,
+      "avgReelViews": 18000,
+      "engagementRate": 4.2,
+      "availableDistricts": ["Rajnandgaon", "Durg"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/arvindmishra_tech",
+        "youtube": "https://youtube.com/@arvindmishratech",
+        "facebook": "https://facebook.com/arvindmishratech"
+      },
+      "pricingInfo": {
+        "model": "fixed",
+        "isNegotiable": false,
+        "description": "Fixed pricing for tech review services"
+      },
+      "charges": {
+        "reel": 3500,
+        "story": 800,
+        "post": 2400,
+        "collaboration": 5200,
+        "reelMaking": 3000
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 3500, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 800, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 2400, "model": "fixed", "negotiable": false },
+        { "service": "UGC Video", "charge": 4000, "model": "fixed", "negotiable": false },
+        { "service": "Professional Reel Shoot", "charge": 3000, "model": "fixed", "negotiable": false },
+        { "service": "Tech Review", "charge": 5200, "model": "fixed", "negotiable": false },
+        { "service": "Digital Marketing", "charge": 4800, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "912222222221",
+        "email": "arvind@example.com"
+      },
+      "description": "Tech reviewer and digital marketing expert from Rajnandgaon. Specializes in tech reviews, digital marketing, and social media tips.",
+      "verified": false,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Professional Reel Shoot", "Tech Review", "Digital Marketing"]
+    },
+    {
+      "id": 26,
+      "name": "Dr. Ananya Singh",
+      "city": "Raipur",
+      "district": "Raipur",
+      "latitude": 21.2514,
+      "longitude": 81.6296,
+      "niche": "Health & Wellness",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-doctor.jpg",
+      "instagramFollowers": 82000,
+      "youtubeSubscribers": 45000,
+      "facebookFollowers": 18000,
+      "avgReelViews": 48000,
+      "engagementRate": 7.8,
+      "availableDistricts": ["Raipur", "Durg", "Bilaspur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/drananyasingh_wellness",
+        "youtube": "https://youtube.com/@drananyasingh",
+        "facebook": "https://facebook.com/drananyasingh"
+      },
+      "pricingInfo": {
+        "model": "starting_from",
+        "startingPrice": 3000,
+        "isNegotiable": true,
+        "description": "Starting price for basic wellness content. Premium health campaigns cost more."
+      },
+      "charges": {
+        "reel": 4200,
+        "story": 950,
+        "post": 3000,
+        "collaboration": 6200,
+        "reelMaking": 3800
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 4200, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 950, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 3000, "model": "starting_from", "startingPrice": 2500, "negotiable": true },
+        { "service": "UGC Video", "charge": 4800, "model": "range", "min": 3500, "max": 6500, "negotiable": true },
+        { "service": "Professional Reel Shoot", "charge": 3800, "model": "starting_from", "startingPrice": 3000, "negotiable": true },
+        { "service": "Health Awareness", "charge": 6200, "model": "negotiable", "negotiable": true },
+        { "service": "Mental Health", "charge": 5500, "model": "fixed", "negotiable": false },
+        { "service": "Nutrition Advice", "charge": 5000, "model": "range", "min": 4000, "max": 7000, "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "919888888888",
+        "email": "ananya@example.com"
+      },
+      "description": "Medical professional and wellness influencer from Raipur. Specializes in mental health awareness, nutrition tips, and holistic wellness content.",
+      "verified": true,
+      "featured": true,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Professional Reel Shoot", "Health Awareness", "Mental Health", "Nutrition Advice"]
+    },
+    {
+      "id": 27,
+      "name": "Nisha Gupta",
+      "city": "Bilaspur",
+      "district": "Bilaspur",
+      "latitude": 22.0796,
+      "longitude": 82.1409,
+      "niche": "Parenting",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-mother.jpg",
+      "instagramFollowers": 58000,
+      "youtubeSubscribers": 32000,
+      "facebookFollowers": 14000,
+      "avgReelViews": 36000,
+      "engagementRate": 6.4,
+      "availableDistricts": ["Bilaspur", "Raipur", "Korba"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/nishagupta_parenting",
+        "youtube": "https://youtube.com/@nishaguptaparenting",
+        "facebook": "https://facebook.com/nishaguptaparenting"
+      },
+      "pricingInfo": {
+        "model": "range",
+        "minPrice": 2200,
+        "maxPrice": 5000,
+        "isNegotiable": true,
+        "description": "Price varies based on content type and topic complexity"
+      },
+      "charges": {
+        "reel": 3200,
+        "story": 750,
+        "post": 2200,
+        "collaboration": 4800,
+        "reelMaking": 2800
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 3200, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 750, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 2200, "model": "starting_from", "startingPrice": 1800, "negotiable": true },
+        { "service": "UGC Video", "charge": 3800, "model": "range", "min": 2800, "max": 4800, "negotiable": true },
+        { "service": "Brand Collaboration", "charge": 4800, "model": "negotiable", "negotiable": true },
+        { "service": "Parenting Tips", "charge": 4500, "model": "fixed", "negotiable": false },
+        { "service": "Child Development", "charge": 5000, "model": "range", "min": 4000, "max": 6500, "negotiable": true },
+        { "service": "Family Content", "charge": 4000, "model": "fixed", "negotiable": false }
+      ],
+      "contact": {
+        "whatsapp": "917777777778",
+        "email": "nisha@example.com"
+      },
+      "description": "Parenting coach and mom influencer from Bilaspur. Specializes in parenting tips, child development, and family lifestyle content.",
+      "verified": true,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Brand Collaboration", "Parenting Tips", "Child Development", "Family Content"]
+    },
+    {
+      "id": 28,
+      "name": "Rakesh Chouhan",
+      "city": "Durg",
+      "district": "Durg",
+      "latitude": 21.1904,
+      "longitude": 81.2849,
+      "niche": "Sustainable Living",
+      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/man-nature.jpg",
+      "instagramFollowers": 35000,
+      "youtubeSubscribers": 18000,
+      "facebookFollowers": 9000,
+      "avgReelViews": 21000,
+      "engagementRate": 5.5,
+      "availableDistricts": ["Durg", "Bhilai", "Raipur"],
+      "socialLinks": {
+        "instagram": "https://instagram.com/rakeshchouhan_eco",
+        "youtube": "https://youtube.com/@rakeshchouhaneco",
+        "facebook": "https://facebook.com/rakeshchouhaneco"
+      },
+      "pricingInfo": {
+        "model": "negotiable",
+        "isNegotiable": true,
+        "description": "Open to negotiation for environmental and sustainability projects"
+      },
+      "charges": {
+        "reel": 2800,
+        "story": 600,
+        "post": 1900,
+        "collaboration": 4000,
+        "reelMaking": 2400
+      },
+      "serviceCharges": [
+        { "service": "Reel Promotion", "charge": 2800, "model": "fixed", "negotiable": false },
+        { "service": "Story Promotion", "charge": 600, "model": "fixed", "negotiable": false },
+        { "service": "Feed Post", "charge": 1900, "model": "starting_from", "startingPrice": 1500, "negotiable": true },
+        { "service": "UGC Video", "charge": 3200, "model": "range", "min": 2500, "max": 4200, "negotiable": true },
+        { "service": "Environmental Campaign", "charge": 4000, "model": "negotiable", "negotiable": true },
+        { "service": "Zero-Waste Living", "charge": 4500, "model": "fixed", "negotiable": false },
+        { "service": "Eco-Friendly Tips", "charge": 3800, "model": "range", "min": 3000, "max": 4800, "negotiable": true }
+      ],
+      "contact": {
+        "whatsapp": "916666666667",
+        "email": "rakesh@example.com"
+      },
+      "description": "Sustainability advocate and eco-friendly lifestyle creator from Durg. Specializes in zero-waste living, upcycling, and environmental awareness content.",
+      "verified": false,
+      "featured": false,
+      "services": ["Reel Promotion", "Story Promotion", "Feed Post", "UGC Video", "Environmental Campaign", "Zero-Waste Living", "Eco-Friendly Tips"]
+    }
+  ]
+}
