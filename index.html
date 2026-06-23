@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Indian Creators Club CG</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ===== OVERLAY ===== -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ===== SIDE MENU ===== -->
+    <div class="side-menu" id="sideMenu">
+        <button class="close-menu" id="closeMenuBtn"><i class="fas fa-times"></i></button>
+        <div class="menu-title"><i class="fas fa-crown"></i> CG Creator</div>
+        <div class="menu-item active"><i class="fas fa-home"></i> Home</div>
+        <div class="menu-item" id="nearMeMenu"><i class="fas fa-map-marker-alt"></i> Near Me</div>
+        <div class="menu-divider"></div>
+        <button class="list-profile-btn" id="listProfileBtn"><i class="fas fa-plus-circle"></i> List Your Profile</button>
+
+        <!-- ===== FILTERS SECTION ===== -->
+        <div class="filter-section">
+            <div class="filter-label"><i class="fas fa-filter"></i> Filters</div>
+            <select id="sideDistrict">
+                <option value="">All Districts</option>
+            </select>
+            <select id="sideNiche">
+                <option value="">All Niches</option>
+            </select>
+            <select id="sideService">
+                <option value="">All Services</option>
+            </select>
+            <select id="sideBudget">
+                <option value="">Any Budget</option>
+                <option value="1000">Under ₹1K</option>
+                <option value="3000">Under ₹3K</option>
+                <option value="5000">Under ₹5K</option>
+                <option value="10000">Under ₹10K</option>
+                <option value="20000">Under ₹20K</option>
+            </select>
+            <button class="apply-filters-btn" id="applySideFilters"><i class="fas fa-check"></i> Apply Filters</button>
+        </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>Indian Creators Club CG</span>
+                </div>
+                <div class="nav-right">
+                    <button class="list-profile-desktop" id="listProfileDesktop"><i class="fas fa-plus-circle"></i> List Your Profile</button>
+                    <button class="theme-toggle" id="themeToggle" title="Toggle day/night theme"><span class="toggle-knob"><i class="fas fa-moon"></i></span></button>
+                    <button class="search-toggle" id="searchToggle"><i class="fas fa-search"></i></button>
+                    <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== SEARCH AREA ===== -->
+    <div class="search-area" id="searchArea">
+        <div class="container">
+            <div class="search-row">
+                <div class="input-wrap">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search creators, niche, service, city...">
+                </div>
+                <button class="nearme-btn" id="nearmeBtn"><i class="fas fa-location-dot"></i> Near Me</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CREATORS GRID ===== -->
+    <section class="creators-section">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> Creators</h2>
+                <div class="header-right">
+                    <span class="creator-count" id="creatorCount">Loading...</span>
+                    <div class="view-toggle" id="viewToggle">
+                        <button type="button" class="view-toggle-btn" data-view="large" title="Large view">
+                            <i class="fas fa-list"></i>
+                        </button>
+                        <button type="button" class="view-toggle-btn" data-view="medium" title="Medium view">
+                            <i class="fas fa-grip"></i>
+                        </button>
+                        <button type="button" class="view-toggle-btn active" data-view="small" title="Small view">
+                            <i class="fas fa-th"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="creators-grid" id="creatorsGrid">
+                <div class="empty-state"><i class="fas fa-spinner fa-spin"></i><p>Loading creators...</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MODAL (Profile) ===== -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <button class="close-modal" id="closeProfileModal"><i class="fas fa-times"></i></button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL (Join) ===== -->
+    <div class="modal" id="joinModal">
+        <div class="modal-content" style="max-width:700px;">
+            <button class="close-modal" id="closeJoinModal"><i class="fas fa-times"></i></button>
+            <h2><i class="fas fa-user-plus"></i> List Your Profile</h2>
+            <p>Fill details & submit via WhatsApp</p>
+            <form id="joinForm">
+                <!-- Personal Information -->
+                <h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                    <i class="fas fa-user"></i> Personal Information
+                </h3>
+                
+                <div class="form-group"><label>Full Name *</label><input type="text" id="fullName" required placeholder="Your full name"></div>
+                <div class="form-group"><label>Email *</label><input type="email" id="email" required placeholder="your@email.com"></div>
+                <div class="form-group"><label>WhatsApp Number *</label><input type="tel" id="whatsapp" required placeholder="919999999999"></div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>District *</label>
+                        <select id="district" required>
+                            <option value="">Select District</option>
+                            <option value="Bastar">Bastar</option>
+                            <option value="Bilaspur">Bilaspur</option>
+                            <option value="Dantewada">Dantewada</option>
+                            <option value="Dhamtari">Dhamtari</option>
+                            <option value="Durg">Durg</option>
+                            <option value="Janjgir-Champa">Janjgir-Champa</option>
+                            <option value="Jashpur">Jashpur</option>
+                            <option value="Kabirdham">Kabirdham</option>
+                            <option value="Korba">Korba</option>
+                            <option value="Koriya">Koriya</option>
+                            <option value="Mahasamund">Mahasamund</option>
+                            <option value="Raigarh">Raigarh</option>
+                            <option value="Raipur">Raipur</option>
+                            <option value="Rajnandgaon">Rajnandgaon</option>
+                            <option value="Surguja">Surguja</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label>City *</label><input type="text" id="city" required placeholder="Your city"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Niche *</label>
+                    <select id="niche" required>
+                        <option value="">Select Niche</option>
+                        <option>Travel</option>
+                        <option>Beauty</option>
+                        <option>Food</option>
+                        <option>Fashion</option>
+                        <option>Tech</option>
+                        <option>Education</option>
+                        <option>Finance</option>
+                        <option>Fitness</option>
+                        <option>Automobile</option>
+                        <option>Real Estate</option>
+                        <option>Hotel Promotion</option>
+                        <option>Restaurant Promotion</option>
+                        <option>Store Promotion</option>
+                        <option>Tourism</option>
+                        <option>Wedding</option>
+                        <option>Local News</option>
+                        <option>Gaming</option>
+                        <option>Photography</option>
+                        <option>Lifestyle</option>
+                        <option>Event Coverage</option>
+                        <option>Health & Wellness</option>
+                        <option>Parenting</option>
+                        <option>Sustainable Living</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group"><label>Description</label><textarea id="description" rows="3" placeholder="Tell us about yourself and your content..."></textarea></div>
+                
+                <!-- Social Links -->
+                <h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                    <i class="fas fa-link"></i> Social Media Links
+                </h3>
+                
+                <div class="form-group"><label>Instagram Profile URL</label><input type="url" id="instagramLink" placeholder="https://instagram.com/yourhandle"></div>
+                <div class="form-group"><label>YouTube Channel URL</label><input type="url" id="youtubeLink" placeholder="https://youtube.com/@yourchannel"></div>
+                <div class="form-group"><label>Facebook Profile URL</label><input type="url" id="facebookLink" placeholder="https://facebook.com/yourpage"></div>
+                
+                <!-- Social Stats -->
+                <h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                    <i class="fas fa-chart-bar"></i> Social Media Stats
+                </h3>
+                
+                <div class="form-row">
+                    <div class="form-group"><label>Instagram Followers</label><input type="number" id="instaFollowers" placeholder="0"></div>
+                    <div class="form-group"><label>YouTube Subscribers</label><input type="number" id="ytSubs" placeholder="0"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Facebook Followers</label><input type="number" id="fbFollowers" placeholder="0"></div>
+                    <div class="form-group"><label>Average Reel Views</label><input type="number" id="avgViews" placeholder="0"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Engagement Rate (%)</label><input type="number" step="0.1" id="engagementRate" placeholder="5.0"></div>
+                </div>
+                
+                <!-- Service Charges -->
+                <h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                    <i class="fas fa-list"></i> Service Charges
+                </h3>
+                <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">We've started you off with common services below — edit, remove, or add up to 8 services with their charges and pricing model.</p>
+                
+                <div id="serviceChargesContainer">
+                    <div class="service-charge-row">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Service Name</label>
+                            <input type="text" class="service-name-input" value="Reel Promotion" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Charge (₹)</label>
+                            <input type="number" class="service-charge-input" placeholder="5000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Model</label>
+                            <select class="service-model-select" style="padding:8px 12px;font-size:13px;">
+                                <option value="fixed">Fixed</option>
+                                <option value="starting_from">Starting From</option>
+                                <option value="negotiable">Negotiable</option>
+                                <option value="range">Range</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Min (₹)</label>
+                            <input type="number" class="service-min-input" placeholder="3000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Max (₹)</label>
+                            <input type="number" class="service-max-input" placeholder="7000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <button type="button" class="remove-service-btn" onclick="removeServiceRow(this)" style="margin-top:18px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="service-charge-row">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Service Name</label>
+                            <input type="text" class="service-name-input" value="Story Promotion" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Charge (₹)</label>
+                            <input type="number" class="service-charge-input" placeholder="1000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Model</label>
+                            <select class="service-model-select" style="padding:8px 12px;font-size:13px;">
+                                <option value="fixed">Fixed</option>
+                                <option value="starting_from">Starting From</option>
+                                <option value="negotiable">Negotiable</option>
+                                <option value="range">Range</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Min (₹)</label>
+                            <input type="number" class="service-min-input" placeholder="600" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Max (₹)</label>
+                            <input type="number" class="service-max-input" placeholder="1500" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <button type="button" class="remove-service-btn" onclick="removeServiceRow(this)" style="margin-top:18px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="service-charge-row">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Service Name</label>
+                            <input type="text" class="service-name-input" value="Feed Post" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Charge (₹)</label>
+                            <input type="number" class="service-charge-input" placeholder="3000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Model</label>
+                            <select class="service-model-select" style="padding:8px 12px;font-size:13px;">
+                                <option value="fixed">Fixed</option>
+                                <option value="starting_from">Starting From</option>
+                                <option value="negotiable">Negotiable</option>
+                                <option value="range">Range</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Min (₹)</label>
+                            <input type="number" class="service-min-input" placeholder="2000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Max (₹)</label>
+                            <input type="number" class="service-max-input" placeholder="4000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <button type="button" class="remove-service-btn" onclick="removeServiceRow(this)" style="margin-top:18px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="service-charge-row">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Service Name</label>
+                            <input type="text" class="service-name-input" value="Professional Reel Shoot" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Charge (₹)</label>
+                            <input type="number" class="service-charge-input" placeholder="4000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Model</label>
+                            <select class="service-model-select" style="padding:8px 12px;font-size:13px;">
+                                <option value="fixed">Fixed</option>
+                                <option value="starting_from" selected>Starting From</option>
+                                <option value="negotiable">Negotiable</option>
+                                <option value="range">Range</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Min (₹)</label>
+                            <input type="number" class="service-min-input" placeholder="3000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Max (₹)</label>
+                            <input type="number" class="service-max-input" placeholder="6000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <button type="button" class="remove-service-btn" onclick="removeServiceRow(this)" style="margin-top:18px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <div class="service-charge-row">
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Service Name</label>
+                            <input type="text" class="service-name-input" value="Brand Collaboration" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Charge (₹)</label>
+                            <input type="number" class="service-charge-input" placeholder="7000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Model</label>
+                            <select class="service-model-select" style="padding:8px 12px;font-size:13px;">
+                                <option value="fixed">Fixed</option>
+                                <option value="starting_from">Starting From</option>
+                                <option value="negotiable" selected>Negotiable</option>
+                                <option value="range">Range</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Min (₹)</label>
+                            <input type="number" class="service-min-input" placeholder="5000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <div class="form-group" style="margin-bottom:0;">
+                            <label style="font-size:11px;">Max (₹)</label>
+                            <input type="number" class="service-max-input" placeholder="10000" style="padding:8px 12px;font-size:13px;">
+                        </div>
+                        <button type="button" class="remove-service-btn" onclick="removeServiceRow(this)" style="margin-top:18px;">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <button type="button" class="btn-secondary add-service-btn" onclick="addServiceRow()">
+                    <i class="fas fa-plus"></i> Add Another Service
+                </button>
+                
+                <button type="submit" class="submit-btn"><i class="fab fa-whatsapp"></i> Submit via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div id="toastContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
