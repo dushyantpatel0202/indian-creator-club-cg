@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WhatsApp → JSON Converter | CG Creator Network</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+    --primary:#6C63FF;
+    --primary-dark:#5A52D5;
+    --secondary:#FF6584;
+    --accent:#FFD93D;
+    --success:#4CAF50;
+    --danger:#FF4757;
+    --bg-dark:#0A0A1A;
+    --bg-card:#141428;
+    --bg-card-2:#1A1A3A;
+    --text-primary:#FFFFFF;
+    --text-secondary:#B0B0C8;
+    --text-muted:#7A7A9E;
+    --border-color:rgba(255,255,255,0.08);
+    --surface-soft:rgba(255,255,255,0.05);
+    --surface-strong:rgba(255,255,255,0.08);
+    --radius:16px;
+    --radius-sm:10px;
+    --mono:'JetBrains Mono',monospace;
+    --transition:all .25s cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg-dark);
+    color:var(--text-primary);
+    line-height:1.6;
+    padding:24px 16px 60px;
+}
+.wrap{max-width:1180px;margin:0 auto;}
+header.page-head{
+    text-align:center;
+    margin-bottom:28px;
+}
+header.page-head .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--primary);
+    background:rgba(108,99,255,.12);
+    border:1px solid rgba(108,99,255,.25);
+    padding:6px 14px;
+    border-radius:60px;
+    margin-bottom:14px;
+}
+header.page-head h1{
+    font-size:28px;
+    font-weight:800;
+    margin-bottom:8px;
+}
+header.page-head p{
+    color:var(--text-secondary);
+    font-size:14px;
+    max-width:560px;
+    margin:0 auto;
+}
+
+.steps{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    align-items:start;
+}
+@media(max-width:900px){.steps{grid-template-columns:1fr;}}
+
+.panel{
+    background:var(--bg-card);
+    border:1px solid var(--border-color);
+    border-radius:var(--radius);
+    padding:20px;
+}
+.panel h2{
+    font-size:15px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:4px;
+}
+.panel h2 .num{
+    width:22px;height:22px;
+    border-radius:50%;
+    background:var(--primary);
+    color:#fff;
+    font-size:12px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+}
+.panel .hint{
+    font-size:12.5px;
+    color:var(--text-muted);
+    margin-bottom:14px;
+}
+textarea#rawInput{
+    width:100%;
+    min-height:280px;
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--border-color);
+    border-radius:var(--radius-sm);
+    color:var(--text-primary);
+    padding:14px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    line-height:1.6;
+    resize:vertical;
+    outline:none;
+    transition:var(--transition);
+}
+textarea#rawInput:focus{border-color:var(--primary);}
+textarea#rawInput::placeholder{color:var(--text-muted);}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+    font-weight:600;
+    font-size:13.5px;
+    border-radius:60px;
+    padding:11px 20px;
+    transition:var(--transition);
+}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(108,99,255,.35);}
+.btn-secondary{background:var(--surface-soft);color:var(--text-secondary);border:1px solid var(--border-color);}
+.btn-secondary:hover{background:var(--surface-strong);color:var(--text-primary);}
+.btn-success{background:var(--success);color:#fff;}
+.btn-success:hover{background:#3d9140;}
+.btn-sm{padding:8px 14px;font-size:12.5px;}
+.btn[disabled]{opacity:.45;cursor:not-allowed;pointer-events:none;}
+
+.row-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+
+.extra-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:6px;
+}
+@media(max-width:480px){.extra-grid{grid-template-columns:1fr;}}
+.field{margin-bottom:0;}
+.field.full{grid-column:1/-1;}
+.field label{
+    display:block;
+    font-size:11.5px;
+    font-weight:600;
+    color:var(--text-muted);
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-bottom:5px;
+}
+.field input[type=text],
+.field input[type=number],
+.field input[type=url],
+.field select,
+.field textarea{
+    width:100%;
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--border-color);
+    color:var(--text-primary);
+    padding:9px 12px;
+    border-radius:8px;
+    font-size:13px;
+    font-family:inherit;
+    outline:none;
+    transition:var(--transition);
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--primary);}
+.field select option{background:var(--bg-dark);}
+.field.checkbox{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-direction:row;
+    background:rgba(255,255,255,.03);
+    border:1px solid var(--border-color);
+    border-radius:8px;
+    padding:9px 12px;
+}
+.field.checkbox label{margin:0;text-transform:none;font-size:13px;color:var(--text-secondary);font-weight:500;letter-spacing:0;}
+.field.checkbox input{width:auto;accent-color:var(--primary);}
+
+.divider-label{
+    font-size:11.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--primary);
+    margin:18px 0 10px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+.divider-label::after{
+    content:'';flex:1;height:1px;background:var(--border-color);
+}
+
+/* Featured/Premium Info Box */
+.info-box{
+    font-size:12px;
+    color:var(--text-secondary);
+    padding:10px 14px;
+    background:rgba(255,255,255,0.03);
+    border-radius:8px;
+    border:1px solid var(--border-color);
+    margin-bottom:12px;
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+}
+.info-box i{
+    color:var(--primary);
+    font-size:14px;
+    margin-top:1px;
+    flex-shrink:0;
+}
+.info-box strong{
+    color:var(--text-primary);
+}
+.info-box .badge-example{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    padding:2px 8px;
+    border-radius:4px;
+    font-size:11px;
+    font-weight:600;
+}
+.info-box .badge-example.premium{
+    background:rgba(255,215,0,0.15);
+    color:#FFD700;
+}
+.info-box .badge-example.featured{
+    background:rgba(108,99,255,0.15);
+    color:#6C63FF;
+}
+.info-box .badge-example.standard{
+    background:rgba(255,255,255,0.05);
+    color:var(--text-muted);
+}
+
+.output-panel{
+    grid-column:1/-1;
+    margin-top:20px;
+}
+.output-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:14px;
+}
+.output-head .left h2{margin-bottom:2px;}
+.output-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.checkbox-inline{
+    display:flex;align-items:center;gap:6px;
+    font-size:12.5px;color:var(--text-secondary);
+}
+.checkbox-inline input{accent-color:var(--primary);}
+
+#jsonPreview{
+    background:#0A0A18;
+    border:1px solid var(--border-color);
+    border-radius:var(--radius-sm);
+    padding:16px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    line-height:1.65;
+    max-height:480px;
+    overflow:auto;
+    white-space:pre;
+}
+#jsonEditor{
+    display:none;
+    width:100%;
+    min-height:420px;
+    max-height:520px;
+    background:#0A0A18;
+    border:1px solid var(--primary);
+    border-radius:var(--radius-sm);
+    color:var(--text-primary);
+    padding:16px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    line-height:1.65;
+    outline:none;
+    resize:vertical;
+}
+.jk{color:#7FB8FF;}
+.js{color:#9CE89C;}
+.jn{color:#FFD93D;}
+.jb{color:#FF8C7A;}
+.jp{color:var(--text-muted);}
+
+.empty-note{
+    font-size:12.5px;
+    color:var(--text-muted);
+    text-align:center;
+    padding:30px 10px;
+}
+.empty-note i{font-size:22px;display:block;margin-bottom:8px;color:var(--border-color);}
+
+#toast{
+    position:fixed;
+    bottom:24px;
+    left:50%;
+    transform:translateX(-50%) translateY(20px);
+    background:rgba(20,20,40,.95);
+    border:1px solid var(--border-color);
+    color:#fff;
+    padding:12px 22px;
+    border-radius:60px;
+    font-size:13.5px;
+    font-weight:500;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    box-shadow:0 14px 34px rgba(0,0,0,.5);
+    opacity:0;
+    pointer-events:none;
+    transition:all .3s ease;
+    z-index:999;
+    white-space:nowrap;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+#toast i{color:var(--success);}
+#toast.error i{color:var(--danger);}
+
+::-webkit-scrollbar{width:9px;height:9px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:10px;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+    <header class="page-head">
+        <span class="eyebrow"><i class="fab fa-whatsapp"></i> Creator Application Helper</span>
+        <h1>WhatsApp → JSON Converter</h1>
+        <p>Paste the message a creator sends via "List Your Profile", review the parsed details, then copy the JSON straight into <code>creators.json</code>.</p>
+    </header>
+
+    <div class="steps">
+        <!-- STEP 1 -->
+        <div class="panel">
+            <h2><span class="num">1</span> Paste WhatsApp Message</h2>
+            <p class="hint">Copy the full application message you received on WhatsApp and paste it below.</p>
+            <textarea id="rawInput" placeholder="📢 New Creator Application 📢
+
+👤 Name: ...
+📧 Email: ...
+📱 WhatsApp: ...
+...paste the whole message here..."></textarea>
+            <div class="row-actions">
+                <button class="btn btn-primary" id="parseBtn"><i class="fas fa-wand-magic-sparkles"></i> Convert to JSON</button>
+                <button class="btn btn-secondary" id="clearBtn"><i class="fas fa-rotate-left"></i> Clear</button>
+            </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="panel">
+            <h2><span class="num">2</span> Fields Not in the Message</h2>
+            <p class="hint">WhatsApp text doesn't include these — fill them in before copying.</p>
+
+            <div class="extra-grid">
+                <div class="field"><label>ID</label><input type="number" id="fId" value="1"></div>
+                <div class="field"><label>Profile Image URL</label><input type="text" id="fImage" placeholder="https://..."></div>
+                <div class="field"><label>Latitude</label><input type="number" step="any" id="fLat" value="21.2514"></div>
+                <div class="field"><label>Longitude</label><input type="number" step="any" id="fLng" value="81.6296"></div>
+            </div>
+
+            <!-- Featured / Premium Settings -->
+            <div class="divider-label">⭐ Featured / Premium Settings</div>
+            
+            <div class="extra-grid">
+                <div class="field checkbox">
+                    <input type="checkbox" id="fFeatured">
+                    <label for="fFeatured">⭐ Featured</label>
+                </div>
+                <div class="field checkbox">
+                    <input type="checkbox" id="fVerified">
+                    <label for="fVerified">👑 Verified (Premium)</label>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>How it works:</strong><br>
+                    <span class="badge-example premium">👑 Premium</span> = Featured + Verified → Crown badge<br>
+                    <span class="badge-example featured">⭐ Featured</span> = Featured only → Star badge<br>
+                    <span class="badge-example standard">📌 Standard</span> = Neither → No badge
+                </div>
+            </div>
+
+            <div class="divider-label">Pricing Info (shown on profile card)</div>
+            <div class="extra-grid">
+                <div class="field">
+                    <label>Pricing Model</label>
+                    <select id="fPricingModel">
+                        <option value="fixed">Fixed</option>
+                        <option value="starting_from" selected>Starting From</option>
+                        <option value="negotiable">Negotiable</option>
+                        <option value="range">Range</option>
+                    </select>
+                </div>
+                <div class="field"><label>Starting Price (₹)</label><input type="number" id="fStartingPrice" value="0"></div>
+                <div class="field checkbox"><input type="checkbox" id="fIsNegotiable" checked><label for="fIsNegotiable">Negotiable</label></div>
+                <div class="field full"><label>Pricing Description</label><input type="text" id="fPricingDesc" placeholder="e.g. Prices vary based on project scope."></div>
+            </div>
+
+            <div class="row-actions">
+                <button class="btn btn-secondary btn-sm" id="refreshBtn"><i class="fas fa-rotate"></i> Apply changes to JSON</button>
+            </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="panel output-panel">
+            <div class="output-head">
+                <div class="left">
+                    <h2><span class="num">3</span> JSON Output</h2>
+                    <p class="hint" style="margin-bottom:0;">Ready to paste inside the <code>"creators": [ ]</code> array of creators.json.</p>
+                </div>
+                <div class="output-controls">
+                    <label class="checkbox-inline"><input type="checkbox" id="trailingComma" checked> Add trailing comma</label>
+                    <button class="btn btn-secondary btn-sm" id="editBtn" disabled><i class="fas fa-pen"></i> Edit</button>
+                    <button class="btn btn-success btn-sm" id="copyBtn" disabled><i class="fas fa-copy"></i> Copy JSON</button>
+                </div>
+            </div>
+
+            <pre id="jsonPreview"><div class="empty-note"><i class="fas fa-file-code"></i>Paste a message and click "Convert to JSON" to see the result here.</div></pre>
+            <textarea id="jsonEditor" spellcheck="false"></textarea>
+        </div>
+    </div>
+</div>
+
+<div id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg">Copied!</span></div>
+
+<script>
+// ===== STATE =====
+let parsedBase = null;   // fields extracted from the WhatsApp text
+let currentObj = null;   // full creator object currently shown
+let editing = false;
+
+const els = {
+    rawInput: document.getElementById('rawInput'),
+    parseBtn: document.getElementById('parseBtn'),
+    clearBtn: document.getElementById('clearBtn'),
+    refreshBtn: document.getElementById('refreshBtn'),
+    editBtn: document.getElementById('editBtn'),
+    copyBtn: document.getElementById('copyBtn'),
+    preview: document.getElementById('jsonPreview'),
+    editor: document.getElementById('jsonEditor'),
+    trailingComma: document.getElementById('trailingComma'),
+    fId: document.getElementById('fId'),
+    fImage: document.getElementById('fImage'),
+    fLat: document.getElementById('fLat'),
+    fLng: document.getElementById('fLng'),
+    fVerified: document.getElementById('fVerified'),
+    fFeatured: document.getElementById('fFeatured'),
+    fPricingModel: document.getElementById('fPricingModel'),
+    fStartingPrice: document.getElementById('fStartingPrice'),
+    fIsNegotiable: document.getElementById('fIsNegotiable'),
+    fPricingDesc: document.getElementById('fPricingDesc'),
+};
+
+// ===== TOAST =====
+let toastTimer = null;
+function showToast(msg, isError) {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.querySelector('i').className = isError ? 'fas fa-circle-exclamation' : 'fas fa-check-circle';
+    t.classList.toggle('error', !!isError);
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+// ===== PARSER =====
+function section(text, startLabel, endLabels) {
+    const startIdx = text.indexOf(startLabel);
+    if (startIdx === -1) return '';
+    let from = startIdx + startLabel.length;
+    let to = text.length;
+    endLabels.forEach(label => {
+        const idx = text.indexOf(label, from);
+        if (idx !== -1 && idx < to) to = idx;
+    });
+    return text.slice(from, to);
+}
+function matchLine(block, label) {
+    const re = new RegExp(label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*([^\\n]*)');
+    const m = block.match(re);
+    return m ? m[1].trim() : '';
+}
+function num(str) {
+    if (!str) return 0;
+    const cleaned = String(str).replace(/[^\d.]/g, '');
+    return cleaned ? parseFloat(cleaned) : 0;
+}
+function parseWhatsAppMessage(raw) {
+    const clean = raw.replace(/\r\n/g, '\n').replace(/\*/g, '');
+
+    const head = section(clean, 'New Creator Application', ['Social Links:']);
+    const socialBlock = section(clean, 'Social Links:', ['Social Stats:']);
+    const statsBlock = section(clean, 'Social Stats:', ['Service Charges:', 'Application Date:']);
+    const serviceBlock = section(clean, 'Service Charges:', ['Application Date:']);
+
+    const name = matchLine(head, 'Name:');
+    const email = matchLine(head, 'Email:');
+    const whatsapp = matchLine(head, 'WhatsApp:').replace(/[^\d]/g, '');
+    const district = matchLine(head, 'District:');
+    const city = matchLine(head, 'City:');
+    const niche = matchLine(head, 'Niche:');
+    const description = matchLine(head, 'Description:');
+
+    const instagram = matchLine(socialBlock, 'Instagram:');
+    const youtube = matchLine(socialBlock, 'YouTube:');
+    const facebook = matchLine(socialBlock, 'Facebook:');
+
+    const instagramFollowers = num(matchLine(statsBlock, 'Instagram Followers:'));
+    const youtubeSubscribers = num(matchLine(statsBlock, 'YouTube Subscribers:'));
+    const facebookFollowers = num(matchLine(statsBlock, 'Facebook Followers:'));
+    const avgReelViews = num(matchLine(statsBlock, 'Avg Reel Views:'));
+    const engagementRate = num(matchLine(statsBlock, 'Engagement Rate:'));
+
+    const serviceCharges = [];
+    serviceBlock.split('\n').forEach(line => {
+        const m = line.match(/^•\s*(.+?):\s*(.+)$/);
+        if (!m) return;
+        const serviceName = m[1].trim();
+        let rest = m[2].trim();
+        let model = 'fixed';
+        const modelMatch = rest.match(/\(([a-z_]+)\)\s*$/i);
+        if (modelMatch) {
+            model = modelMatch[1].toLowerCase();
+            rest = rest.slice(0, modelMatch.index).trim();
+        }
+        const rangeMatch = rest.match(/₹?\s*([\d,]+)\s*-\s*₹?\s*([\d,]+)/);
+        const entry = { service: serviceName, charge: 0, model: model };
+        if (rangeMatch) {
+            entry.min = num(rangeMatch[1]);
+            entry.max = num(rangeMatch[2]);
+            entry.charge = Math.round((entry.min + entry.max) / 2);
+        } else {
+            entry.charge = num(rest);
+        }
+        entry.negotiable = (model === 'negotiable' || model === 'range' || model === 'starting_from');
+        serviceCharges.push(entry);
+    });
+
+    if (!name) return null;
+
+    return {
+        name, email, whatsapp, district, city, niche, description,
+        instagram, youtube, facebook,
+        instagramFollowers, youtubeSubscribers, facebookFollowers, avgReelViews, engagementRate,
+        serviceCharges
+    };
+}
+
+// ===== BUILD FULL CREATOR OBJECT =====
+function buildCreatorObject() {
+    if (!parsedBase) return null;
+    const p = parsedBase;
+
+    return {
+        id: parseInt(els.fId.value) || 0,
+        name: p.name,
+        city: p.city,
+        district: p.district,
+        latitude: parseFloat(els.fLat.value) || 0,
+        longitude: parseFloat(els.fLng.value) || 0,
+        niche: p.niche,
+        profileImage: els.fImage.value.trim(),
+        instagramFollowers: p.instagramFollowers,
+        youtubeSubscribers: p.youtubeSubscribers,
+        facebookFollowers: p.facebookFollowers,
+        avgReelViews: p.avgReelViews,
+        engagementRate: p.engagementRate,
+        availableDistricts: p.district ? [p.district] : [],
+        socialLinks: {
+            instagram: p.instagram,
+            youtube: p.youtube,
+            facebook: p.facebook
+        },
+        pricingInfo: {
+            model: els.fPricingModel.value,
+            startingPrice: parseInt(els.fStartingPrice.value) || 0,
+            isNegotiable: els.fIsNegotiable.checked,
+            description: els.fPricingDesc.value.trim()
+        },
+        serviceCharges: p.serviceCharges,
+        contact: {
+            whatsapp: p.whatsapp,
+            email: p.email
+        },
+        description: p.description,
+        verified: els.fVerified.checked,
+        featured: els.fFeatured.checked,
+        services: p.serviceCharges.map(s => s.service)
+    };
+}
+
+// ===== JSON SYNTAX HIGHLIGHT =====
+function highlightJSON(jsonString) {
+    const esc = jsonString
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return esc.replace(
+        /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+        (match) => {
+            let cls = 'jn';
+            if (/^"/.test(match)) {
+                cls = /:$/.test(match) ? 'jk' : 'js';
+            } else if (/true|false/.test(match)) {
+                cls = 'jb';
+            } else if (/null/.test(match)) {
+                cls = 'jp';
+            }
+            return `<span class="${cls}">${match}</span>`;
+        }
+    );
+}
+
+function currentJSONText() {
+    let txt = JSON.stringify(currentObj, null, 2);
+    if (els.trailingComma.checked) txt += ',';
+    return txt;
+}
+
+function renderPreview() {
+    if (!currentObj) {
+        els.preview.innerHTML = '<div class="empty-note"><i class="fas fa-file-code"></i>Paste a message and click "Convert to JSON" to see the result here.</div>';
+        els.editBtn.disabled = true;
+        els.copyBtn.disabled = true;
+        return;
+    }
+    els.preview.innerHTML = highlightJSON(currentJSONText());
+    els.editBtn.disabled = false;
+    els.copyBtn.disabled = false;
+}
+
+function setEditing(on) {
+    editing = on;
+    els.preview.style.display = on ? 'none' : 'block';
+    els.editor.style.display = on ? 'block' : 'none';
+    els.editBtn.innerHTML = on
+        ? '<i class="fas fa-check"></i> Done Editing'
+        : '<i class="fas fa-pen"></i> Edit';
+    if (on) {
+        els.editor.value = currentJSONText();
+        els.editor.focus();
+    }
+}
+
+// ===== EVENTS =====
+els.parseBtn.addEventListener('click', () => {
+    const raw = els.rawInput.value.trim();
+    if (!raw) { showToast('Paste a WhatsApp message first', true); return; }
+    const result = parseWhatsAppMessage(raw);
+    if (!result) { showToast('Could not find a Name field — check the pasted text', true); return; }
+    parsedBase = result;
+    if (!els.fStartingPrice.value || els.fStartingPrice.value === '0') {
+        const charges = result.serviceCharges.map(s => s.charge).filter(v => v > 0);
+        els.fStartingPrice.value = charges.length ? Math.min(...charges) : 0;
+    }
+    currentObj = buildCreatorObject();
+    setEditing(false);
+    renderPreview();
+    showToast('Converted! Review the fields and copy below.');
+});
+
+els.clearBtn.addEventListener('click', () => {
+    els.rawInput.value = '';
+    parsedBase = null;
+    currentObj = null;
+    setEditing(false);
+    renderPreview();
+});
+
+els.refreshBtn.addEventListener('click', () => {
+    if (!parsedBase) { showToast('Convert a message first', true); return; }
+    if (editing) {
+        try { currentObj = JSON.parse(els.editor.value.replace(/,\s*$/, '')); }
+        catch (e) { showToast('Fix the JSON before applying changes', true); return; }
+    }
+    currentObj = buildCreatorObject();
+    setEditing(false);
+    renderPreview();
+    showToast('Updated!');
+});
+
+els.editBtn.addEventListener('click', () => {
+    if (!currentObj) return;
+    if (!editing) {
+        setEditing(true);
+    } else {
+        try {
+            const cleaned = els.editor.value.trim().replace(/,\s*$/, '');
+            currentObj = JSON.parse(cleaned);
+            setEditing(false);
+            renderPreview();
+            showToast('Edits saved!');
+        } catch (e) {
+            showToast('Invalid JSON — fix before saving', true);
+        }
+    }
+});
+
+els.trailingComma.addEventListener('change', () => {
+    if (!currentObj) return;
+    if (editing) { els.editor.value = currentJSONText(); }
+    else { renderPreview(); }
+});
+
+els.copyBtn.addEventListener('click', async () => {
+    if (!currentObj) return;
+    let text;
+    if (editing) {
+        try {
+            const cleaned = els.editor.value.trim().replace(/,\s*$/, '');
+            JSON.parse(cleaned);
+            text = cleaned + (els.trailingComma.checked ? ',' : '');
+        } catch (e) {
+            showToast('Invalid JSON — fix before copying', true);
+            return;
+        }
+    } else {
+        text = currentJSONText();
+    }
+    try {
+        await navigator.clipboard.writeText(text);
+        showToast('JSON copied to clipboard!');
+    } catch (e) {
+        els.editor.value = text;
+        setEditing(true);
+        els.editor.select();
+        showToast('Press Ctrl+C to copy', true);
+    }
+});
+</script>
+</body>
+</html>
