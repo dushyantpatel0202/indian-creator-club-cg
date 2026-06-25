@@ -2,8 +2,8 @@
   "creators": [
     {
       "id": 1,
-      "name": "Rahul Verma 101 ",
-      "city": "chandrapur",
+      "name": "Rahul Verma",
+      "city": "Chandrapur",
       "district": "Raigarh",
       "latitude": 21.706034,
       "longitude": 83.232508,
@@ -3075,32 +3075,32 @@
       ]
     },
     {
-      "id": 45,
-      "name": "dushyant kumar patel",
-      "city": "raipur",
+      "id": 29,
+      "name": "Dushyant Kumar Patel",
+      "city": "Raipur",
       "district": "Bilaspur",
       "latitude": 21.2514,
       "longitude": 81.6296,
-      "niche": "entrepreneur",
+      "niche": "Entrepreneur",
       "profileImage": "https://res.cloudinary.com/dlyzup9qp/image/upload/q_auto/f_auto/v1781682778/photo_vcvyrv.jpg",
       "instagramFollowers": 25000,
       "youtubeSubscribers": 47398,
       "facebookFollowers": 25000,
       "avgReelViews": 3390,
-      "engagementRate": 7,
+      "engagementRate": 7.0,
       "availableDistricts": [
         "Bilaspur"
       ],
       "socialLinks": {
         "instagram": "https://www.instagram.com/dushyantkumar0202/",
-        "youtube": "Facebook:",
-        "facebook": "�"
+        "youtube": "https://youtube.com/@dushyantkumar",
+        "facebook": "https://facebook.com/dushyantkumar"
       },
       "pricingInfo": {
         "model": "starting_from",
         "startingPrice": 8928,
         "isNegotiable": true,
-        "description": "prices vary based on creators discription"
+        "description": "Prices vary based on creator's description"
       },
       "charges": {
         "reel": 8928,
@@ -3139,7 +3139,7 @@
         "whatsapp": "7489395228",
         "email": "dushyantpatel0202@gmail.com"
       },
-      "description": "i am an enterprenure",
+      "description": "I am an entrepreneur",
       "verified": false,
       "featured": false,
       "services": [
@@ -3148,7 +3148,191 @@
         "Feed Post",
         "Brand Collaboration"
       ]
+    },
+    {
+      "id": 30,
+      "name": "Priya Sahu",
+      "city": "Kota",
+      "district": "Bilaspur",
+      "latitude": 22.0796,
+      "longitude": 82.1391,
+      "niche": "Food",
+      "additionalNiches": [
+        "Travel",
+        "Lifestyle",
+        "Hotel Promotion",
+        "Restaurant Promotion"
+      ],
+      "profileImage": "",
+      "instagramFollowers": 42000,
+      "youtubeSubscribers": 18000,
+      "facebookFollowers": 9500,
+      "avgReelViews": 55000,
+      "engagementRate": 7.2,
+      "availableDistricts": [
+        "Bilaspur",
+        "Raipur",
+        "Durg",
+        "Korba",
+        "Janjgir-Champa",
+        "Mungeli"
+      ],
+      "socialLinks": {
+        "instagram": "https://instagram.com/priya_foodie_cg",
+        "youtube": "https://youtube.com/@priyasahu_food",
+        "facebook": "https://facebook.com/priyasahufood"
+      },
+      "pricingInfo": {
+        "model": "starting_from",
+        "startingPrice": 2000,
+        "isNegotiable": true,
+        "description": "Food reels, restaurant visits, and travel vlogs. Custom packages available."
+      },
+      "serviceCharges": [
+        {
+          "service": "Reel Promotion",
+          "charge": 3500,
+          "model": "fixed",
+          "negotiable": false
+        },
+        {
+          "service": "Restaurant Review Reel",
+          "charge": 4000,
+          "model": "starting_from",
+          "startingPrice": 3000,
+          "negotiable": true
+        },
+        {
+          "service": "Story Promotion",
+          "charge": 800,
+          "model": "fixed",
+          "negotiable": false
+        },
+        {
+          "service": "Feed Post",
+          "charge": 2000,
+          "model": "fixed",
+          "negotiable": false
+        },
+        {
+          "service": "Hotel Stay Feature",
+          "charge": 6000,
+          "model": "range",
+          "min": 5000,
+          "max": 8000,
+          "negotiable": true
+        },
+        {
+          "service": "Brand Collaboration",
+          "charge": 5000,
+          "model": "negotiable",
+          "negotiable": true
+        }
+      ],
+      "contact": {
+        "whatsapp": "919876543210",
+        "email": "priya.sahu@email.com"
+      },
+      "description": "Food & travel creator from Bilaspur covering the best eateries, hotels, and hidden gems across Chhattisgarh. Available to travel across 6 districts!",
+      "verified": false,
+      "featured": true,
+      "services": [
+        "Reel Promotion",
+        "Restaurant Review Reel",
+        "Story Promotion",
+        "Feed Post",
+        "Hotel Stay Feature",
+        "Brand Collaboration"
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Deepak Nishad",
+      "city": "Sakti",
+      "district": "Sakti",
+      "latitude": 22.0283,
+      "longitude": 82.9764,
+      "niche": "Local News",
+      "additionalNiches": [
+        "Event Coverage",
+        "Photography",
+        "Education",
+        "Civic Awareness"
+      ],
+      "profileImage": "",
+      "instagramFollowers": 28000,
+      "youtubeSubscribers": 62000,
+      "facebookFollowers": 45000,
+      "avgReelViews": 38000,
+      "engagementRate": 5.8,
+      "availableDistricts": [
+        "Sakti",
+        "Janjgir-Champa",
+        "Bilaspur",
+        "Raigarh",
+        "Korba",
+        "Sarangarh-Bilaigarh"
+      ],
+      "socialLinks": {
+        "instagram": "https://instagram.com/deepak_sakti_news",
+        "youtube": "https://youtube.com/@deepaknishad_cg",
+        "facebook": "https://facebook.com/deepaknishadcg"
+      },
+      "pricingInfo": {
+        "model": "negotiable",
+        "startingPrice": 1500,
+        "isNegotiable": true,
+        "description": "Local event coverage, awareness campaigns, and educational content. Rates negotiable for social causes."
+      },
+      "serviceCharges": [
+        {
+          "service": "Event Coverage Reel",
+          "charge": 3000,
+          "model": "starting_from",
+          "startingPrice": 2500,
+          "negotiable": true
+        },
+        {
+          "service": "Story Promotion",
+          "charge": 700,
+          "model": "fixed",
+          "negotiable": false
+        },
+        {
+          "service": "YouTube Short",
+          "charge": 2500,
+          "model": "fixed",
+          "negotiable": false
+        },
+        {
+          "service": "Facebook Live",
+          "charge": 4000,
+          "model": "negotiable",
+          "negotiable": true
+        },
+        {
+          "service": "Brand/Business Feature",
+          "charge": 4500,
+          "model": "range",
+          "min": 3500,
+          "max": 6000,
+          "negotiable": true
+        }
+      ],
+      "contact": {
+        "whatsapp": "917654321098",
+        "email": "deepak.nishad@email.com"
+      },
+      "description": "Local journalist & creator from Sakti covering news, events, and civic issues. Strong Facebook presence. Also works in custom niche: Civic Awareness campaigns.",
+      "verified": false,
+      "featured": false,
+      "services": [
+        "Event Coverage Reel",
+        "Story Promotion",
+        "YouTube Short",
+        "Facebook Live",
+        "Brand/Business Feature"
+      ]
     }
-    
   ]
 }

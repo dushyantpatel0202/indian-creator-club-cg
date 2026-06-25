@@ -1,10 +1,19 @@
+// ===== CONFIG =====
+const ADMIN_WHATSAPP = '917734906606'; // Admin WhatsApp number (with country code)
+
 // ===== MAIN APPLICATION =====
 let creatorsData = [];
 let filtered = [];
 let userLocation = null;
 let gpsReady = false;
+let nearMeActive = false;
 let serviceRowCount = 5;
 let viewMode = 'small';
+let currentSearchQuery = '';
+let searchTimeout = null;
+
+// ===== CUSTOM NICHE STATE =====
+let customNiches = [];
 
 // ===== DOM REFS =====
 const grid = document.getElementById('creatorsGrid');
@@ -40,10 +49,106 @@ function showToast(msg, type = 'info') {
     const container = document.getElementById('toastContainer');
     const el = document.createElement('div');
     el.className = 'toast-container';
+    const iconMap = {
+        'success': 'fa-check-circle',
+        'warning': 'fa-exclamation-triangle',
+        'error': 'fa-times-circle',
+        'info': 'fa-info-circle'
+    };
     el.innerHTML =
-        `<i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'warning' ? 'fa-exclamation-triangle' : 'fa-info-circle'}"></i> ${msg}`;
+        `<i class="fas ${iconMap[type] || 'fa-info-circle'}"></i> ${msg}`;
     container.appendChild(el);
     setTimeout(() => { el.remove(); }, 4000);
+}
+
+// ===== CUSTOM NICHE FUNCTIONS =====
+function addCustomNiche() {
+    const input = document.getElementById('customNicheInput');
+    const value = input.value.trim();
+    if (!value) {
+        showToast('⚠️ Please enter a niche name', 'warning');
+        return;
+    }
+    
+    if (value.length > 30) {
+        showToast('⚠️ Niche name should be under 30 characters', 'warning');
+        return;
+    }
+    
+    // Check if already exists in custom list
+    const existing = customNiches.find(n => n.toLowerCase() === value.toLowerCase());
+    if (existing) {
+        showToast('⚠️ This niche already exists', 'warning');
+        input.value = '';
+        return;
+    }
+    
+    // Check if it's already in the default list
+    const defaultLabels = document.querySelectorAll('.extra-niche-cb');
+    let alreadyDefault = false;
+    defaultLabels.forEach(cb => {
+        if (cb.value.toLowerCase() === value.toLowerCase()) {
+            alreadyDefault = true;
+        }
+    });
+    if (alreadyDefault) {
+        showToast('⚠️ This niche is already in the list above', 'warning');
+        input.value = '';
+        return;
+    }
+    
+    customNiches.push(value);
+    renderCustomNiches();
+    input.value = '';
+    updateCustomNicheCounter();
+    showToast('✅ Added "' + value + '" niche', 'success');
+}
+
+function removeCustomNiche(value) {
+    customNiches = customNiches.filter(n => n !== value);
+    renderCustomNiches();
+    updateCustomNicheCounter();
+}
+
+function renderCustomNiches() {
+    const container = document.getElementById('additionalNichesContainer');
+    // Remove existing custom tags (keep default ones)
+    container.querySelectorAll('.niche-tag-custom').forEach(el => el.remove());
+    
+    customNiches.forEach(niche => {
+        const label = document.createElement('label');
+        label.className = 'niche-tag-custom';
+        label.innerHTML = `
+            <input type="checkbox" class="extra-niche-cb" value="${niche}">
+            🏷️ ${niche}
+            <span class="remove-custom-niche" onclick="event.stopPropagation(); removeCustomNiche('${niche}')">×</span>
+        `;
+        container.appendChild(label);
+    });
+}
+
+function updateCustomNicheCounter() {
+    const container = document.getElementById('additionalNichesContainer');
+    const count = customNiches.length;
+    // Remove existing counter if any
+    const existingCounter = container.querySelector('.custom-niche-counter');
+    if (existingCounter) existingCounter.remove();
+    
+    if (count > 0) {
+        const counter = document.createElement('span');
+        counter.className = 'custom-niche-counter';
+        counter.style.cssText = 'font-size:11px;color:var(--text-muted);margin-left:auto;padding-left:8px;';
+        counter.textContent = `+${count} custom`;
+        container.appendChild(counter);
+    }
+}
+
+function getAllSelectedNiches() {
+    const selected = [];
+    document.querySelectorAll('.extra-niche-cb:checked').forEach(cb => {
+        selected.push(cb.value);
+    });
+    return selected;
 }
 
 // ===== SERVICE ROW FUNCTIONS =====
@@ -123,30 +228,77 @@ function getServices(c) {
     return [...new Set([...fromList, ...fromCharges])];
 }
 
-// ===== LOAD DATA =====
-async function loadData() {
+// ===== FILTERS STORAGE =====
+function saveFilters() {
+    const filters = {
+        district: sideDistrict.value,
+        niche: sideNiche.value,
+        service: sideService.value,
+        budget: sideBudget.value
+    };
+    try {
+        localStorage.setItem('cgFilters', JSON.stringify(filters));
+    } catch (e) {}
+}
+
+function loadFilters() {
+    try {
+        const saved = localStorage.getItem('cgFilters');
+        if (saved) {
+            const filters = JSON.parse(saved);
+            sideDistrict.value = filters.district || '';
+            sideNiche.value = filters.niche || '';
+            sideService.value = filters.service || '';
+            sideBudget.value = filters.budget || '';
+        }
+    } catch (e) {}
+}
+
+function clearFilters() {
+    sideDistrict.value = '';
+    sideNiche.value = '';
+    sideService.value = '';
+    sideBudget.value = '';
+    saveFilters();
+    render();
+    closeMenu();
+    showToast('🗑️ Filters cleared', 'info');
+}
+
+// ===== LOAD DATA WITH RETRY =====
+async function loadData(retries = 3) {
     try {
         const res = await fetch('creators.json');
         if (!res.ok) throw new Error('Network error - Could not load creators.json');
         const data = await res.json();
         creatorsData = data.creators || [];
-        creatorsData.forEach(c => { c.services = getServices(c); });
+        creatorsData.forEach(c => { 
+            c.services = getServices(c);
+            // Ensure additionalNiches is always an array
+            if (!c.additionalNiches) c.additionalNiches = [];
+        });
         filtered = [...creatorsData];
         populateSideFilters();
+        loadFilters();
         render();
-        getUserLocation();
+        getUserLocationSilent();
         showToast('✅ ' + creatorsData.length + ' creators loaded successfully!', 'success');
     } catch (e) {
-        console.error('Error loading creators:', e);
-        grid.innerHTML =
-            `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><h3>Unable to Load Creators</h3><p>Make sure <strong>creators.json</strong> is in the same folder as index.html</p><p style="font-size:13px;color:var(--text-muted);margin-top:8px;">Error: ${e.message}</p><button class="btn-primary" onclick="loadData()" style="margin-top:16px;padding:10px 24px;border-radius:60px;"><i class="fas fa-rotate"></i> Retry</button></div>`;
-        showToast('⚠️ Could not load creators.json. Check console for details.', 'warning');
+        if (retries > 0) {
+            showToast('⚠️ Retrying... (' + (4 - retries) + '/3)', 'warning');
+            setTimeout(() => loadData(retries - 1), 2000);
+        } else {
+            console.error('Error loading creators:', e);
+            grid.innerHTML =
+                `<div class="empty-state"><i class="fas fa-exclamation-triangle"></i><h3>Unable to Load Creators</h3><p>Make sure <strong>creators.json</strong> is in the same folder as index.html</p><p style="font-size:13px;color:var(--text-muted);margin-top:8px;">Error: ${e.message}</p><button class="btn-primary" onclick="loadData()" style="margin-top:16px;padding:10px 24px;border-radius:60px;"><i class="fas fa-rotate"></i> Retry</button></div>`;
+            showToast('⚠️ Could not load creators.json. Check console for details.', 'warning');
+        }
     }
 }
 
 function populateSideFilters() {
     const districts = [...new Set(creatorsData.map(c => c.district))].sort();
-    const niches = [...new Set(creatorsData.map(c => c.niche))].sort();
+    const niches = [...new Set(creatorsData.flatMap(c => [c.niche, ...(c.additionalNiches || [])].filter(Boolean)))].sort();
     const services = [...new Set(creatorsData.flatMap(c => c.services || []))].sort();
 
     [sideDistrict, sideNiche, sideService].forEach(sel => {
@@ -173,30 +325,52 @@ function populateSideFilters() {
     });
 }
 
-function getUserLocation(callback) {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            pos => {
-                userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-                gpsReady = true;
-                showToast('📍 Location detected', 'success');
-                render();
-                if (callback) callback();
-            },
-            () => {
-                userLocation = { lat: 21.2514, lng: 81.6296 };
-                gpsReady = true;
-                showToast('📍 Using default location (Raipur)', 'warning');
-                render();
-                if (callback) callback();
-            }, { enableHighAccuracy: true, timeout: 8000 }
-        );
-    } else {
+// Silent background GPS - only re-renders if Near Me is already active
+function getUserLocationSilent() {
+    if (!navigator.geolocation) {
         userLocation = { lat: 21.2514, lng: 81.6296 };
         gpsReady = true;
-        render();
-        if (callback) callback();
+        return;
     }
+    navigator.geolocation.getCurrentPosition(
+        pos => {
+            userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+            gpsReady = true;
+            if (nearMeActive) render();
+        },
+        () => {
+            userLocation = { lat: 21.2514, lng: 81.6296 };
+            gpsReady = true;
+            if (nearMeActive) render();
+        },
+        { enableHighAccuracy: true, timeout: 8000 }
+    );
+}
+
+// Active GPS request triggered by user - shows toast and re-renders
+function getUserLocation(callback) {
+    if (!navigator.geolocation) {
+        userLocation = { lat: 21.2514, lng: 81.6296 };
+        gpsReady = true;
+        showToast('📍 Geolocation not supported, using Raipur', 'warning');
+        if (callback) callback();
+        return;
+    }
+    navigator.geolocation.getCurrentPosition(
+        pos => {
+            userLocation = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+            gpsReady = true;
+            showToast('📍 Location detected', 'success');
+            if (callback) callback();
+        },
+        () => {
+            userLocation = { lat: 21.2514, lng: 81.6296 };
+            gpsReady = true;
+            showToast('📍 Using default location (Raipur)', 'warning');
+            if (callback) callback();
+        },
+        { enableHighAccuracy: true, timeout: 8000 }
+    );
 }
 
 function getMinCharge(c) {
@@ -210,31 +384,277 @@ function getMinCharge(c) {
     return c.charges?.reel || 0;
 }
 
-// ===== SORTING FUNCTION FOR "NEAR ME" =====
-function sortCreatorsByDistance(creators) {
-    if (!userLocation) return creators;
+// ===== RELEVANCE SCORING =====
+function getRelevanceScore(creator, query) {
+    if (!query) return 0;
+    const q = query.toLowerCase().trim();
+    let score = 0;
+    
+    if (creator.niche && creator.niche.toLowerCase().includes(q)) {
+        score += 3;
+    }
+    if (creator.niche && creator.niche.toLowerCase() === q) {
+        score += 2;
+    }
+    if (creator.additionalNiches) {
+        creator.additionalNiches.forEach(n => {
+            if (n.toLowerCase().includes(q)) {
+                score += 2;
+            }
+            if (n.toLowerCase() === q) {
+                score += 1;
+            }
+        });
+    }
+    if (creator.services) {
+        creator.services.forEach(s => {
+            if (s.toLowerCase().includes(q)) {
+                score += 1;
+            }
+        });
+    }
+    if (creator.name && creator.name.toLowerCase().includes(q)) {
+        score += 0.5;
+    }
+    if (creator.city && creator.city.toLowerCase().includes(q)) {
+        score += 0.5;
+    }
+    if (creator.district && creator.district.toLowerCase().includes(q)) {
+        score += 0.5;
+    }
+    
+    return score;
+}
 
-    return creators.sort((a, b) => {
-        const distA = calcDist(userLocation.lat, userLocation.lng, a.latitude, a.longitude);
-        const distB = calcDist(userLocation.lat, userLocation.lng, b.latitude, b.longitude);
-
-        // TIER 1: Premium (featured: true, verified: true) - ALWAYS on top with crown
-        const isPremiumA = a.featured && a.verified;
-        const isPremiumB = b.featured && b.verified;
-        if (isPremiumA && !isPremiumB) return -1;
-        if (!isPremiumA && isPremiumB) return 1;
-
-        // TIER 2: Regular featured (featured: true, verified: false) - only get priority if within 40km
-        const isFeaturedA = a.featured && !a.verified;
-        const isFeaturedB = b.featured && !b.verified;
-        const aWithin40 = distA <= 40;
-        const bWithin40 = distB <= 40;
-
-        if (isFeaturedA && aWithin40 && !(isFeaturedB && bWithin40)) return -1;
-        if (isFeaturedB && bWithin40 && !(isFeaturedA && aWithin40)) return 1;
-
-        return distA - distB;
+// ===== SORTING FUNCTION =====
+function sortCreators(creators, searchQuery = '') {
+    const premium = [];
+    const featured = [];
+    const regular = [];
+    
+    creators.forEach(c => {
+        if (c.featured && c.verified) {
+            premium.push(c);
+        } else if (c.featured) {
+            featured.push(c);
+        } else {
+            regular.push(c);
+        }
     });
+    
+    const sortByRelevance = (a, b) => {
+        if (searchQuery) {
+            const scoreA = getRelevanceScore(a, searchQuery);
+            const scoreB = getRelevanceScore(b, searchQuery);
+            if (scoreA !== scoreB) return scoreB - scoreA;
+        }
+        return a.name.localeCompare(b.name);
+    };
+    
+    if (nearMeActive && userLocation) {
+        // Cache distances once — avoids recalculating on every sort comparison
+        const distCache = new Map();
+        const getDist = (c) => {
+            if (!distCache.has(c.id)) {
+                distCache.set(c.id, calcDist(userLocation.lat, userLocation.lng, c.latitude, c.longitude));
+            }
+            return distCache.get(c.id);
+        };
+
+        const sortByDistRelevance = (a, b) => {
+            if (searchQuery) {
+                const scoreA = getRelevanceScore(a, searchQuery);
+                const scoreB = getRelevanceScore(b, searchQuery);
+                if (scoreA !== scoreB) return scoreB - scoreA;
+            }
+            return getDist(a) - getDist(b);
+        };
+
+        premium.sort(sortByDistRelevance);
+        featured.sort(sortByDistRelevance);
+        regular.sort(sortByDistRelevance);
+    } else {
+        premium.sort(sortByRelevance);
+        featured.sort(sortByRelevance);
+        regular.sort(sortByRelevance);
+    }
+    
+    return [...premium, ...featured, ...regular];
+}
+
+// ===== RENDER SINGLE CREATOR CARD =====
+function renderCreatorCard(creator, dist, q) {
+    let avatarContent;
+    if (creator.profileImage) {
+        avatarContent = `<img src="${getAvatarSrc(creator.profileImage, 200)}" alt="${creator.name}" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\\'fas fa-user\\' style=\\'font-size:22px;color:rgba(255,255,255,0.85);\\'></i>';">`;
+    } else {
+        avatarContent = '<i class="fas fa-user" style="font-size:22px;color:rgba(255,255,255,0.85);"></i>';
+    }
+    const avatar = `<div class="avatar-inner">${avatarContent}</div>`;
+    const nicheEmoji = getEmoji(creator.niche);
+
+    const isPremium = creator.featured && creator.verified;
+    const isFeaturedOnly = creator.featured && !creator.verified;
+
+    let relevanceBadge = '';
+    if (q) {
+        const score = getRelevanceScore(creator, q);
+        if (score >= 3) {
+            relevanceBadge = '<span class="relevance-badge high"><i class="fas fa-bolt"></i> High match</span>';
+        } else if (score >= 2) {
+            relevanceBadge = '<span class="relevance-badge medium"><i class="fas fa-wave-square"></i> Good match</span>';
+        } else if (score >= 0.5) {
+            relevanceBadge = '<span class="relevance-badge low"><i class="fas fa-circle"></i> Related</span>';
+        }
+    }
+
+    if (viewMode === 'medium' || viewMode === 'small') {
+        const card = document.createElement('div');
+        card.className = `creator-card ${viewMode}`;
+        card.onclick = () => openProfile(creator.id);
+        card.innerHTML = `
+            <div class="creator-card-top">
+                <div class="avatar-col">
+                    <div class="creator-avatar">
+                        ${avatar}
+                    </div>
+                    ${dist !== null ? `<div class="distance-badge"><i class="fas fa-location-arrow"></i> ${dist.toFixed(1)} km</div>` : ''}
+                </div>
+                <div class="creator-info">
+                    <div class="creator-name">
+                        ${creator.name}
+                        ${isPremium ? ' <i class="fas fa-crown" style="color:#FFD700;font-size:14px;"></i>' : ''}
+                        ${isFeaturedOnly ? ' <i class="fas fa-star" style="color:#FFD700;font-size:14px;"></i>' : ''}
+                        ${relevanceBadge}
+                    </div>
+                    <div class="creator-niche">${nicheEmoji} ${creator.niche}</div>
+                    <div class="creator-location"><i class="fas fa-map-marker-alt"></i> ${creator.district}, ${creator.city}</div>
+                </div>
+            </div>
+            <div class="creator-social">
+                ${creator.socialLinks?.instagram ? `
+                    <a href="${creator.socialLinks.instagram}" target="_blank" class="social-link instagram" onclick="event.stopPropagation()">
+                        <i class="fab fa-instagram"></i> <span class="count">${formatNum(creator.instagramFollowers)}</span>
+                    </a>
+                ` : `
+                    <span class="social-link"><i class="fab fa-instagram"></i> <span class="count">${formatNum(creator.instagramFollowers)}</span></span>
+                `}
+                ${creator.socialLinks?.youtube ? `
+                    <a href="${creator.socialLinks.youtube}" target="_blank" class="social-link youtube" onclick="event.stopPropagation()">
+                        <i class="fab fa-youtube"></i> <span class="count">${formatNum(creator.youtubeSubscribers)}</span>
+                    </a>
+                ` : `
+                    <span class="social-link"><i class="fab fa-youtube"></i> <span class="count">${formatNum(creator.youtubeSubscribers)}</span></span>
+                `}
+                ${creator.socialLinks?.facebook ? `
+                    <a href="${creator.socialLinks.facebook}" target="_blank" class="social-link facebook" onclick="event.stopPropagation()">
+                        <i class="fab fa-facebook"></i> <span class="count">${formatNum(creator.facebookFollowers)}</span>
+                    </a>
+                ` : `
+                    <span class="social-link"><i class="fab fa-facebook"></i> <span class="count">${formatNum(creator.facebookFollowers)}</span></span>
+                `}
+                <span class="engagement-badge"><i class="fas fa-bolt"></i> ${creator.engagementRate}%</span>
+            </div>
+        `;
+        return card;
+    }
+
+    let servicesHTML = '';
+    if (creator.serviceCharges && creator.serviceCharges.length > 0) {
+        servicesHTML = `
+            <div class="creator-services">
+                <div class="services-title"><i class="fas fa-dollar-sign"></i> Service Charges</div>
+                ${creator.serviceCharges.slice(0, 4).map(sc => `
+                    <div class="service-item">
+                        <span class="service-name">${sc.service}</span>
+                        <span class="service-price">${formatPriceDisplay(sc)}</span>
+                    </div>
+                `).join('')}
+                ${creator.serviceCharges.length > 4 ? `
+                    <div style="text-align:center;font-size:11px;color:var(--text-muted);padding-top:4px;">
+                        +${creator.serviceCharges.length - 4} more services
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    let pricingHTML = '';
+    if (creator.pricingInfo) {
+        pricingHTML = `
+            <div class="pricing-info">
+                <div class="pricing-header">
+                    <span class="label">💰 ${getPricingEmoji(creator.pricingInfo.model)}</span>
+                    <span class="pricing-badge ${creator.pricingInfo.model}">${getPricingLabel(creator.pricingInfo)}</span>
+                </div>
+                ${creator.pricingInfo.description ? `<div class="pricing-desc">${creator.pricingInfo.description}</div>` : ''}
+            </div>
+        `;
+    }
+
+    const card = document.createElement('div');
+    card.className = 'creator-card';
+    card.innerHTML = `
+        <div class="creator-card-top">
+            <div class="avatar-col">
+                <div class="creator-avatar">
+                    ${avatar}
+                </div>
+                ${dist !== null ? `<div class="distance-badge"><i class="fas fa-location-arrow"></i> ${dist.toFixed(1)} km</div>` : ''}
+            </div>
+            <div class="creator-info">
+                <div class="creator-name">
+                    ${creator.name}
+                    ${isPremium ? ' <i class="fas fa-crown" style="color:#FFD700;font-size:14px;"></i>' : ''}
+                    ${isFeaturedOnly ? ' <i class="fas fa-star" style="color:#FFD700;font-size:14px;"></i>' : ''}
+                    ${relevanceBadge}
+                </div>
+                <div class="creator-niche">${nicheEmoji} ${creator.niche}</div>
+                <div class="creator-location"><i class="fas fa-map-marker-alt"></i> ${creator.district}, ${creator.city}</div>
+            </div>
+        </div>
+        <div class="creator-social">
+            ${creator.socialLinks?.instagram ? `
+                <a href="${creator.socialLinks.instagram}" target="_blank" class="social-link instagram">
+                    <i class="fab fa-instagram"></i> <span class="count">${formatNum(creator.instagramFollowers)}</span>
+                </a>
+            ` : `
+                <span class="social-link"><i class="fab fa-instagram"></i> <span class="count">${formatNum(creator.instagramFollowers)}</span></span>
+            `}
+            ${creator.socialLinks?.youtube ? `
+                <a href="${creator.socialLinks.youtube}" target="_blank" class="social-link youtube">
+                    <i class="fab fa-youtube"></i> <span class="count">${formatNum(creator.youtubeSubscribers)}</span>
+                </a>
+            ` : `
+                <span class="social-link"><i class="fab fa-youtube"></i> <span class="count">${formatNum(creator.youtubeSubscribers)}</span></span>
+            `}
+            ${creator.socialLinks?.facebook ? `
+                <a href="${creator.socialLinks.facebook}" target="_blank" class="social-link facebook">
+                    <i class="fab fa-facebook"></i> <span class="count">${formatNum(creator.facebookFollowers)}</span>
+                </a>
+            ` : `
+                <span class="social-link"><i class="fab fa-facebook"></i> <span class="count">${formatNum(creator.facebookFollowers)}</span></span>
+            `}
+            <span class="engagement-badge"><i class="fas fa-bolt"></i> ${creator.engagementRate}%</span>
+        </div>
+        <div style="font-size:13px;color:var(--text-secondary);margin:4px 0;">
+            <i class="fas fa-eye"></i> Avg Views: ${formatNum(creator.avgReelViews)}
+        </div>
+        ${pricingHTML}
+        ${servicesHTML}
+        <div style="font-size:11px;color:var(--text-muted);margin:4px 0;">
+            <i class="fas fa-briefcase"></i> ${creator.services.slice(0, 3).join(' • ')}${creator.services.length > 3 ? ` +${creator.services.length - 3} more` : ''}
+        </div>
+        <div class="creator-card-actions">
+            <button class="btn-whatsapp" onclick="contactWhatsApp('${creator.contact?.whatsapp || ''}', '${(creator.name || '').replace(/'/g, "\\'")}')">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </button>
+            <button class="btn-profile" onclick="openProfile(${creator.id})">
+                <i class="fas fa-eye"></i> Profile
+            </button>
+        </div>
+    `;
+    return card;
 }
 
 // ===== RENDER =====
@@ -242,6 +662,7 @@ function render() {
     if (!creatorsData.length) return;
 
     const q = searchInput.value.toLowerCase().trim();
+    currentSearchQuery = q;
     let result = filtered;
 
     if (q) {
@@ -250,7 +671,8 @@ function render() {
             c.niche.toLowerCase().includes(q) ||
             c.city.toLowerCase().includes(q) ||
             c.district.toLowerCase().includes(q) ||
-            (c.services || []).some(s => s.toLowerCase().includes(q))
+            (c.services || []).some(s => s.toLowerCase().includes(q)) ||
+            (c.additionalNiches || []).some(n => n.toLowerCase().includes(q))
         );
     }
 
@@ -259,29 +681,29 @@ function render() {
     const svc = sideService.value;
     const budget = parseInt(sideBudget.value);
 
+    // Check if any filter is active (other than search)
+    const hasActiveFilter = !!(d || n || svc || budget);
+
     if (d) result = result.filter(c => c.district === d);
-    if (n) result = result.filter(c => c.niche === n);
+    if (n) result = result.filter(c => c.niche === n || (c.additionalNiches || []).includes(n));
     if (svc) result = result.filter(c => (c.services || []).includes(svc));
     if (budget) result = result.filter(c => getMinCharge(c) <= budget);
 
-    if (userLocation) {
-        result = sortCreatorsByDistance(result);
-    } else {
-        result.sort((a, b) => {
-            const isPremiumA = a.featured && a.verified;
-            const isPremiumB = b.featured && b.verified;
-            if (isPremiumA && !isPremiumB) return -1;
-            if (!isPremiumA && isPremiumB) return 1;
-            if (a.featured && !b.featured) return -1;
-            if (!a.featured && b.featured) return 1;
-            return a.name.localeCompare(b.name);
-        });
+    result = sortCreators(result, q);
+
+    // Build "other creators" list (not in current filtered result) when filters active
+    let otherCreators = [];
+    if (hasActiveFilter) {
+        const filteredIds = new Set(result.map(c => c.id));
+        otherCreators = creatorsData.filter(c => !filteredIds.has(c.id));
+        // Sort others: premium (featured+verified) → star (featured only) → distance
+        otherCreators = sortCreators(otherCreators, '');
     }
 
     const total = result.length;
     countEl.textContent = `${total} creators`;
 
-    if (total === 0) {
+    if (total === 0 && otherCreators.length === 0) {
         grid.innerHTML =
             `<div class="empty-state"><i class="fas fa-user-slash"></i><p>No creators match your filters.</p></div>`;
         return;
@@ -290,199 +712,72 @@ function render() {
     grid.innerHTML = '';
     grid.classList.toggle('medium-mode', viewMode === 'medium');
     grid.classList.toggle('small-mode', viewMode === 'small');
+
+    if (total === 0 && otherCreators.length > 0) {
+        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="fas fa-user-slash"></i><p>No creators match your filters.</p></div>`;
+    }
+
     result.forEach(creator => {
-        const dist = userLocation ? calcDist(userLocation.lat, userLocation.lng, creator.latitude, creator
-            .longitude) : null;
-        const avatarContent = creator.profileImage ? `<img src="${getAvatarSrc(creator.profileImage, 200)}" alt="${creator.name}">` :
-            '<i class="fas fa-user" style="font-size:22px;color:rgba(255,255,255,0.85);"></i>';
-        const avatar = `<div class="avatar-inner">${avatarContent}</div>`;
-        const nicheEmoji = getEmoji(creator.niche);
-
-        const isPremium = creator.featured && creator.verified;
-        const isFeaturedOnly = creator.featured && !creator.verified;
-
-        if (viewMode === 'medium' || viewMode === 'small') {
-            const card = document.createElement('div');
-            card.className = `creator-card ${viewMode}`;
-            card.onclick = () => openProfile(creator.id);
-            card.innerHTML = `
-                        <div class="creator-card-top">
-                            <div class="avatar-col">
-                                <div class="creator-avatar">
-                                    ${avatar}
-                                </div>
-                                ${dist !== null ? `<div class="distance-badge"><i class="fas fa-location-arrow"></i> ${dist.toFixed(1)} km</div>` : ''}
-                            </div>
-                            <div class="creator-info">
-                                <div class="creator-name">
-                                    ${creator.name}
-                                    ${isPremium ? ' <i class="fas fa-crown" style="color:#FFD700;font-size:14px;"></i>' : ''}
-                                    ${isFeaturedOnly ? ' <i class="fas fa-star" style="color:#FFD700;font-size:14px;"></i>' : ''}
-                                </div>
-                                <div class="creator-niche">${nicheEmoji} ${creator.niche}</div>
-                                <div class="creator-location"><i class="fas fa-map-marker-alt"></i> ${creator.district}, ${creator.city}</div>
-                            </div>
-                        </div>
-
-                        <div class="creator-social">
-                            ${creator.socialLinks?.instagram ? `
-                                <a href="${creator.socialLinks.instagram}" target="_blank" class="social-link instagram" onclick="event.stopPropagation()">
-                                    <i class="fab fa-instagram"></i> <span class="count">${formatNum(creator.instagramFollowers)}</span>
-                                </a>
-                            ` : `
-                                <span class="social-link"><i class="fab fa-instagram"></i> <span class="count">${formatNum(creator.instagramFollowers)}</span></span>
-                            `}
-                            ${creator.socialLinks?.youtube ? `
-                                <a href="${creator.socialLinks.youtube}" target="_blank" class="social-link youtube" onclick="event.stopPropagation()">
-                                    <i class="fab fa-youtube"></i> <span class="count">${formatNum(creator.youtubeSubscribers)}</span>
-                                </a>
-                            ` : `
-                                <span class="social-link"><i class="fab fa-youtube"></i> <span class="count">${formatNum(creator.youtubeSubscribers)}</span></span>
-                            `}
-                            ${creator.socialLinks?.facebook ? `
-                                <a href="${creator.socialLinks.facebook}" target="_blank" class="social-link facebook" onclick="event.stopPropagation()">
-                                    <i class="fab fa-facebook"></i> <span class="count">${formatNum(creator.facebookFollowers)}</span>
-                                </a>
-                            ` : `
-                                <span class="social-link"><i class="fab fa-facebook"></i> <span class="count">${formatNum(creator.facebookFollowers)}</span></span>
-                            `}
-                            <span class="engagement-badge"><i class="fas fa-bolt"></i> ${creator.engagementRate}%</span>
-                        </div>
-                    `;
-            grid.appendChild(card);
-            return;
-        }
-
-        let servicesHTML = '';
-        if (creator.serviceCharges && creator.serviceCharges.length > 0) {
-            servicesHTML = `
-                        <div class="creator-services">
-                            <div class="services-title"><i class="fas fa-dollar-sign"></i> Service Charges</div>
-                            ${creator.serviceCharges.slice(0, 4).map(sc => `
-                                <div class="service-item">
-                                    <span class="service-name">${sc.service}</span>
-                                    <span class="service-price">
-                                        ${formatPriceDisplay(sc)}
-                                    </span>
-                                </div>
-                            `).join('')}
-                            ${creator.serviceCharges.length > 4 ? `
-                                <div style="text-align:center;font-size:11px;color:var(--text-muted);padding-top:4px;">
-                                    +${creator.serviceCharges.length - 4} more services
-                                </div>
-                            ` : ''}
-                        </div>
-                    `;
-        }
-
-        let pricingHTML = '';
-        if (creator.pricingInfo) {
-            pricingHTML = `
-                        <div class="pricing-info">
-                            <div class="pricing-header">
-                                <span class="label">💰 ${getPricingEmoji(creator.pricingInfo.model)}</span>
-                                <span class="pricing-badge ${creator.pricingInfo.model}">${getPricingLabel(creator.pricingInfo)}</span>
-                            </div>
-                            ${creator.pricingInfo.description ? `<div class="pricing-desc">${creator.pricingInfo.description}</div>` : ''}
-                        </div>
-                    `;
-        }
-
-        const card = document.createElement('div');
-        card.className = 'creator-card';
-        card.innerHTML = `
-                    <div class="creator-card-top">
-                        <div class="avatar-col">
-                            <div class="creator-avatar">
-                                ${avatar}
-                            </div>
-                            ${dist !== null ? `<div class="distance-badge"><i class="fas fa-location-arrow"></i> ${dist.toFixed(1)} km</div>` : ''}
-                        </div>
-                        <div class="creator-info">
-                            <div class="creator-name">
-                                ${creator.name}
-                                ${isPremium ? ' <i class="fas fa-crown" style="color:#FFD700;font-size:14px;"></i>' : ''}
-                                ${isFeaturedOnly ? ' <i class="fas fa-star" style="color:#FFD700;font-size:14px;"></i>' : ''}
-                            </div>
-                            <div class="creator-niche">${nicheEmoji} ${creator.niche}</div>
-                            <div class="creator-location"><i class="fas fa-map-marker-alt"></i> ${creator.district}, ${creator.city}</div>
-                        </div>
-                    </div>
-
-                    <div class="creator-social">
-                        ${creator.socialLinks?.instagram ? `
-                            <a href="${creator.socialLinks.instagram}" target="_blank" class="social-link instagram">
-                                <i class="fab fa-instagram"></i> <span class="count">${formatNum(creator.instagramFollowers)}</span>
-                            </a>
-                        ` : `
-                            <span class="social-link"><i class="fab fa-instagram"></i> <span class="count">${formatNum(creator.instagramFollowers)}</span></span>
-                        `}
-                        ${creator.socialLinks?.youtube ? `
-                            <a href="${creator.socialLinks.youtube}" target="_blank" class="social-link youtube">
-                                <i class="fab fa-youtube"></i> <span class="count">${formatNum(creator.youtubeSubscribers)}</span>
-                            </a>
-                        ` : `
-                            <span class="social-link"><i class="fab fa-youtube"></i> <span class="count">${formatNum(creator.youtubeSubscribers)}</span></span>
-                        `}
-                        ${creator.socialLinks?.facebook ? `
-                            <a href="${creator.socialLinks.facebook}" target="_blank" class="social-link facebook">
-                                <i class="fab fa-facebook"></i> <span class="count">${formatNum(creator.facebookFollowers)}</span>
-                            </a>
-                        ` : `
-                            <span class="social-link"><i class="fab fa-facebook"></i> <span class="count">${formatNum(creator.facebookFollowers)}</span></span>
-                        `}
-                        <span class="engagement-badge"><i class="fas fa-bolt"></i> ${creator.engagementRate}%</span>
-                    </div>
-
-                    <div style="font-size:13px;color:var(--text-secondary);margin:4px 0;">
-                        <i class="fas fa-eye"></i> Avg Views: ${formatNum(creator.avgReelViews)}
-                    </div>
-
-                    ${pricingHTML}
-                    ${servicesHTML}
-
-                    <div style="font-size:11px;color:var(--text-muted);margin:4px 0;">
-                        <i class="fas fa-briefcase"></i> ${creator.services.slice(0, 3).join(' • ')}${creator.services.length > 3 ? ` +${creator.services.length - 3} more` : ''}
-                    </div>
-
-                    <div class="creator-card-actions">
-                        <button class="btn-whatsapp" onclick="contactWhatsApp('${creator.contact?.whatsapp || ''}', '${(creator.name || '').replace(/'/g, "\\'")}')">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </button>
-                        <button class="btn-profile" onclick="openProfile(${creator.id})">
-                            <i class="fas fa-eye"></i> Profile
-                        </button>
-                    </div>
-                `;
+        const dist = (nearMeActive && userLocation) ? calcDist(userLocation.lat, userLocation.lng, creator.latitude, creator.longitude) : null;
+        const card = renderCreatorCard(creator, dist, q);
         grid.appendChild(card);
     });
+
+    // ===== OTHER CREATORS SECTION =====
+    if (hasActiveFilter && otherCreators.length > 0) {
+        // Divider header
+        const divider = document.createElement('div');
+        divider.className = 'other-creators-divider';
+        divider.innerHTML = `
+            <div class="divider-line"></div>
+            <div class="divider-pill">
+                <i class="fas fa-users"></i>
+                <span>Other Creators</span>
+                <span class="divider-count">${otherCreators.length}</span>
+            </div>
+            <div class="divider-line"></div>
+        `;
+        grid.appendChild(divider);
+
+        otherCreators.forEach(creator => {
+            const dist = (nearMeActive && userLocation) ? calcDist(userLocation.lat, userLocation.lng, creator.latitude, creator.longitude) : null;
+            const card = renderCreatorCard(creator, dist, q);
+            card.style.opacity = '0.82';
+            grid.appendChild(card);
+        });
+    }
 }
 
 // ===== HELPER FUNCTIONS =====
 function formatPriceDisplay(service) {
     let html = '';
     switch (service.model) {
-        case 'fixed':
+        case 'fixed': {
             html = `₹${service.charge}`;
             html += ` <span class="charge-model fixed">Fixed</span>`;
             break;
-        case 'starting_from':
+        }
+        case 'starting_from': {
             const startPrice = service.startingPrice || service.charge;
             html = `<span class="from-label">From</span> ₹${startPrice}`;
             html += ` <span class="charge-model starting">Starting</span>`;
             break;
-        case 'negotiable':
+        }
+        case 'negotiable': {
             html = `₹${service.charge}`;
             html += ` <span class="charge-model negotiable">Negotiable</span>`;
             break;
-        case 'range':
+        }
+        case 'range': {
             const minPrice = service.min || service.charge;
             const maxPrice = service.max || service.charge;
             html = `₹${minPrice} - ₹${maxPrice}`;
             html += ` <span class="charge-model range">Range</span>`;
             break;
-        default:
+        }
+        default: {
             html = `₹${service.charge}`;
+        }
     }
     if (service.negotiable) {
         html += ` <span class="negotiable-tag">🤝 Negotiable</span>`;
@@ -562,7 +857,8 @@ function getEmoji(niche) {
         'Photography': '📸',
         'Lifestyle': '🌟',
         'Event Coverage': '🎪',
-        'Local News': '📰'
+        'Local News': '📰',
+        'Entrepreneur': '🚀'
     };
     return map[niche] || '🏷️';
 }
@@ -578,13 +874,19 @@ function openProfile(id) {
 
     let socialLinksHTML = '';
     if (c.socialLinks) {
-        socialLinksHTML = `
-                    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;">
-                        ${c.socialLinks.instagram ? `<a href="${c.socialLinks.instagram}" target="_blank" style="background:rgba(225,48,108,0.15);color:#E1306C;padding:8px 16px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;"><i class="fab fa-instagram"></i> Instagram</a>` : ''}
-                        ${c.socialLinks.youtube ? `<a href="${c.socialLinks.youtube}" target="_blank" style="background:rgba(255,0,0,0.15);color:#FF0000;padding:8px 16px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;"><i class="fab fa-youtube"></i> YouTube</a>` : ''}
-                        ${c.socialLinks.facebook ? `<a href="${c.socialLinks.facebook}" target="_blank" style="background:rgba(24,119,242,0.15);color:#1877F2;padding:8px 16px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;"><i class="fab fa-facebook"></i> Facebook</a>` : ''}
-                    </div>
-                `;
+        const links = [];
+        if (c.socialLinks.instagram) {
+            links.push(`<a href="${c.socialLinks.instagram}" target="_blank" style="background:rgba(225,48,108,0.15);color:#E1306C;padding:8px 16px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;"><i class="fab fa-instagram"></i> Instagram</a>`);
+        }
+        if (c.socialLinks.youtube) {
+            links.push(`<a href="${c.socialLinks.youtube}" target="_blank" style="background:rgba(255,0,0,0.15);color:#FF0000;padding:8px 16px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;"><i class="fab fa-youtube"></i> YouTube</a>`);
+        }
+        if (c.socialLinks.facebook && c.socialLinks.facebook !== '') {
+            links.push(`<a href="${c.socialLinks.facebook}" target="_blank" style="background:rgba(24,119,242,0.15);color:#1877F2;padding:8px 16px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;"><i class="fab fa-facebook"></i> Facebook</a>`);
+        }
+        if (links.length > 0) {
+            socialLinksHTML = `<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;">${links.join('')}</div>`;
+        }
     }
 
     let modalServicesHTML = '';
@@ -604,17 +906,29 @@ function openProfile(id) {
                 `;
     }
 
+    // Profile image with error handling
+    let profileImgHtml;
+    if (c.profileImage) {
+        profileImgHtml = `<img src="${getAvatarSrc(c.profileImage, 300)}" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\\'fas fa-user\\' style=\\'font-size:28px;color:rgba(255,255,255,0.85);\\'></i>';">`;
+    } else {
+        profileImgHtml = '<i class="fas fa-user" style="font-size:28px;color:rgba(255,255,255,0.85);"></i>';
+    }
+
     modalBody.innerHTML = `
                 <div style="text-align:center;">
                     <div style="width:80px;height:80px;border-radius:24%;background:linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7);padding:3px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(238,42,123,0.28);">
                         <div style="width:100%;height:100%;border-radius:19%;overflow:hidden;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#fff;">
-                            ${c.profileImage ? `<img src="${getAvatarSrc(c.profileImage, 300)}" style="width:100%;height:100%;object-fit:cover;display:block;">` : '<i class="fas fa-user" style="font-size:28px;color:rgba(255,255,255,0.85);"></i>'}
+                            ${profileImgHtml}
                         </div>
                     </div>
                     <h3 style="font-size:22px;">${c.name}</h3>
                     ${isPremium ? '<div style="background:linear-gradient(135deg,#FFD700,#FFA500);color:#1A1A2E;padding:4px 16px;border-radius:50px;font-weight:700;display:inline-block;font-size:13px;margin-bottom:4px;"><i class="fas fa-crown"></i> Premium</div>' : ''}
                     ${isFeaturedOnly ? '<div style="background:linear-gradient(135deg,#6C63FF,#5A52D5);color:#fff;padding:4px 16px;border-radius:50px;font-weight:700;display:inline-block;font-size:13px;margin-bottom:4px;"><i class="fas fa-star"></i> Featured</div>' : ''}
                     <div style="color:var(--primary);font-size:14px;">${getEmoji(c.niche)} ${c.niche}</div>
+                    ${(c.additionalNiches && c.additionalNiches.length > 0) ? `
+                    <div style="display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:6px;">
+                        ${c.additionalNiches.map(n => `<span style="background:rgba(108,99,255,0.1);color:var(--primary);padding:2px 10px;border-radius:50px;font-size:11px;">${getEmoji(n)} ${n}</span>`).join('')}
+                    </div>` : ''}
                     <div style="color:var(--text-secondary);font-size:13px;">
                         <i class="fas fa-map-marker-alt"></i> ${c.district}, ${c.city} 
                         ${dist !== null ? `• <i class="fas fa-location-arrow"></i> ${dist.toFixed(1)} km` : ''}
@@ -690,20 +1004,34 @@ function contactWhatsApp(num, name) {
     if (!num) { showToast('⚠️ No WhatsApp number', 'warning'); return; }
     const greeting = `Hi ${name}! 👋 I came across your profile on CG Creators and I'm interested in your services.`;
     const url = `https://wa.me/${num}?text=${encodeURIComponent(greeting)}`;
-    window.open(url, '_blank');
+    
+    // Try opening in new window
+    const win = window.open(url, '_blank');
+    if (!win || win.closed || typeof win.closed === 'undefined') {
+        // Fallback: copy to clipboard
+        const text = `WhatsApp: ${num}\nMessage: ${greeting}`;
+        fallbackCopy(text);
+        showToast('📋 Copy the number and message!', 'info');
+    }
 }
 
 function fallbackCopy(text) {
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
-    document.body.appendChild(ta);
-    ta.focus(); ta.select();
-    try { document.execCommand('copy'); showToast('📋 Greeting copied! Paste it in WhatsApp', 'success'); }
-    catch { showToast('ℹ️ Opening WhatsApp...', 'info'); }
-    document.body.removeChild(ta);
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text)
+            .then(() => showToast('📋 Copied! Paste it in WhatsApp', 'success'))
+            .catch(() => showToast('ℹ️ Opening WhatsApp...', 'info'));
+    } else {
+        // Legacy fallback for non-HTTPS
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+        document.body.appendChild(ta);
+        ta.focus(); ta.select();
+        try { document.execCommand('copy'); showToast('📋 Copied! Paste it in WhatsApp', 'success'); }
+        catch { showToast('ℹ️ Opening WhatsApp...', 'info'); }
+        document.body.removeChild(ta);
+    }
 }
-
 
 function contactEmail(email) {
     if (!email) { showToast('⚠️ No email', 'warning'); return; }
@@ -748,45 +1076,62 @@ closeMenuBtn.addEventListener('click', closeMenu);
 overlay.addEventListener('click', closeMenu);
 
 // ===== NEAR ME =====
-function sortByDistance() {
-    if (!userLocation) {
-        showToast('⏳ Getting your location...', 'info');
-        getUserLocation(() => {
-            filtered = [...creatorsData];
-            render();
-            showToast('📍 Showing creators near you', 'success');
-        });
-        return;
-    }
-    filtered = [...creatorsData];
+function activateNearMe() {
+    nearMeActive = true;
+    [nearMeBtn, nearMeMenu].forEach(el => {
+        if (el) el.classList.add('active');
+    });
     render();
     showToast('📍 Showing creators near you', 'success');
 }
 
+function deactivateNearMe() {
+    nearMeActive = false;
+    [nearMeBtn, nearMeMenu].forEach(el => {
+        if (el) el.classList.remove('active');
+    });
+    render();
+    showToast('📋 Back to default sort', 'info');
+}
+
 function triggerNearMe() {
+    if (nearMeActive) {
+        deactivateNearMe();
+        return;
+    }
+
     if (!gpsReady) {
         showToast('⏳ Getting your location...', 'info');
         getUserLocation(() => {
-            filtered = [...creatorsData];
-            render();
-            showToast('📍 Showing creators near you', 'success');
+            activateNearMe();
+        });
+    } else if (!userLocation) {
+        getUserLocation(() => {
+            activateNearMe();
         });
     } else {
-        sortByDistance();
+        activateNearMe();
     }
 }
 nearMeBtn.addEventListener('click', triggerNearMe);
-nearMeMenu.addEventListener('click', triggerNearMe);
+nearMeMenu.addEventListener('click', () => { triggerNearMe(); closeMenu(); });
 
-// ===== SEARCH =====
-searchInput.addEventListener('input', () => { render(); });
+// ===== SEARCH WITH DEBOUNCE =====
+searchInput.addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => render(), 250);
+});
 
 // ===== SIDE FILTERS =====
 applySideFilters.addEventListener('click', () => {
+    saveFilters();
     render();
     closeMenu();
     showToast('✅ Filters applied', 'success');
 });
+
+// ===== CLEAR FILTERS =====
+
 
 // ===== VIEW TOGGLE =====
 const viewToggleBtns = document.querySelectorAll('.view-toggle-btn');
@@ -794,9 +1139,15 @@ viewToggleBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         viewMode = btn.dataset.view;
         viewToggleBtns.forEach(b => b.classList.toggle('active', b === btn));
+        // Save view preference
+        try {
+            localStorage.setItem('cgViewMode', viewMode);
+        } catch (e) {}
         render();
     });
 });
+
+
 
 // ===== LIST PROFILE =====
 listProfileBtn.addEventListener('click', () => {
@@ -815,15 +1166,23 @@ window.addEventListener('click', (e) => {
     if (e.target === joinModal) joinModal.classList.remove('open');
 });
 
+
+
 // ===== JOIN FORM =====
 joinForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('fullName').value.trim();
     const email = document.getElementById('email').value.trim();
     const whatsapp = document.getElementById('whatsapp').value.trim();
-    const district = document.getElementById('district').value;
+    const districtRaw = document.getElementById('district').value;
+    const district = districtRaw === 'Other'
+        ? (document.getElementById('districtOther').value.trim() || 'Other')
+        : districtRaw;
     const city = document.getElementById('city').value.trim();
-    const niche = document.getElementById('niche').value;
+    const nicheRaw = document.getElementById('niche').value;
+    const niche = nicheRaw === 'Other'
+        ? (document.getElementById('nicheOther').value.trim() || 'Other')
+        : nicheRaw;
     const desc = document.getElementById('description').value.trim();
     const instaLink = document.getElementById('instagramLink').value.trim();
     const ytLink = document.getElementById('youtubeLink').value.trim();
@@ -833,6 +1192,16 @@ joinForm.addEventListener('submit', (e) => {
     const fbFol = document.getElementById('fbFollowers').value || '0';
     const avgViews = document.getElementById('avgViews').value || '0';
     const engagementRate = document.getElementById('engagementRate').value || '0';
+
+    // Collect available districts
+    const availDistChecked = [...document.querySelectorAll('.avail-district-cb:checked')].map(cb => cb.value);
+    const availDistText = availDistChecked.length > 0 ? availDistChecked.join(', ') : district;
+
+    // Collect additional niches (including custom ones)
+    const extraNiches = getAllSelectedNiches();
+    const allCustomNiches = customNiches;
+    const finalExtraNiches = [...new Set([...extraNiches, ...allCustomNiches])];
+    const finalExtraNichesText = finalExtraNiches.length > 0 ? finalExtraNiches.join(', ') : 'None';
 
     const serviceCharges = getServiceCharges();
     let serviceChargesText = '';
@@ -854,15 +1223,23 @@ joinForm.addEventListener('submit', (e) => {
     }
 
     const msg =
-        `📢 *New Creator Application* 📢\n\n👤 *Name:* ${name}\n📧 *Email:* ${email}\n📱 *WhatsApp:* ${whatsapp}\n📍 *District:* ${district}\n🏙️ *City:* ${city}\n🏷️ *Niche:* ${niche}\n\n📝 *Description:* ${desc}\n\n🔗 *Social Links:*\n• Instagram: ${instaLink}\n• YouTube: ${ytLink}\n• Facebook: ${fbLink}\n\n📊 *Social Stats:*\n• Instagram Followers: ${instaFol}\n• YouTube Subscribers: ${ytSubs}\n• Facebook Followers: ${fbFol}\n• Avg Reel Views: ${avgViews}\n• Engagement Rate: ${engagementRate}%${serviceChargesText}\n\n📅 *Application Date:* ${new Date().toLocaleDateString('en-IN')}\n🕐 *Time:* ${new Date().toLocaleTimeString('en-IN')}\n\n*Please review this application and contact the creator.*`;
+        `📢 *New Creator Application* 📢\n\n👤 *Name:* ${name}\n📧 *Email:* ${email}\n📱 *WhatsApp:* ${whatsapp}\n📍 *District:* ${district}\n🏙️ *City:* ${city}\n🗺️ *Available In:* ${availDistText}\n🏷️ *Primary Niche:* ${niche}\n🎯 *Additional Niches:* ${finalExtraNichesText}\n\n📝 *Description:* ${desc}\n\n🔗 *Social Links:*\n• Instagram: ${instaLink}\n• YouTube: ${ytLink}\n• Facebook: ${fbLink}\n\n📊 *Social Stats:*\n• Instagram Followers: ${instaFol}\n• YouTube Subscribers: ${ytSubs}\n• Facebook Followers: ${fbFol}\n• Avg Reel Views: ${avgViews}\n• Engagement Rate: ${engagementRate}%${serviceChargesText}\n\n📅 *Application Date:* ${new Date().toLocaleDateString('en-IN')}\n🕐 *Time:* ${new Date().toLocaleTimeString('en-IN')}\n\n*Please review this application and contact the creator.*`;
 
     const encoded = encodeURIComponent(msg);
-    window.open(`https://wa.me/7734906606?text=${encoded}`, '_blank');
+    window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=${encoded}`, '_blank');
     showToast('✅ Application sent via WhatsApp!', 'success');
 
     setTimeout(() => {
         joinModal.classList.remove('open');
         joinForm.reset();
+        document.querySelectorAll('.avail-district-cb, .extra-niche-cb').forEach(cb => cb.checked = false);
+        customNiches = [];
+        renderCustomNiches();
+        updateCustomNicheCounter();
+        const districtOther = document.getElementById('districtOther');
+        const nicheOther = document.getElementById('nicheOther');
+        if (districtOther) { districtOther.style.display = 'none'; districtOther.required = false; }
+        if (nicheOther) { nicheOther.style.display = 'none'; nicheOther.required = false; }
         const container = document.getElementById('serviceChargesContainer');
         container.innerHTML = '';
         const defaults = [
@@ -911,5 +1288,64 @@ joinForm.addEventListener('submit', (e) => {
     }, 2000);
 });
 
-// ===== INIT =====
-document.addEventListener('DOMContentLoaded', loadData);
+
+
+// ===== KEYBOARD SHORTCUTS =====
+document.addEventListener('keydown', function(e) {
+    // Escape key to close modals
+    if (e.key === 'Escape') {
+        if (profileModal.classList.contains('open')) profileModal.classList.remove('open');
+        if (joinModal.classList.contains('open')) joinModal.classList.remove('open');
+        if (sideMenu.classList.contains('open')) closeMenu();
+    }
+    // Ctrl+F to focus search
+    if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+        e.preventDefault();
+        searchArea.classList.add('open');
+        searchInput.focus();
+    }
+});
+// ===== INIT — single DOMContentLoaded =====
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Load data
+    loadData();
+
+    // Restore saved view mode
+    try {
+        const savedView = localStorage.getItem('cgViewMode');
+        if (savedView) {
+            viewMode = savedView;
+            viewToggleBtns.forEach(b => b.classList.toggle('active', b.dataset.view === savedView));
+        }
+    } catch (e) {}
+
+    // Clear filters button
+    const clearFiltersBtn = document.getElementById('clearFiltersBtn');
+    if (clearFiltersBtn) clearFiltersBtn.addEventListener('click', clearFilters);
+
+    // Select / Deselect all districts
+    const selectAllBtn = document.getElementById('selectAllDistricts');
+    const deselectAllBtn = document.getElementById('deselectAllDistricts');
+    if (selectAllBtn) {
+        selectAllBtn.addEventListener('click', () => {
+            document.querySelectorAll('.avail-district-cb').forEach(cb => cb.checked = true);
+        });
+    }
+    if (deselectAllBtn) {
+        deselectAllBtn.addEventListener('click', () => {
+            document.querySelectorAll('.avail-district-cb').forEach(cb => cb.checked = false);
+        });
+    }
+
+    // Custom niche input
+    const addBtn = document.getElementById('addCustomNicheBtn');
+    const nicheInput = document.getElementById('customNicheInput');
+    if (addBtn) addBtn.addEventListener('click', addCustomNiche);
+    if (nicheInput) {
+        nicheInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') { e.preventDefault(); addCustomNiche(); }
+        });
+        nicheInput.addEventListener('focus', function () { this.select(); });
+    }
+});
