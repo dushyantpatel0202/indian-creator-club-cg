@@ -555,6 +555,7 @@ function renderCreatorCard(creator, dist, q) {
                 `}
                 <span class="engagement-badge"><i class="fas fa-bolt"></i> ${creator.engagementRate}%</span>
             </div>
+            ${(creator.isUGCCreator || creator.barter) ? `<div style="display:flex;gap:4px;margin:3px 0;">${creator.isUGCCreator ? '<span style="background:rgba(76,175,80,0.12);color:#4CAF50;padding:2px 8px;border-radius:50px;font-size:10px;font-weight:600;"><i class="fas fa-film"></i> UGC</span>' : ''}${creator.barter ? '<span style="background:rgba(255,165,0,0.12);color:#FFA500;padding:2px 8px;border-radius:50px;font-size:10px;font-weight:600;"><i class="fas fa-exchange-alt"></i> Barter</span>' : ''}</div>` : ''}
         `;
         return card;
     }
@@ -672,7 +673,10 @@ function render() {
             c.city.toLowerCase().includes(q) ||
             c.district.toLowerCase().includes(q) ||
             (c.services || []).some(s => s.toLowerCase().includes(q)) ||
-            (c.additionalNiches || []).some(n => n.toLowerCase().includes(q))
+            (c.additionalNiches || []).some(n => n.toLowerCase().includes(q)) ||
+            (c.languages || []).some(l => l.toLowerCase().includes(q)) ||
+            (c.pastBrands || []).some(b => b.toLowerCase().includes(q)) ||
+            (c.description || '').toLowerCase().includes(q)
         );
     }
 
@@ -884,6 +888,18 @@ function openProfile(id) {
         if (c.socialLinks.facebook && c.socialLinks.facebook !== '') {
             links.push(`<a href="${c.socialLinks.facebook}" target="_blank" style="background:rgba(24,119,242,0.15);color:#1877F2;padding:8px 16px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;"><i class="fab fa-facebook"></i> Facebook</a>`);
         }
+        if (c.socialLinks.x && c.socialLinks.x !== '') {
+            links.push(`<a href="${c.socialLinks.x}" target="_blank" style="background:rgba(255,255,255,0.08);color:var(--text-primary);padding:8px 16px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;"><i class="fab fa-x-twitter"></i> X</a>`);
+        }
+        if (c.socialLinks.thread && c.socialLinks.thread !== '') {
+            links.push(`<a href="${c.socialLinks.thread}" target="_blank" style="background:rgba(255,255,255,0.08);color:var(--text-primary);padding:8px 16px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;"><i class="fab fa-threads"></i> Threads</a>`);
+        }
+        if (c.socialLinks.snapchat && c.socialLinks.snapchat !== '') {
+            links.push(`<a href="${c.socialLinks.snapchat}" target="_blank" style="background:rgba(255,252,0,0.12);color:#FFFC00;padding:8px 16px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;"><i class="fab fa-snapchat"></i> Snapchat</a>`);
+        }
+        if (c.socialLinks.twitter && c.socialLinks.twitter !== '') {
+            links.push(`<a href="${c.socialLinks.twitter}" target="_blank" style="background:rgba(29,161,242,0.12);color:#1DA1F2;padding:8px 16px;border-radius:50px;text-decoration:none;font-size:14px;font-weight:500;display:inline-flex;align-items:center;gap:8px;"><i class="fab fa-twitter"></i> Twitter</a>`);
+        }
         if (links.length > 0) {
             socialLinksHTML = `<div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px 0;">${links.join('')}</div>`;
         }
@@ -924,17 +940,58 @@ function openProfile(id) {
                     <h3 style="font-size:22px;">${c.name}</h3>
                     ${isPremium ? '<div style="background:linear-gradient(135deg,#FFD700,#FFA500);color:#1A1A2E;padding:4px 16px;border-radius:50px;font-weight:700;display:inline-block;font-size:13px;margin-bottom:4px;"><i class="fas fa-crown"></i> Premium</div>' : ''}
                     ${isFeaturedOnly ? '<div style="background:linear-gradient(135deg,#6C63FF,#5A52D5);color:#fff;padding:4px 16px;border-radius:50px;font-weight:700;display:inline-block;font-size:13px;margin-bottom:4px;"><i class="fas fa-star"></i> Featured</div>' : ''}
+                    <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;">
+                        ${c.isUGCCreator ? '<span style="background:rgba(76,175,80,0.15);color:#4CAF50;padding:3px 12px;border-radius:50px;font-size:12px;font-weight:600;"><i class="fas fa-film"></i> UGC Creator</span>' : ''}
+                        ${c.barter ? '<span style="background:rgba(255,165,0,0.15);color:#FFA500;padding:3px 12px;border-radius:50px;font-size:12px;font-weight:600;"><i class="fas fa-exchange-alt"></i> Open to Barter</span>' : ''}
+                        ${c.creatorGender ? '<span style="background:rgba(108,99,255,0.1);color:var(--primary);padding:3px 12px;border-radius:50px;font-size:12px;"><i class="fas fa-user"></i> ' + c.creatorGender + '</span>' : ''}
+                    </div>
                     <div style="color:var(--primary);font-size:14px;">${getEmoji(c.niche)} ${c.niche}</div>
                     ${(c.additionalNiches && c.additionalNiches.length > 0) ? `
                     <div style="display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin-top:6px;">
                         ${c.additionalNiches.map(n => `<span style="background:rgba(108,99,255,0.1);color:var(--primary);padding:2px 10px;border-radius:50px;font-size:11px;">${getEmoji(n)} ${n}</span>`).join('')}
                     </div>` : ''}
-                    <div style="color:var(--text-secondary);font-size:13px;">
+                    <div style="color:var(--text-secondary);font-size:13px;margin-top:6px;">
                         <i class="fas fa-map-marker-alt"></i> ${c.district}, ${c.city} 
                         ${dist !== null ? `• <i class="fas fa-location-arrow"></i> ${dist.toFixed(1)} km` : ''}
                     </div>
+                    ${(c.languages && c.languages.length > 0) ? `<div style="font-size:12px;color:var(--text-muted);margin-top:4px;"><i class="fas fa-language"></i> ${c.languages.join(' • ')}</div>` : ''}
                     <p style="color:var(--text-secondary);font-size:14px;margin:12px 0;">${c.description || ''}</p>
 
+                    <!-- Platform Stats -->
+                    ${c.platformStats ? `
+                    <h4 style="text-align:left;margin:16px 0 8px;">📊 Platform Statistics</h4>
+                    <div style="display:grid;grid-template-columns:1fr;gap:8px;margin:0 0 12px;">
+                        ${c.platformStats.instagram && (c.instagramFollowers || c.platformStats.instagram.followers) ? `
+                        <div style="background:rgba(225,48,108,0.07);border:1px solid rgba(225,48,108,0.18);border-radius:10px;padding:10px 12px;">
+                            <div style="font-size:12px;font-weight:700;color:#E1306C;margin-bottom:6px;"><i class="fab fa-instagram"></i> Instagram</div>
+                            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;">
+                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.instagramFollowers || c.platformStats.instagram.followers)}</div><div style="font-size:10px;color:var(--text-muted);">Followers</div></div>
+                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.platformStats.instagram.avgViews || c.avgReelViews || 0)}</div><div style="font-size:10px;color:var(--text-muted);">Avg Views</div></div>
+                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.platformStats.instagram.avgLikes || 0)}</div><div style="font-size:10px;color:var(--text-muted);">Avg Likes</div></div>
+                                <div><div style="font-weight:700;font-size:14px;">${c.platformStats.instagram.engagementRate || c.engagementRate || 0}%</div><div style="font-size:10px;color:var(--text-muted);">ER</div></div>
+                            </div>
+                        </div>` : ''}
+                        ${c.platformStats.youtube && (c.youtubeSubscribers || c.platformStats.youtube.subscribers) ? `
+                        <div style="background:rgba(255,0,0,0.06);border:1px solid rgba(255,0,0,0.15);border-radius:10px;padding:10px 12px;">
+                            <div style="font-size:12px;font-weight:700;color:#FF0000;margin-bottom:6px;"><i class="fab fa-youtube"></i> YouTube</div>
+                            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;">
+                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.youtubeSubscribers || c.platformStats.youtube.subscribers)}</div><div style="font-size:10px;color:var(--text-muted);">Subs</div></div>
+                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.platformStats.youtube.avgViews || 0)}</div><div style="font-size:10px;color:var(--text-muted);">Avg Views</div></div>
+                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.platformStats.youtube.avgLikes || 0)}</div><div style="font-size:10px;color:var(--text-muted);">Avg Likes</div></div>
+                                <div><div style="font-weight:700;font-size:14px;">${c.platformStats.youtube.engagementRate || 0}%</div><div style="font-size:10px;color:var(--text-muted);">ER</div></div>
+                            </div>
+                        </div>` : ''}
+                        ${c.platformStats.facebook && (c.facebookFollowers || c.platformStats.facebook.followers) ? `
+                        <div style="background:rgba(24,119,242,0.06);border:1px solid rgba(24,119,242,0.15);border-radius:10px;padding:10px 12px;">
+                            <div style="font-size:12px;font-weight:700;color:#1877F2;margin-bottom:6px;"><i class="fab fa-facebook"></i> Facebook</div>
+                            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;">
+                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.facebookFollowers || c.platformStats.facebook.followers)}</div><div style="font-size:10px;color:var(--text-muted);">Followers</div></div>
+                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.platformStats.facebook.avgViews || 0)}</div><div style="font-size:10px;color:var(--text-muted);">Avg Views</div></div>
+                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.platformStats.facebook.avgLikes || 0)}</div><div style="font-size:10px;color:var(--text-muted);">Avg Likes</div></div>
+                                <div><div style="font-weight:700;font-size:14px;">${c.platformStats.facebook.engagementRate || 0}%</div><div style="font-size:10px;color:var(--text-muted);">ER</div></div>
+                            </div>
+                        </div>` : ''}
+                    </div>` : `
                     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0;">
                         <div style="background:var(--surface-soft);padding:8px;border-radius:8px;border:1px solid var(--border-color);">
                             <div style="font-weight:700;">${formatNum(c.instagramFollowers)}</div>
@@ -949,7 +1006,6 @@ function openProfile(id) {
                             <div style="font-size:11px;color:var(--text-muted);">Facebook</div>
                         </div>
                     </div>
-
                     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;">
                         <div style="background:var(--surface-soft);padding:8px;border-radius:8px;border:1px solid var(--border-color);">
                             <div style="font-weight:700;">${formatNum(c.avgReelViews)}</div>
@@ -959,7 +1015,31 @@ function openProfile(id) {
                             <div style="font-weight:700;">${c.engagementRate}%</div>
                             <div style="font-size:11px;color:var(--text-muted);">Engagement Rate</div>
                         </div>
-                    </div>
+                    </div>`}
+
+                    ${c.audienceInsights && (c.audienceInsights.ageGroup || (c.audienceInsights.topLocations && c.audienceInsights.topLocations.length > 0)) ? `
+                    <h4 style="text-align:left;margin:16px 0 8px;">👥 Audience Insights</h4>
+                    <div style="background:var(--surface-soft);padding:10px 14px;border-radius:8px;border:1px solid var(--border-color);display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;text-align:left;">
+                        ${c.audienceInsights.ageGroup ? `<div><div style="font-size:11px;color:var(--text-muted);">Age Group</div><div style="font-weight:600;font-size:13px;">${c.audienceInsights.ageGroup}</div></div>` : ''}
+                        ${c.audienceInsights.genderSplit ? `<div><div style="font-size:11px;color:var(--text-muted);">Gender Split</div><div style="font-weight:600;font-size:13px;">♂ ${c.audienceInsights.genderSplit.male}% ♀ ${c.audienceInsights.genderSplit.female}%</div></div>` : ''}
+                        ${c.audienceInsights.topLocations && c.audienceInsights.topLocations.length ? `<div style="grid-column:1/-1;"><div style="font-size:11px;color:var(--text-muted);">Top Locations</div><div style="font-weight:600;font-size:13px;">${c.audienceInsights.topLocations.join(' • ')}</div></div>` : ''}
+                        ${c.audienceInsights.source ? `<div style="grid-column:1/-1;font-size:10px;color:var(--text-muted);"><i class="fas fa-info-circle"></i> Source: ${c.audienceInsights.source === 'self_reported' ? 'Self-reported' : 'Verified'}</div>` : ''}
+                    </div>` : ''}
+
+                    ${c.pastBrands && c.pastBrands.length > 0 ? `
+                    <h4 style="text-align:left;margin:16px 0 8px;">🤝 Past Brand Collaborations</h4>
+                    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
+                        ${c.pastBrands.map(b => `<span style="background:rgba(255,215,0,0.12);color:var(--accent);padding:4px 14px;border-radius:50px;font-size:12px;border:1px solid rgba(255,215,0,0.2);">🏢 ${b}</span>`).join('')}
+                    </div>` : ''}
+
+                    ${c.customLinks && (c.customLinks.facebook || c.customLinks.whatsapp || c.customLinks.instagram || c.customLinks.telegram) ? `
+                    <h4 style="text-align:left;margin:16px 0 8px;">🔗 Profile & Contact Links</h4>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+                        ${c.customLinks.facebook ? `<a href="${c.customLinks.facebook}" target="_blank" style="background:rgba(24,119,242,0.12);color:#1877F2;padding:6px 16px;border-radius:50px;font-size:12px;text-decoration:none;border:1px solid rgba(24,119,242,0.2);"><i class="fab fa-facebook"></i> Facebook</a>` : ''}
+                        ${c.customLinks.whatsapp ? `<a href="${c.customLinks.whatsapp}" target="_blank" style="background:rgba(37,211,102,0.12);color:#25D366;padding:6px 16px;border-radius:50px;font-size:12px;text-decoration:none;border:1px solid rgba(37,211,102,0.2);"><i class="fab fa-whatsapp"></i> WhatsApp</a>` : ''}
+                        ${c.customLinks.instagram ? `<a href="${c.customLinks.instagram}" target="_blank" style="background:rgba(225,48,108,0.12);color:#E1306C;padding:6px 16px;border-radius:50px;font-size:12px;text-decoration:none;border:1px solid rgba(225,48,108,0.2);"><i class="fab fa-instagram"></i> Instagram</a>` : ''}
+                        ${c.customLinks.telegram ? `<a href="${c.customLinks.telegram}" target="_blank" style="background:rgba(34,158,217,0.12);color:#229ED9;padding:6px 16px;border-radius:50px;font-size:12px;text-decoration:none;border:1px solid rgba(34,158,217,0.2);"><i class="fab fa-telegram"></i> Telegram</a>` : ''}
+                    </div>` : ''}
 
                     ${c.pricingInfo ? `
                         <div style="background:var(--surface-soft);padding:12px;border-radius:8px;margin:8px 0;border:1px solid var(--border-color);">
@@ -983,6 +1063,8 @@ function openProfile(id) {
                             <i class="fas fa-map-marker-alt" style="color:var(--primary);"></i> 
                             Available in: ${c.availableDistricts ? c.availableDistricts.join(', ') : 'N/A'}
                         </p>
+                        ${c.responseTime ? `<p style="font-size:12px;color:var(--text-muted);margin-top:4px;"><i class="fas fa-clock"></i> Response: ${c.responseTime}${c.turnaroundDays ? ' • Turnaround: ' + c.turnaroundDays + ' days' : ''}</p>` : ''}
+                        ${(c.profileLastUpdated) ? `<p style="font-size:11px;color:var(--text-muted);margin-top:2px;"><i class="fas fa-calendar-check"></i> Updated: ${c.profileLastUpdated}</p>` : ''}
                     </div>
 
                     ${socialLinksHTML}
@@ -991,7 +1073,7 @@ function openProfile(id) {
                         <button class="btn-whatsapp" style="flex:1;padding:12px;border-radius:8px;font-weight:600;border:none;" onclick="contactWhatsApp('${c.contact?.whatsapp || ''}', '${(c.name || '').replace(/'/g, "\\'")}')">
                             <i class="fab fa-whatsapp"></i> WhatsApp
                         </button>
-                        <button class="btn-profile" style="flex:1;padding:12px;border-radius:8px;font-weight:600;background:rgba(108,99,255,0.15);color:var(--primary);border:none;" onclick="contactEmail('${c.contact?.email || ''}')">
+                        <button class="btn-profile" style="flex:1;padding:12px;border-radius:8px;font-weight:600;background:rgba(108,99,255,0.15);color:var(--primary);border:none;" onclick="contactEmail('${c.contact?.isEmailPublic !== false ? (c.contact?.email || '') : ''}')">
                             <i class="fas fa-envelope"></i> Email
                         </button>
                     </div>
@@ -1187,11 +1269,38 @@ joinForm.addEventListener('submit', (e) => {
     const instaLink = document.getElementById('instagramLink').value.trim();
     const ytLink = document.getElementById('youtubeLink').value.trim();
     const fbLink = document.getElementById('facebookLink').value.trim();
+    const phone = document.getElementById('phone')?.value.trim() || '';
+    const creatorGender = document.getElementById('creatorGender')?.value || '';
+    const responseTime = document.getElementById('responseTime')?.value || 'within 24 hours';
+    const isUGCCreator = document.getElementById('isUGCCreator')?.value === 'true';
+    const barter = document.getElementById('barter')?.value === 'true';
+    const turnaroundDays = document.getElementById('turnaroundDays')?.value || '3';
+    const languages = [...document.querySelectorAll('.lang-cb:checked')].map(cb => cb.value);
     const instaFol = document.getElementById('instaFollowers').value || '0';
     const ytSubs = document.getElementById('ytSubs').value || '0';
     const fbFol = document.getElementById('fbFollowers').value || '0';
     const avgViews = document.getElementById('avgViews').value || '0';
     const engagementRate = document.getElementById('engagementRate').value || '0';
+    const instaAvgLikes = document.getElementById('instaAvgLikes')?.value || '0';
+    const instaAvgComments = document.getElementById('instaAvgComments')?.value || '0';
+    const ytAvgViews = document.getElementById('ytAvgViews')?.value || '0';
+    const ytAvgLikes = document.getElementById('ytAvgLikes')?.value || '0';
+    const ytAvgComments = document.getElementById('ytAvgComments')?.value || '0';
+    const fbAvgViews = document.getElementById('fbAvgViews')?.value || '0';
+    const fbAvgLikes = document.getElementById('fbAvgLikes')?.value || '0';
+    const fbAvgComments = document.getElementById('fbAvgComments')?.value || '0';
+    const xLink = document.getElementById('xLink')?.value.trim() || '';
+    const threadLink = document.getElementById('threadLink')?.value.trim() || '';
+    const snapchatLink = document.getElementById('snapchatLink')?.value.trim() || '';
+    const twitterLink = document.getElementById('twitterLink')?.value.trim() || '';
+    const audienceAgeGroup = document.getElementById('audienceAgeGroup')?.value || '';
+    const audienceGenderMale = document.getElementById('audienceGenderMale')?.value || '';
+    const audienceLocations = document.getElementById('audienceLocations')?.value.trim() || '';
+    const pastBrands = document.getElementById('pastBrands')?.value.trim() || '';
+    const customLinkFb = document.getElementById('portfolio1')?.value.trim() || '';
+    const customLinkWa = document.getElementById('portfolio2')?.value.trim() || '';
+    const customLinkIg = document.getElementById('portfolio3')?.value.trim() || '';
+    const customLinkTg = document.getElementById('portfolio4')?.value.trim() || '';
 
     // Collect available districts
     const availDistChecked = [...document.querySelectorAll('.avail-district-cb:checked')].map(cb => cb.value);
@@ -1222,8 +1331,39 @@ joinForm.addEventListener('submit', (e) => {
         });
     }
 
+    const customLinksText = [customLinkFb && `• Facebook: ${customLinkFb}`, customLinkWa && `• WhatsApp: ${customLinkWa}`, customLinkIg && `• Instagram: ${customLinkIg}`, customLinkTg && `• Telegram: ${customLinkTg}`].filter(Boolean);
+    const portfolioText = customLinksText.length > 0
+        ? '\n🔗 *Profile & Contact Links:*\n' + customLinksText.join('\n')
+        : '';
+    const optionalSocials = [xLink && `• X: ${xLink}`, threadLink && `• Threads: ${threadLink}`, snapchatLink && `• Snapchat: ${snapchatLink}`, twitterLink && `• Twitter: ${twitterLink}`].filter(Boolean).join('\n');
+
     const msg =
-        `📢 *New Creator Application* 📢\n\n👤 *Name:* ${name}\n📧 *Email:* ${email}\n📱 *WhatsApp:* ${whatsapp}\n📍 *District:* ${district}\n🏙️ *City:* ${city}\n🗺️ *Available In:* ${availDistText}\n🏷️ *Primary Niche:* ${niche}\n🎯 *Additional Niches:* ${finalExtraNichesText}\n\n📝 *Description:* ${desc}\n\n🔗 *Social Links:*\n• Instagram: ${instaLink}\n• YouTube: ${ytLink}\n• Facebook: ${fbLink}\n\n📊 *Social Stats:*\n• Instagram Followers: ${instaFol}\n• YouTube Subscribers: ${ytSubs}\n• Facebook Followers: ${fbFol}\n• Avg Reel Views: ${avgViews}\n• Engagement Rate: ${engagementRate}%${serviceChargesText}\n\n📅 *Application Date:* ${new Date().toLocaleDateString('en-IN')}\n🕐 *Time:* ${new Date().toLocaleTimeString('en-IN')}\n\n*Please review this application and contact the creator.*`;
+        `📢 *New Creator Application* 📢\n\n` +
+        `👤 *Name:* ${name}\n` +
+        `📧 *Email:* ${email}\n` +
+        `📱 *WhatsApp:* ${whatsapp}${phone ? '\n📞 *Phone:* ' + phone : ''}\n` +
+        `${creatorGender ? '👤 *Gender:* ' + creatorGender + '\n' : ''}` +
+        `🗣️ *Languages:* ${languages.length > 0 ? languages.join(', ') : 'Hindi'}\n` +
+        `📍 *District:* ${district}\n🏙️ *City:* ${city}\n` +
+        `🗺️ *Available In:* ${availDistText}\n` +
+        `🏷️ *Primary Niche:* ${niche}\n` +
+        `🎯 *Additional Niches:* ${finalExtraNichesText}\n` +
+        `🎥 *UGC Creator:* ${isUGCCreator ? 'Yes' : 'No'}\n` +
+        `🤝 *Barter:* ${barter ? 'Open to barter' : 'Paid only'}\n` +
+        `⏱️ *Response Time:* ${responseTime}\n` +
+        `📦 *Turnaround:* ${turnaroundDays} days\n\n` +
+        `📝 *Description:* ${desc}\n\n` +
+        `🔗 *Social Links:*\n• Instagram: ${instaLink}\n• YouTube: ${ytLink}\n• Facebook: ${fbLink}${optionalSocials ? '\n' + optionalSocials : ''}\n\n` +
+        `📊 *Social Stats:*\n` +
+        `📷 Instagram: ${instaFol} followers | Avg views: ${avgViews} | Likes: ${instaAvgLikes} | Comments: ${instaAvgComments}\n` +
+        `▶️ YouTube: ${ytSubs} subs | Avg views: ${ytAvgViews} | Likes: ${ytAvgLikes} | Comments: ${ytAvgComments}\n` +
+        `📘 Facebook: ${fbFol} followers | Avg views: ${fbAvgViews} | Likes: ${fbAvgLikes} | Comments: ${fbAvgComments}\n` +
+        `⚡ Engagement Rate: ${engagementRate}%\n\n` +
+        `${audienceAgeGroup || audienceGenderMale || audienceLocations ? '👥 *Audience:*\n' + (audienceAgeGroup ? `• Age: ${audienceAgeGroup}\n` : '') + (audienceGenderMale ? `• Gender: ${audienceGenderMale}% Male / ${100 - parseInt(audienceGenderMale)}% Female\n` : '') + (audienceLocations ? `• Locations: ${audienceLocations}\n` : '') + '\n' : ''}` +
+        `${pastBrands ? '🏢 *Past Brands:* ' + pastBrands + '\n\n' : ''}` +
+        `${portfolioText ? portfolioText + '\n\n' : ''}` +
+        `${serviceChargesText ? serviceChargesText + '\n\n' : ''}` +
+        `📅 *Application Date:* ${new Date().toLocaleDateString('en-IN')}\n🕐 *Time:* ${new Date().toLocaleTimeString('en-IN')}\n\n*Please review this application and contact the creator.*`;
 
     const encoded = encodeURIComponent(msg);
     window.open(`https://wa.me/${ADMIN_WHATSAPP}?text=${encoded}`, '_blank');
@@ -1232,7 +1372,12 @@ joinForm.addEventListener('submit', (e) => {
     setTimeout(() => {
         joinModal.classList.remove('open');
         joinForm.reset();
-        document.querySelectorAll('.avail-district-cb, .extra-niche-cb').forEach(cb => cb.checked = false);
+        document.querySelectorAll('.avail-district-cb, .extra-niche-cb, .lang-cb').forEach(cb => cb.checked = false);
+        const portfolio4El = document.getElementById('portfolio4');
+        if (portfolio4El) portfolio4El.value = '';
+        // re-check Hindi by default
+        const hindiCb = document.querySelector('.lang-cb[value="Hindi"]');
+        if (hindiCb) hindiCb.checked = true;
         customNiches = [];
         renderCustomNiches();
         updateCustomNicheCounter();

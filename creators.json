@@ -22,7 +22,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/rahulverma_travel",
         "youtube": "https://youtube.com/@rahulvermatravel",
-        "facebook": "https://facebook.com/rahulvermatravel"
+        "facebook": "https://facebook.com/rahulvermatravel",
+        "x": "https://x.com/Dushyan07763671",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "starting_from",
@@ -101,8 +105,11 @@
         }
       ],
       "contact": {
+        "phone": "917734906606",
         "whatsapp": "917734906606",
-        "email": "rahul@example.com"
+        "email": "rahul@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Travel influencer exploring the hidden gems of Chhattisgarh. Specializes in tourism promotion and cultural content.",
       "verified": true,
@@ -117,7 +124,66 @@
         "Live Session",
         "Product Review",
         "Store Promotion"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi",
+        "English"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 150000,
+          "avgViews": 85000,
+          "avgLikes": 3867,
+          "avgComments": 553,
+          "engagementRate": 6.5,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 50000,
+          "avgViews": 7500,
+          "avgLikes": 750,
+          "avgComments": 150,
+          "engagementRate": 4.5,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 2999,
+          "avgViews": 240,
+          "avgLikes": 120,
+          "avgComments": 15,
+          "engagementRate": 3.3,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Raigarh",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Travel",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 2,
@@ -140,7 +206,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/priyasharma_beauty",
         "youtube": "https://youtube.com/@priyasharmabeauty",
-        "facebook": "https://facebook.com/priyasharmabeauty"
+        "facebook": "https://facebook.com/priyasharmabeauty",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "negotiable",
@@ -214,8 +284,11 @@
         }
       ],
       "contact": {
+        "phone": "918888888888",
         "whatsapp": "918888888888",
-        "email": "priya@example.com"
+        "email": "priya@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Beauty and lifestyle creator from Bilaspur. Expert in makeup tutorials, skincare, and product reviews.",
       "verified": false,
@@ -230,7 +303,65 @@
         "Makeup Tutorial",
         "Product Unboxing",
         "Skincare Routine"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 90000,
+          "avgViews": 45000,
+          "avgLikes": 2268,
+          "avgComments": 324,
+          "engagementRate": 7.2,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 25000,
+          "avgViews": 3750,
+          "avgLikes": 375,
+          "avgComments": 75,
+          "engagementRate": 5,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 12000,
+          "avgViews": 960,
+          "avgLikes": 480,
+          "avgComments": 60,
+          "engagementRate": 3.6,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Bilaspur",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Beauty",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 3,
@@ -254,7 +385,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/amitpatel_food",
         "youtube": "https://youtube.com/@amitpatelfood",
-        "facebook": "https://facebook.com/amitpatelfood"
+        "facebook": "https://facebook.com/amitpatelfood",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "range",
@@ -332,8 +467,11 @@
         }
       ],
       "contact": {
+        "phone": "917777777777",
         "whatsapp": "917777777777",
-        "email": "amit@example.com"
+        "email": "amit@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Food blogger exploring Chhattisgarh's unique cuisine. Specializes in restaurant reviews and food content.",
       "verified": false,
@@ -348,7 +486,65 @@
         "Recipe Video",
         "Cooking Demo",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 85000,
+          "avgViews": 55000,
+          "avgLikes": 2233,
+          "avgComments": 319,
+          "engagementRate": 5.8,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 35000,
+          "avgViews": 5250,
+          "avgLikes": 525,
+          "avgComments": 105,
+          "engagementRate": 4.1,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 18000,
+          "avgViews": 1440,
+          "avgLikes": 720,
+          "avgComments": 90,
+          "engagementRate": 2.9,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Durg",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Food",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 4,
@@ -372,7 +568,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/nehaverma_fashion",
         "youtube": "https://youtube.com/@nehavermafashion",
-        "facebook": "https://facebook.com/nehavermafashion"
+        "facebook": "https://facebook.com/nehavermafashion",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "fixed",
@@ -437,8 +637,11 @@
         }
       ],
       "contact": {
+        "phone": "916666666666",
         "whatsapp": "916666666666",
-        "email": "neha@example.com"
+        "email": "neha@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Fashion influencer from Bhilai. Specializes in fashion styling, clothing brands, and lifestyle content.",
       "verified": false,
@@ -452,7 +655,65 @@
         "Professional Reel Shoot",
         "Fashion Styling",
         "Outfit Review"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 120000,
+          "avgViews": 68000,
+          "avgLikes": 3284,
+          "avgComments": 469,
+          "engagementRate": 6.9,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 40000,
+          "avgViews": 6000,
+          "avgLikes": 600,
+          "avgComments": 120,
+          "engagementRate": 4.8,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 20000,
+          "avgViews": 1600,
+          "avgLikes": 800,
+          "avgComments": 100,
+          "engagementRate": 3.5,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Durg",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Fashion",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 5,
@@ -475,7 +736,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/vikramtech_reviews",
         "youtube": "https://youtube.com/@vikramtech",
-        "facebook": "https://facebook.com/vikramtech"
+        "facebook": "https://facebook.com/vikramtech",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "starting_from",
@@ -553,8 +818,11 @@
         }
       ],
       "contact": {
+        "phone": "915555555555",
         "whatsapp": "915555555555",
-        "email": "vikram@example.com"
+        "email": "vikram@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Tech reviewer and gadget enthusiast from Korba. Specializes in tech reviews, unboxing, and product demonstrations.",
       "verified": false,
@@ -569,7 +837,64 @@
         "Product Unboxing",
         "Gadget Demo",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 60000,
+          "avgViews": 42000,
+          "avgLikes": 1323,
+          "avgComments": 189,
+          "engagementRate": 4.5,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 80000,
+          "avgViews": 12000,
+          "avgLikes": 1200,
+          "avgComments": 240,
+          "engagementRate": 3.1,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 15000,
+          "avgViews": 1200,
+          "avgLikes": 600,
+          "avgComments": 75,
+          "engagementRate": 2.3,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Korba",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Tech",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 6,
@@ -592,7 +917,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/snehayadav_fitness",
         "youtube": "https://youtube.com/@snehayadavfitness",
-        "facebook": "https://facebook.com/snehayadavfitness"
+        "facebook": "https://facebook.com/snehayadavfitness",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "negotiable",
@@ -668,8 +997,11 @@
         }
       ],
       "contact": {
+        "phone": "914444444444",
         "whatsapp": "914444444444",
-        "email": "sneha@example.com"
+        "email": "sneha@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Fitness trainer promoting healthy lifestyle in Rajnandgaon. Specializes in workout videos, nutrition tips, and fitness challenges.",
       "verified": false,
@@ -684,7 +1016,65 @@
         "Nutrition Tips",
         "Fitness Challenge",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 75000,
+          "avgViews": 35000,
+          "avgLikes": 1984,
+          "avgComments": 284,
+          "engagementRate": 8.1,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 20000,
+          "avgViews": 3000,
+          "avgLikes": 300,
+          "avgComments": 60,
+          "engagementRate": 5.7,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 10000,
+          "avgViews": 800,
+          "avgLikes": 400,
+          "avgComments": 50,
+          "engagementRate": 4,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Rajnandgaon",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Fitness",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 7,
@@ -708,7 +1098,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/arjunmishra_photography",
         "youtube": "https://youtube.com/@arjunmishraphoto",
-        "facebook": "https://facebook.com/arjunmishraphoto"
+        "facebook": "https://facebook.com/arjunmishraphoto",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "range",
@@ -792,8 +1186,11 @@
         }
       ],
       "contact": {
+        "phone": "913333333333",
         "whatsapp": "913333333333",
-        "email": "arjun@example.com"
+        "email": "arjun@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Photographer capturing the beauty of Bastar region. Specializes in travel photography, nature, and cultural events.",
       "verified": false,
@@ -809,7 +1206,66 @@
         "Story Promotion",
         "Feed Post",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi",
+        "English"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 45000,
+          "avgViews": 18000,
+          "avgLikes": 655,
+          "avgComments": 94,
+          "engagementRate": 5.2,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 15000,
+          "avgViews": 2250,
+          "avgLikes": 225,
+          "avgComments": 45,
+          "engagementRate": 3.6,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 8000,
+          "avgViews": 640,
+          "avgLikes": 320,
+          "avgComments": 40,
+          "engagementRate": 2.6,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Bastar",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Photography",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 8,
@@ -824,7 +1280,7 @@
       "youtubeSubscribers": 100000,
       "facebookFollowers": 20000,
       "avgReelViews": 38000,
-      "engagementRate": 6.0,
+      "engagementRate": 6,
       "availableDistricts": [
         "Surguja",
         "Ambikapur"
@@ -832,7 +1288,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/meeratiwari_education",
         "youtube": "https://youtube.com/@meeratiwari",
-        "facebook": "https://facebook.com/meeratiwari"
+        "facebook": "https://facebook.com/meeratiwari",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "fixed",
@@ -897,8 +1357,11 @@
         }
       ],
       "contact": {
+        "phone": "912222222222",
         "whatsapp": "912222222222",
-        "email": "meera@example.com"
+        "email": "meera@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Educational content creator for competitive exams in Ambikapur. Specializes in study tips, exam preparation, and educational content.",
       "verified": false,
@@ -912,7 +1375,64 @@
         "Exam Prep",
         "Educational Content",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 30000,
+          "avgViews": 38000,
+          "avgLikes": 1596,
+          "avgComments": 228,
+          "engagementRate": 6,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 100000,
+          "avgViews": 15000,
+          "avgLikes": 1500,
+          "avgComments": 300,
+          "engagementRate": 4.2,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 20000,
+          "avgViews": 1600,
+          "avgLikes": 800,
+          "avgComments": 100,
+          "engagementRate": 3,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Surguja",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Education",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 9,
@@ -935,7 +1455,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/rohitdas_auto",
         "youtube": "https://youtube.com/@rohitdasauto",
-        "facebook": "https://facebook.com/rohitdasauto"
+        "facebook": "https://facebook.com/rohitdasauto",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "starting_from",
@@ -1013,8 +1537,11 @@
         }
       ],
       "contact": {
+        "phone": "911111111111",
         "whatsapp": "911111111111",
-        "email": "rohit@example.com"
+        "email": "rohit@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Automobile reviewer and car enthusiast from Raigarh. Specializes in car reviews, bike reviews, and automotive content.",
       "verified": false,
@@ -1029,7 +1556,65 @@
         "Bike Review",
         "Test Drive",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 50000,
+          "avgViews": 35000,
+          "avgLikes": 1176,
+          "avgComments": 168,
+          "engagementRate": 4.8,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 60000,
+          "avgViews": 9000,
+          "avgLikes": 900,
+          "avgComments": 180,
+          "engagementRate": 3.4,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 12000,
+          "avgViews": 960,
+          "avgLikes": 480,
+          "avgComments": 60,
+          "engagementRate": 2.4,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Raigarh",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Automobile",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 10,
@@ -1053,7 +1638,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/poojapatel_store",
         "youtube": "https://youtube.com/@poojapatelstore",
-        "facebook": "https://facebook.com/poojapatelstore"
+        "facebook": "https://facebook.com/poojapatelstore",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "range",
@@ -1123,8 +1712,11 @@
         }
       ],
       "contact": {
+        "phone": "919999999998",
         "whatsapp": "919999999998",
-        "email": "pooja@example.com"
+        "email": "pooja@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Store promotion specialist for local businesses in Raipur. Specializes in retail promotion, product launches, and store events.",
       "verified": false,
@@ -1138,7 +1730,65 @@
         "Product Launch",
         "Retail Review",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 80000,
+          "avgViews": 42000,
+          "avgLikes": 1617,
+          "avgComments": 231,
+          "engagementRate": 5.5,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 30000,
+          "avgViews": 4500,
+          "avgLikes": 450,
+          "avgComments": 90,
+          "engagementRate": 3.8,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 15000,
+          "avgViews": 1200,
+          "avgLikes": 600,
+          "avgComments": 75,
+          "engagementRate": 2.8,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Raipur",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Store Promotion",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 11,
@@ -1161,7 +1811,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/sanjaykumar_hotel",
         "youtube": "https://youtube.com/@sanjaykumarhotel",
-        "facebook": "https://facebook.com/sanjaykumarhotel"
+        "facebook": "https://facebook.com/sanjaykumarhotel",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "negotiable",
@@ -1229,8 +1883,11 @@
         }
       ],
       "contact": {
+        "phone": "919777777777",
         "whatsapp": "919777777777",
-        "email": "sanjay@example.com"
+        "email": "sanjay@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Hotel and hospitality promoter from Chirmiri. Specializes in hotel reviews, travel content, and hospitality promotion.",
       "verified": false,
@@ -1244,7 +1901,65 @@
         "Room Tour",
         "Travel Vlog",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 25000,
+          "avgViews": 15000,
+          "avgLikes": 441,
+          "avgComments": 63,
+          "engagementRate": 4.2,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 12000,
+          "avgViews": 1800,
+          "avgLikes": 180,
+          "avgComments": 36,
+          "engagementRate": 2.9,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 8000,
+          "avgViews": 640,
+          "avgLikes": 320,
+          "avgComments": 40,
+          "engagementRate": 2.1,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Koriya",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Hotel Promotion",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 12,
@@ -1268,7 +1983,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/anjalitravels_cg",
         "youtube": "https://youtube.com/@anjalitravels",
-        "facebook": "https://facebook.com/anjalitravels"
+        "facebook": "https://facebook.com/anjalitravels",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "starting_from",
@@ -1339,8 +2058,11 @@
         }
       ],
       "contact": {
+        "phone": "918666666666",
         "whatsapp": "918666666666",
-        "email": "anjali@example.com"
+        "email": "anjali@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Tourism influencer promoting Chhattisgarh's cultural heritage. Specializes in travel, tourism, and cultural content.",
       "verified": false,
@@ -1354,7 +2076,64 @@
         "Travel Vlog",
         "Cultural Content",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 65000,
+          "avgViews": 38000,
+          "avgLikes": 1676,
+          "avgComments": 239,
+          "engagementRate": 6.3,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 22000,
+          "avgViews": 3300,
+          "avgLikes": 330,
+          "avgComments": 66,
+          "engagementRate": 4.4,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 11000,
+          "avgViews": 880,
+          "avgLikes": 440,
+          "avgComments": 55,
+          "engagementRate": 3.1,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Mahasamund",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Tourism",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 13,
@@ -1377,7 +2156,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/vivekpandey_realestate",
         "youtube": "https://youtube.com/@vivekpandeyre",
-        "facebook": "https://facebook.com/vivekpandeyre"
+        "facebook": "https://facebook.com/vivekpandeyre",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "fixed",
@@ -1436,8 +2219,11 @@
         }
       ],
       "contact": {
+        "phone": "919555555555",
         "whatsapp": "919555555555",
-        "email": "vivek@example.com"
+        "email": "vivek@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Real estate expert and property promoter in Dhamtari. Specializes in property reviews, real estate tips, and investment advice.",
       "verified": false,
@@ -1450,7 +2236,66 @@
         "Property Review",
         "Investment Tips",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi",
+        "English"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 18000,
+          "avgViews": 8000,
+          "avgLikes": 213,
+          "avgComments": 30,
+          "engagementRate": 3.8,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 9000,
+          "avgViews": 1350,
+          "avgLikes": 135,
+          "avgComments": 27,
+          "engagementRate": 2.7,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 5000,
+          "avgViews": 400,
+          "avgLikes": 200,
+          "avgComments": 25,
+          "engagementRate": 1.9,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Dhamtari",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Real Estate",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 14,
@@ -1473,7 +2318,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/kavitarathore_lifestyle",
         "youtube": "https://youtube.com/@kavitarathore",
-        "facebook": "https://facebook.com/kavitarathore"
+        "facebook": "https://facebook.com/kavitarathore",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "range",
@@ -1545,8 +2394,11 @@
         }
       ],
       "contact": {
+        "phone": "914444444444",
         "whatsapp": "914444444444",
-        "email": "kavita@example.com"
+        "email": "kavita@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Lifestyle and wellness influencer from Kawardha. Specializes in lifestyle content, wellness tips, and daily vlogs.",
       "verified": false,
@@ -1560,7 +2412,65 @@
         "Wellness Tips",
         "Daily Vlog",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 55000,
+          "avgViews": 32000,
+          "avgLikes": 1322,
+          "avgComments": 189,
+          "engagementRate": 5.9,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 18000,
+          "avgViews": 2700,
+          "avgLikes": 270,
+          "avgComments": 54,
+          "engagementRate": 4.1,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 9000,
+          "avgViews": 720,
+          "avgLikes": 360,
+          "avgComments": 45,
+          "engagementRate": 3,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Kabirdham",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Lifestyle",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 15,
@@ -1583,7 +2493,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/deepaksoni_gaming",
         "youtube": "https://youtube.com/@deepaksonigaming",
-        "facebook": "https://facebook.com/deepaksonigaming"
+        "facebook": "https://facebook.com/deepaksonigaming",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "starting_from",
@@ -1654,8 +2568,11 @@
         }
       ],
       "contact": {
+        "phone": "913333333333",
         "whatsapp": "913333333333",
-        "email": "deepak@example.com"
+        "email": "deepak@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Gaming content creator and streamer from Rajnandgaon. Specializes in gaming streams, game reviews, and gaming content.",
       "verified": false,
@@ -1669,7 +2586,64 @@
         "Game Review",
         "Live Gameplay",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 20000,
+          "avgViews": 25000,
+          "avgLikes": 858,
+          "avgComments": 123,
+          "engagementRate": 4.9,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 65000,
+          "avgViews": 9750,
+          "avgLikes": 975,
+          "avgComments": 195,
+          "engagementRate": 3.4,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 8000,
+          "avgViews": 640,
+          "avgLikes": 320,
+          "avgComments": 40,
+          "engagementRate": 2.5,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Rajnandgaon",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Gaming",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 16,
@@ -1692,7 +2666,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/monagupta_finance",
         "youtube": "https://youtube.com/@monaguptafinance",
-        "facebook": "https://facebook.com/monaguptafinance"
+        "facebook": "https://facebook.com/monaguptafinance",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "fixed",
@@ -1757,8 +2735,11 @@
         }
       ],
       "contact": {
+        "phone": "912222222222",
         "whatsapp": "912222222222",
-        "email": "mona@example.com"
+        "email": "mona@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Finance and investment advisor content creator from Bilaspur. Specializes in finance tips, investment advice, and money management.",
       "verified": false,
@@ -1772,7 +2753,65 @@
         "Investment Advice",
         "Money Management",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 35000,
+          "avgViews": 22000,
+          "avgLikes": 785,
+          "avgComments": 112,
+          "engagementRate": 5.1,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 45000,
+          "avgViews": 6750,
+          "avgLikes": 675,
+          "avgComments": 135,
+          "engagementRate": 3.6,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 12000,
+          "avgViews": 960,
+          "avgLikes": 480,
+          "avgComments": 60,
+          "engagementRate": 2.5,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Bilaspur",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Finance",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 17,
@@ -1796,7 +2835,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/ravisharma_events",
         "youtube": "https://youtube.com/@ravisharmaevents",
-        "facebook": "https://facebook.com/ravisharmaevents"
+        "facebook": "https://facebook.com/ravisharmaevents",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "range",
@@ -1878,8 +2921,11 @@
         }
       ],
       "contact": {
+        "phone": "911111111111",
         "whatsapp": "911111111111",
-        "email": "ravi@example.com"
+        "email": "ravi@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Event coverage and wedding photography specialist in Korba. Specializes in events, weddings, and professional photography.",
       "verified": false,
@@ -1895,7 +2941,65 @@
         "Story Promotion",
         "Feed Post",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 40000,
+          "avgViews": 28000,
+          "avgLikes": 882,
+          "avgComments": 126,
+          "engagementRate": 4.5,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 28000,
+          "avgViews": 4200,
+          "avgLikes": 420,
+          "avgComments": 84,
+          "engagementRate": 3.1,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 15000,
+          "avgViews": 1200,
+          "avgLikes": 600,
+          "avgComments": 75,
+          "engagementRate": 2.3,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Korba",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Event Coverage",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 18,
@@ -1919,7 +3023,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/swativerma_wedding",
         "youtube": "https://youtube.com/@swativermawedding",
-        "facebook": "https://facebook.com/swativermawedding"
+        "facebook": "https://facebook.com/swativermawedding",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "negotiable",
@@ -1989,8 +3097,11 @@
         }
       ],
       "contact": {
+        "phone": "919999999997",
         "whatsapp": "919999999997",
-        "email": "swati@example.com"
+        "email": "swati@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Wedding planner and decor influencer from Raipur. Specializes in wedding planning, decor, and wedding content.",
       "verified": false,
@@ -2004,7 +3115,66 @@
         "Wedding Decor",
         "Pre-Wedding Shoot",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi",
+        "English"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 70000,
+          "avgViews": 45000,
+          "avgLikes": 2142,
+          "avgComments": 306,
+          "engagementRate": 6.8,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 32000,
+          "avgViews": 4800,
+          "avgLikes": 480,
+          "avgComments": 96,
+          "engagementRate": 4.8,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 18000,
+          "avgViews": 1440,
+          "avgLikes": 720,
+          "avgComments": 90,
+          "engagementRate": 3.4,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Raipur",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Wedding",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 19,
@@ -2027,7 +3197,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/aloktiwari_news",
         "youtube": "https://youtube.com/@aloktiwarinews",
-        "facebook": "https://facebook.com/aloktiwarinews"
+        "facebook": "https://facebook.com/aloktiwarinews",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "fixed",
@@ -2086,8 +3260,11 @@
         }
       ],
       "contact": {
+        "phone": "918888888887",
         "whatsapp": "918888888887",
-        "email": "alok@example.com"
+        "email": "alok@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Local news and current affairs creator from Jagdalpur. Specializes in local news, community stories, and current affairs.",
       "verified": false,
@@ -2100,7 +3277,64 @@
         "News Coverage",
         "Reel Promotion",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 15000,
+          "avgViews": 12000,
+          "avgLikes": 328,
+          "avgComments": 47,
+          "engagementRate": 3.9,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 35000,
+          "avgViews": 5250,
+          "avgLikes": 525,
+          "avgComments": 105,
+          "engagementRate": 2.7,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 25000,
+          "avgViews": 2000,
+          "avgLikes": 1000,
+          "avgComments": 125,
+          "engagementRate": 1.9,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Bastar",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Local News",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 20,
@@ -2123,7 +3357,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/neelamyadav_food",
         "youtube": "https://youtube.com/@neelamyadavfood",
-        "facebook": "https://facebook.com/neelamyadavfood"
+        "facebook": "https://facebook.com/neelamyadavfood",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "range",
@@ -2194,8 +3432,11 @@
         }
       ],
       "contact": {
+        "phone": "917777777776",
         "whatsapp": "917777777776",
-        "email": "neelam@example.com"
+        "email": "neelam@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Food and recipe creator focusing on Chhattisgarhi cuisine. Specializes in traditional recipes, cooking videos, and food content.",
       "verified": false,
@@ -2209,7 +3450,65 @@
         "Traditional Recipe",
         "Cooking Class",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 48000,
+          "avgViews": 30000,
+          "avgLikes": 1176,
+          "avgComments": 168,
+          "engagementRate": 5.6,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 32000,
+          "avgViews": 4800,
+          "avgLikes": 480,
+          "avgComments": 96,
+          "engagementRate": 3.9,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 10000,
+          "avgViews": 800,
+          "avgLikes": 400,
+          "avgComments": 50,
+          "engagementRate": 2.8,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Surguja",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Food",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 21,
@@ -2233,7 +3532,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/prakashsingh_auto",
         "youtube": "https://youtube.com/@prakashsinghauto",
-        "facebook": "https://facebook.com/prakashsinghauto"
+        "facebook": "https://facebook.com/prakashsinghauto",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "starting_from",
@@ -2303,8 +3606,11 @@
         }
       ],
       "contact": {
+        "phone": "916666666665",
         "whatsapp": "916666666665",
-        "email": "prakash@example.com"
+        "email": "prakash@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Automobile vlogger and bike enthusiast from Bhilai. Specializes in bike reviews, automobile content, and road trips.",
       "verified": false,
@@ -2318,7 +3624,65 @@
         "Bike Review",
         "Road Trip Vlog",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 32000,
+          "avgViews": 22000,
+          "avgLikes": 662,
+          "avgComments": 95,
+          "engagementRate": 4.3,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 48000,
+          "avgViews": 7200,
+          "avgLikes": 720,
+          "avgComments": 144,
+          "engagementRate": 3,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 9000,
+          "avgViews": 720,
+          "avgLikes": 360,
+          "avgComments": 45,
+          "engagementRate": 2.1,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Durg",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Automobile",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 22,
@@ -2342,7 +3706,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/ritujain_beauty",
         "youtube": "https://youtube.com/@ritujainbeauty",
-        "facebook": "https://facebook.com/ritujainbeauty"
+        "facebook": "https://facebook.com/ritujainbeauty",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "fixed",
@@ -2407,8 +3775,11 @@
         }
       ],
       "contact": {
+        "phone": "915555555554",
         "whatsapp": "915555555554",
-        "email": "ritu@example.com"
+        "email": "ritu@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Beauty and makeup artist with a large following in Raipur. Specializes in makeup tutorials, skincare, and beauty products.",
       "verified": false,
@@ -2422,7 +3793,64 @@
         "Professional Reel Shoot",
         "Makeup Tutorial",
         "Skincare Review"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 95000,
+          "avgViews": 52000,
+          "avgLikes": 2730,
+          "avgComments": 390,
+          "engagementRate": 7.5,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 38000,
+          "avgViews": 5700,
+          "avgLikes": 570,
+          "avgComments": 114,
+          "engagementRate": 5.3,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 22000,
+          "avgViews": 1760,
+          "avgLikes": 880,
+          "avgComments": 110,
+          "engagementRate": 3.8,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Raipur",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Beauty",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 23,
@@ -2446,7 +3874,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/gopaldas_travel",
         "youtube": "https://youtube.com/@gopaldastravel",
-        "facebook": "https://facebook.com/gopaldastravel"
+        "facebook": "https://facebook.com/gopaldastravel",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "negotiable",
@@ -2515,8 +3947,11 @@
         }
       ],
       "contact": {
+        "phone": "914444444443",
         "whatsapp": "914444444443",
-        "email": "gopal@example.com"
+        "email": "gopal@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Travel blogger exploring offbeat destinations in Chhattisgarh. Specializes in budget travel, hidden gems, and travel vlogs.",
       "verified": false,
@@ -2530,7 +3965,66 @@
         "Budget Travel",
         "Hidden Gems",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi",
+        "English"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 38000,
+          "avgViews": 22000,
+          "avgLikes": 739,
+          "avgComments": 106,
+          "engagementRate": 4.8,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 22000,
+          "avgViews": 3300,
+          "avgLikes": 330,
+          "avgComments": 66,
+          "engagementRate": 3.4,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 8000,
+          "avgViews": 640,
+          "avgLikes": 320,
+          "avgComments": 40,
+          "engagementRate": 2.4,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Durg",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Travel",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 24,
@@ -2545,7 +4039,7 @@
       "youtubeSubscribers": 12000,
       "facebookFollowers": 6000,
       "avgReelViews": 15000,
-      "engagementRate": 4.0,
+      "engagementRate": 4,
       "availableDistricts": [
         "Korba",
         "Raipur"
@@ -2553,7 +4047,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/sumanpatel_store",
         "youtube": "https://youtube.com/@sumanpatelstore",
-        "facebook": "https://facebook.com/sumanpatelstore"
+        "facebook": "https://facebook.com/sumanpatelstore",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "range",
@@ -2617,8 +4115,11 @@
         }
       ],
       "contact": {
+        "phone": "913333333332",
         "whatsapp": "913333333332",
-        "email": "suman@example.com"
+        "email": "suman@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Local store promoter and small business advocate in Korba. Specializes in retail promotion, local businesses, and community content.",
       "verified": false,
@@ -2631,7 +4132,65 @@
         "Retail Review",
         "Local Business",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 28000,
+          "avgViews": 15000,
+          "avgLikes": 420,
+          "avgComments": 60,
+          "engagementRate": 4,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 12000,
+          "avgViews": 1800,
+          "avgLikes": 180,
+          "avgComments": 36,
+          "engagementRate": 2.8,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 6000,
+          "avgViews": 480,
+          "avgLikes": 240,
+          "avgComments": 30,
+          "engagementRate": 2,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Korba",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Store Promotion",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 25,
@@ -2654,7 +4213,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/arvindmishra_tech",
         "youtube": "https://youtube.com/@arvindmishratech",
-        "facebook": "https://facebook.com/arvindmishratech"
+        "facebook": "https://facebook.com/arvindmishratech",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "fixed",
@@ -2719,8 +4282,11 @@
         }
       ],
       "contact": {
+        "phone": "912222222221",
         "whatsapp": "912222222221",
-        "email": "arvind@example.com"
+        "email": "arvind@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Tech reviewer and digital marketing expert from Rajnandgaon. Specializes in tech reviews, digital marketing, and social media tips.",
       "verified": false,
@@ -2734,7 +4300,64 @@
         "Tech Review",
         "Digital Marketing",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 22000,
+          "avgViews": 18000,
+          "avgLikes": 529,
+          "avgComments": 76,
+          "engagementRate": 4.2,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 38000,
+          "avgViews": 5700,
+          "avgLikes": 570,
+          "avgComments": 114,
+          "engagementRate": 2.9,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 7000,
+          "avgViews": 560,
+          "avgLikes": 280,
+          "avgComments": 35,
+          "engagementRate": 2.1,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Rajnandgaon",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Tech",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 26,
@@ -2758,7 +4381,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/drananyasingh_wellness",
         "youtube": "https://youtube.com/@drananyasingh",
-        "facebook": "https://facebook.com/drananyasingh"
+        "facebook": "https://facebook.com/drananyasingh",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "starting_from",
@@ -2836,8 +4463,11 @@
         }
       ],
       "contact": {
+        "phone": "919888888888",
         "whatsapp": "919888888888",
-        "email": "ananya@example.com"
+        "email": "ananya@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Medical professional and wellness influencer from Raipur. Specializes in mental health awareness, nutrition tips, and holistic wellness content.",
       "verified": false,
@@ -2852,7 +4482,65 @@
         "Mental Health",
         "Nutrition Advice",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 82000,
+          "avgViews": 48000,
+          "avgLikes": 2621,
+          "avgComments": 374,
+          "engagementRate": 7.8,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 45000,
+          "avgViews": 6750,
+          "avgLikes": 675,
+          "avgComments": 135,
+          "engagementRate": 5.5,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 18000,
+          "avgViews": 1440,
+          "avgLikes": 720,
+          "avgComments": 90,
+          "engagementRate": 3.9,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Raipur",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Health & Wellness",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 27,
@@ -2876,7 +4564,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/nishagupta_parenting",
         "youtube": "https://youtube.com/@nishaguptaparenting",
-        "facebook": "https://facebook.com/nishaguptaparenting"
+        "facebook": "https://facebook.com/nishaguptaparenting",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "range",
@@ -2948,8 +4640,11 @@
         }
       ],
       "contact": {
+        "phone": "917777777778",
         "whatsapp": "917777777778",
-        "email": "nisha@example.com"
+        "email": "nisha@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Parenting coach and mom influencer from Bilaspur. Specializes in parenting tips, child development, and family lifestyle content.",
       "verified": false,
@@ -2963,7 +4658,65 @@
         "Parenting Tips",
         "Child Development",
         "Family Content"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 58000,
+          "avgViews": 36000,
+          "avgLikes": 1613,
+          "avgComments": 230,
+          "engagementRate": 6.4,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 32000,
+          "avgViews": 4800,
+          "avgLikes": 480,
+          "avgComments": 96,
+          "engagementRate": 4.5,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 14000,
+          "avgViews": 1120,
+          "avgLikes": 560,
+          "avgComments": 70,
+          "engagementRate": 3.2,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Bilaspur",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Parenting",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 28,
@@ -2987,7 +4740,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/rakeshchouhan_eco",
         "youtube": "https://youtube.com/@rakeshchouhaneco",
-        "facebook": "https://facebook.com/rakeshchouhaneco"
+        "facebook": "https://facebook.com/rakeshchouhaneco",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "negotiable",
@@ -3057,8 +4814,11 @@
         }
       ],
       "contact": {
+        "phone": "916666666667",
         "whatsapp": "916666666667",
-        "email": "rakesh@example.com"
+        "email": "rakesh@example.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Sustainability advocate and eco-friendly lifestyle creator from Durg. Specializes in zero-waste living, upcycling, and environmental awareness content.",
       "verified": false,
@@ -3072,7 +4832,65 @@
         "Zero-Waste Living",
         "Eco-Friendly Tips",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi"
+      ],
+      "isUGCCreator": true,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 35000,
+          "avgViews": 21000,
+          "avgLikes": 809,
+          "avgComments": 116,
+          "engagementRate": 5.5,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 18000,
+          "avgViews": 2700,
+          "avgLikes": 270,
+          "avgComments": 54,
+          "engagementRate": 3.8,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 9000,
+          "avgViews": 720,
+          "avgLikes": 360,
+          "avgComments": 45,
+          "engagementRate": 2.8,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Durg",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Sustainable Living",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 29,
@@ -3087,14 +4905,18 @@
       "youtubeSubscribers": 47398,
       "facebookFollowers": 25000,
       "avgReelViews": 3390,
-      "engagementRate": 7.0,
+      "engagementRate": 7,
       "availableDistricts": [
         "Bilaspur"
       ],
       "socialLinks": {
         "instagram": "https://www.instagram.com/dushyantkumar0202/",
         "youtube": "https://youtube.com/@dushyantkumar",
-        "facebook": "https://facebook.com/dushyantkumar"
+        "facebook": "https://facebook.com/dushyantkumar",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "starting_from",
@@ -3136,8 +4958,11 @@
         }
       ],
       "contact": {
+        "phone": "7489395228",
         "whatsapp": "7489395228",
-        "email": "dushyantpatel0202@gmail.com"
+        "email": "dushyantpatel0202@gmail.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "I am an entrepreneur",
       "verified": false,
@@ -3147,7 +4972,65 @@
         "Story Promotion",
         "Feed Post",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 25000,
+          "avgViews": 3390,
+          "avgLikes": 166,
+          "avgComments": 24,
+          "engagementRate": 7,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 47398,
+          "avgViews": 7110,
+          "avgLikes": 711,
+          "avgComments": 142,
+          "engagementRate": 4.9,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 25000,
+          "avgViews": 2000,
+          "avgLikes": 1000,
+          "avgComments": 125,
+          "engagementRate": 3.5,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Bilaspur",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Entrepreneur",
+      "additionalNiches": [],
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 30,
@@ -3180,7 +5063,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/priya_foodie_cg",
         "youtube": "https://youtube.com/@priyasahu_food",
-        "facebook": "https://facebook.com/priyasahufood"
+        "facebook": "https://facebook.com/priyasahufood",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "starting_from",
@@ -3230,8 +5117,11 @@
         }
       ],
       "contact": {
+        "phone": "919876543210",
         "whatsapp": "919876543210",
-        "email": "priya.sahu@email.com"
+        "email": "priya.sahu@email.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Food & travel creator from Bilaspur covering the best eateries, hotels, and hidden gems across Chhattisgarh. Available to travel across 6 districts!",
       "verified": false,
@@ -3243,7 +5133,65 @@
         "Feed Post",
         "Hotel Stay Feature",
         "Brand Collaboration"
-      ]
+      ],
+      "creatorGender": "Female",
+      "languages": [
+        "Hindi",
+        "Chhattisgarhi",
+        "English"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 42000,
+          "avgViews": 55000,
+          "avgLikes": 2772,
+          "avgComments": 396,
+          "engagementRate": 7.2,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 18000,
+          "avgViews": 2700,
+          "avgLikes": 270,
+          "avgComments": 54,
+          "engagementRate": 5,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 9500,
+          "avgViews": 760,
+          "avgLikes": 380,
+          "avgComments": 48,
+          "engagementRate": 3.6,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Bilaspur",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Food",
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     },
     {
       "id": 31,
@@ -3276,7 +5224,11 @@
       "socialLinks": {
         "instagram": "https://instagram.com/deepak_sakti_news",
         "youtube": "https://youtube.com/@deepaknishad_cg",
-        "facebook": "https://facebook.com/deepaknishadcg"
+        "facebook": "https://facebook.com/deepaknishadcg",
+        "x": "",
+        "snapchat": "",
+        "thread": "",
+        "twitter": ""
       },
       "pricingInfo": {
         "model": "negotiable",
@@ -3320,8 +5272,11 @@
         }
       ],
       "contact": {
+        "phone": "917654321098",
         "whatsapp": "917654321098",
-        "email": "deepak.nishad@email.com"
+        "email": "deepak.nishad@email.com",
+        "isPhonePublic": false,
+        "isEmailPublic": true
       },
       "description": "Local journalist & creator from Sakti covering news, events, and civic issues. Strong Facebook presence. Also works in custom niche: Civic Awareness campaigns.",
       "verified": false,
@@ -3332,7 +5287,64 @@
         "YouTube Short",
         "Facebook Live",
         "Brand/Business Feature"
-      ]
+      ],
+      "creatorGender": "Male",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "isUGCCreator": false,
+      "profileLastUpdated": "2025-06-01",
+      "platformStats": {
+        "instagram": {
+          "followers": 28000,
+          "avgViews": 38000,
+          "avgLikes": 1543,
+          "avgComments": 220,
+          "engagementRate": 5.8,
+          "lastUpdated": "2025-06-01"
+        },
+        "youtube": {
+          "subscribers": 62000,
+          "avgViews": 9300,
+          "avgLikes": 930,
+          "avgComments": 186,
+          "engagementRate": 4.1,
+          "lastUpdated": "2025-06-01"
+        },
+        "facebook": {
+          "followers": 45000,
+          "avgViews": 3600,
+          "avgLikes": 1800,
+          "avgComments": 225,
+          "engagementRate": 2.9,
+          "lastUpdated": "2025-06-01"
+        }
+      },
+      "audienceInsights": {
+        "topLocations": [
+          "Sakti",
+          "Raipur",
+          "Bilaspur"
+        ],
+        "ageGroup": "18-34",
+        "genderSplit": {
+          "male": 55,
+          "female": 45
+        },
+        "source": "self_reported"
+      },
+      "pastBrands": [],
+      "barter": false,
+      "responseTime": "within 24 hours",
+      "turnaroundDays": 3,
+      "primaryNiche": "Local News",
+      "customLinks": {
+        "facebook": "",
+        "whatsapp": "",
+        "instagram": "",
+        "telegram": ""
+      }
     }
   ]
 }

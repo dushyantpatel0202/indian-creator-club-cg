@@ -146,11 +146,69 @@
                     <label for="email">Email *</label>
                     <input type="email" id="email" required placeholder="your@email.com" autocomplete="email">
                 </div>
-                <div class="form-group">
-                    <label for="whatsapp">WhatsApp Number *</label>
-                    <input type="tel" id="whatsapp" required placeholder="919999999999" autocomplete="tel">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp Number *</label>
+                        <input type="tel" id="whatsapp" required placeholder="919999999999" autocomplete="tel">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span style="font-weight:400;color:var(--text-muted);font-size:12px;">— optional, hidden from public</span></label>
+                        <input type="tel" id="phone" placeholder="919999999999" autocomplete="tel">
+                    </div>
                 </div>
-                
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="creatorGender">Gender</label>
+                        <select id="creatorGender">
+                            <option value="">Prefer not to say</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Non-binary">Non-binary</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="responseTime">Response Time</label>
+                        <select id="responseTime">
+                            <option value="within 6 hours">Within 6 hours</option>
+                            <option value="within 24 hours" selected>Within 24 hours</option>
+                            <option value="within 48 hours">Within 48 hours</option>
+                            <option value="within a week">Within a week</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Languages Spoken *</label>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border-color);border-radius:8px;">
+                        <label class="district-check-label"><input type="checkbox" class="lang-cb" value="Hindi" checked> Hindi</label>
+                        <label class="district-check-label"><input type="checkbox" class="lang-cb" value="Chhattisgarhi"> Chhattisgarhi</label>
+                        <label class="district-check-label"><input type="checkbox" class="lang-cb" value="English"> English</label>
+                        <label class="district-check-label"><input type="checkbox" class="lang-cb" value="Marathi"> Marathi</label>
+                        <label class="district-check-label"><input type="checkbox" class="lang-cb" value="Bhojpuri"> Bhojpuri</label>
+                        <label class="district-check-label"><input type="checkbox" class="lang-cb" value="Urdu"> Urdu</label>
+                        <label class="district-check-label"><input type="checkbox" class="lang-cb" value="Bengali"> Bengali</label>
+                        <label class="district-check-label"><input type="checkbox" class="lang-cb" value="Punjabi"> Punjabi</label>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="isUGCCreator">UGC Creator?</label>
+                        <select id="isUGCCreator">
+                            <option value="false">No</option>
+                            <option value="true">Yes — I create UGC content</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="barter">Accept Barter / Product Collabs?</label>
+                        <select id="barter">
+                            <option value="false">No — paid only</option>
+                            <option value="true">Yes — open to barter</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="district">District *</label>
@@ -321,48 +379,156 @@
                     <i class="fas fa-link" aria-hidden="true"></i> Social Media Links
                 </h3>
                 
-                <div class="form-group">
-                    <label for="instagramLink">Instagram Profile URL</label>
-                    <input type="url" id="instagramLink" placeholder="https://instagram.com/yourhandle" autocomplete="url">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="instagramLink"><i class="fab fa-instagram" style="color:#E1306C;"></i> Instagram URL</label>
+                        <input type="url" id="instagramLink" placeholder="https://instagram.com/yourhandle" autocomplete="url">
+                    </div>
+                    <div class="form-group">
+                        <label for="youtubeLink"><i class="fab fa-youtube" style="color:#FF0000;"></i> YouTube URL</label>
+                        <input type="url" id="youtubeLink" placeholder="https://youtube.com/@yourchannel" autocomplete="url">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="youtubeLink">YouTube Channel URL</label>
-                    <input type="url" id="youtubeLink" placeholder="https://youtube.com/@yourchannel" autocomplete="url">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="facebookLink"><i class="fab fa-facebook" style="color:#1877F2;"></i> Facebook URL</label>
+                        <input type="url" id="facebookLink" placeholder="https://facebook.com/yourpage" autocomplete="url">
+                    </div>
+                    <div class="form-group">
+                        <label for="xLink"><i class="fab fa-x-twitter" style="color:var(--text-secondary);"></i> X (Twitter) URL <span style="font-size:11px;color:var(--text-muted);">optional</span></label>
+                        <input type="url" id="xLink" placeholder="https://x.com/yourhandle">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="facebookLink">Facebook Profile URL</label>
-                    <input type="url" id="facebookLink" placeholder="https://facebook.com/yourpage" autocomplete="url">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="threadLink"><i class="fab fa-threads" style="color:var(--text-secondary);"></i> Threads URL <span style="font-size:11px;color:var(--text-muted);">optional</span></label>
+                        <input type="url" id="threadLink" placeholder="https://threads.net/@yourhandle">
+                    </div>
+                    <div class="form-group">
+                        <label for="snapchatLink"><i class="fab fa-snapchat" style="color:#FFFC00;"></i> Snapchat URL <span style="font-size:11px;color:var(--text-muted);">optional</span></label>
+                        <input type="url" id="snapchatLink" placeholder="https://snapchat.com/add/yourhandle">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="twitterLink"><i class="fab fa-twitter" style="color:#1DA1F2;"></i> Twitter URL <span style="font-size:11px;color:var(--text-muted);">optional</span></label>
+                        <input type="url" id="twitterLink" placeholder="https://twitter.com/yourhandle">
+                    </div>
                 </div>
                 
                 <!-- Social Stats -->
                 <h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                     <i class="fas fa-chart-bar" aria-hidden="true"></i> Social Media Stats
                 </h3>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="instaFollowers">Instagram Followers</label>
-                        <input type="number" id="instaFollowers" placeholder="0" min="0">
+                <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;"><i class="fas fa-info-circle"></i> Fill in stats for the platforms you are active on. Per-platform avg views/likes/comments help brands evaluate your reach.</p>
+
+                <div style="background:rgba(225,48,108,0.06);border:1px solid rgba(225,48,108,0.18);border-radius:10px;padding:12px 14px;margin-bottom:12px;">
+                    <div style="font-size:13px;font-weight:600;color:#E1306C;margin-bottom:8px;"><i class="fab fa-instagram"></i> Instagram</div>
+                    <div class="form-row" style="margin-bottom:0;">
+                        <div class="form-group" style="margin-bottom:8px;"><label style="font-size:12px;">Followers</label><input type="number" id="instaFollowers" placeholder="0" min="0"></div>
+                        <div class="form-group" style="margin-bottom:8px;"><label style="font-size:12px;">Avg Reel Views</label><input type="number" id="avgViews" placeholder="0" min="0"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="ytSubs">YouTube Subscribers</label>
-                        <input type="number" id="ytSubs" placeholder="0" min="0">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="fbFollowers">Facebook Followers</label>
-                        <input type="number" id="fbFollowers" placeholder="0" min="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="avgViews">Average Reel Views</label>
-                        <input type="number" id="avgViews" placeholder="0" min="0">
+                    <div class="form-row" style="margin-bottom:0;">
+                        <div class="form-group" style="margin-bottom:0;"><label style="font-size:12px;">Avg Likes</label><input type="number" id="instaAvgLikes" placeholder="0" min="0"></div>
+                        <div class="form-group" style="margin-bottom:0;"><label style="font-size:12px;">Avg Comments</label><input type="number" id="instaAvgComments" placeholder="0" min="0"></div>
                     </div>
                 </div>
+
+                <div style="background:rgba(255,0,0,0.05);border:1px solid rgba(255,0,0,0.15);border-radius:10px;padding:12px 14px;margin-bottom:12px;">
+                    <div style="font-size:13px;font-weight:600;color:#FF0000;margin-bottom:8px;"><i class="fab fa-youtube"></i> YouTube</div>
+                    <div class="form-row" style="margin-bottom:0;">
+                        <div class="form-group" style="margin-bottom:8px;"><label style="font-size:12px;">Subscribers</label><input type="number" id="ytSubs" placeholder="0" min="0"></div>
+                        <div class="form-group" style="margin-bottom:8px;"><label style="font-size:12px;">Avg Views</label><input type="number" id="ytAvgViews" placeholder="0" min="0"></div>
+                    </div>
+                    <div class="form-row" style="margin-bottom:0;">
+                        <div class="form-group" style="margin-bottom:0;"><label style="font-size:12px;">Avg Likes</label><input type="number" id="ytAvgLikes" placeholder="0" min="0"></div>
+                        <div class="form-group" style="margin-bottom:0;"><label style="font-size:12px;">Avg Comments</label><input type="number" id="ytAvgComments" placeholder="0" min="0"></div>
+                    </div>
+                </div>
+
+                <div style="background:rgba(24,119,242,0.05);border:1px solid rgba(24,119,242,0.18);border-radius:10px;padding:12px 14px;margin-bottom:12px;">
+                    <div style="font-size:13px;font-weight:600;color:#1877F2;margin-bottom:8px;"><i class="fab fa-facebook"></i> Facebook</div>
+                    <div class="form-row" style="margin-bottom:0;">
+                        <div class="form-group" style="margin-bottom:8px;"><label style="font-size:12px;">Followers</label><input type="number" id="fbFollowers" placeholder="0" min="0"></div>
+                        <div class="form-group" style="margin-bottom:8px;"><label style="font-size:12px;">Avg Views</label><input type="number" id="fbAvgViews" placeholder="0" min="0"></div>
+                    </div>
+                    <div class="form-row" style="margin-bottom:0;">
+                        <div class="form-group" style="margin-bottom:0;"><label style="font-size:12px;">Avg Likes</label><input type="number" id="fbAvgLikes" placeholder="0" min="0"></div>
+                        <div class="form-group" style="margin-bottom:0;"><label style="font-size:12px;">Avg Comments</label><input type="number" id="fbAvgComments" placeholder="0" min="0"></div>
+                    </div>
+                </div>
+
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="engagementRate">Engagement Rate (%)</label>
+                        <label for="engagementRate">Overall Engagement Rate (%)</label>
                         <input type="number" step="0.1" id="engagementRate" placeholder="5.0" min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="turnaroundDays">Content Turnaround (days)</label>
+                        <input type="number" id="turnaroundDays" placeholder="3" min="1" max="30">
+                    </div>
+                </div>
+
+                <!-- Audience Insights -->
+                <h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                    <i class="fas fa-users" aria-hidden="true"></i> Audience Insights <span style="font-weight:400;font-size:12px;color:var(--text-muted);">— optional but helps brands</span>
+                </h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="audienceAgeGroup">Audience Age Group</label>
+                        <select id="audienceAgeGroup">
+                            <option value="">Not sure</option>
+                            <option value="13-17">13–17</option>
+                            <option value="18-24">18–24</option>
+                            <option value="18-34" selected>18–34</option>
+                            <option value="25-34">25–34</option>
+                            <option value="25-44">25–44</option>
+                            <option value="35-54">35–54</option>
+                            <option value="45+">45+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="audienceGenderMale">Male Audience % <span style="font-size:11px;color:var(--text-muted);">(female is auto)</span></label>
+                        <input type="number" id="audienceGenderMale" placeholder="55" min="0" max="100">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="audienceLocations">Top Audience Locations <span style="font-size:11px;color:var(--text-muted);">— comma separated</span></label>
+                    <input type="text" id="audienceLocations" placeholder="Raipur, Bilaspur, Mumbai">
+                </div>
+
+                <!-- Past Brands -->
+                <h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                    <i class="fas fa-handshake" aria-hidden="true"></i> Past Brand Collaborations <span style="font-weight:400;font-size:12px;color:var(--text-muted);">— optional</span>
+                </h3>
+                <div class="form-group">
+                    <label for="pastBrands">Brands you've worked with <span style="font-size:11px;color:var(--text-muted);">— comma separated</span></label>
+                    <input type="text" id="pastBrands" placeholder="e.g. Haldiram's, Wow Skin, Local Restaurant">
+                </div>
+
+                <!-- Custom Links -->
+                <h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);padding-bottom:8px;">
+                    <i class="fas fa-link" aria-hidden="true"></i> Profile / Contact Links <span style="font-weight:400;font-size:12px;color:var(--text-muted);">— optional, share your key links</span>
+                </h3>
+                <div class="form-row">
+                    <div class="form-group" style="margin-bottom:8px;">
+                        <label><i class="fab fa-facebook" style="color:#1877F2;"></i> Facebook Page/Group URL</label>
+                        <input type="url" id="portfolio1" placeholder="https://facebook.com/yourpage">
+                    </div>
+                    <div class="form-group" style="margin-bottom:8px;">
+                        <label><i class="fab fa-whatsapp" style="color:#25D366;"></i> WhatsApp Channel/Group URL</label>
+                        <input type="url" id="portfolio2" placeholder="https://whatsapp.com/channel/...">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group" style="margin-bottom:8px;">
+                        <label><i class="fab fa-instagram" style="color:#E1306C;"></i> Instagram Profile/Page URL</label>
+                        <input type="url" id="portfolio3" placeholder="https://instagram.com/yourhandle">
+                    </div>
+                    <div class="form-group" style="margin-bottom:8px;">
+                        <label><i class="fab fa-telegram" style="color:#229ED9;"></i> Telegram Group/Channel URL</label>
+                        <input type="url" id="portfolio4" placeholder="https://t.me/yourgroup">
                     </div>
                 </div>
                 
