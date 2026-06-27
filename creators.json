@@ -110,17 +110,17 @@
     "instagram": {
       "followers": 38000,
       "avgViews": 10000,
-      "avgLikes": 0,
-      "avgComments": 0,
-      "engagementRate": 0,
+      "avgLikes": 5000,
+      "avgComments": 1000,
+      "engagementRate": 10,
       "lastUpdated": "2026-06-27"
     },
     "youtube": {
       "subscribers": 394000,
       "avgViews": 59100,
-      "avgLikes": 0,
-      "avgComments": 0,
-      "engagementRate": 0,
+      "avgLikes": 5000,
+      "avgComments": 500,
+      "engagementRate": 10,
       "lastUpdated": "2026-06-27"
     },
     "facebook": {
@@ -134,7 +134,10 @@
   },
   "audienceInsights": {
     "topLocations": [
-      "Bilaspur"
+      "Bilaspur",
+      "Raipur",
+      "Delhi"
+
     ],
     "ageGroup": "18-34",
     "genderSplit": {
@@ -143,7 +146,7 @@
     },
     "source": "self_reported"
   },
-  "pastBrands": [],
+  "pastBrands": ["Nutrigain Plus", "Deconstruct Gel Sunscreen"],
   "barter": false,
   "isUGCCreator": false,
   "creatorGender": "Male",
