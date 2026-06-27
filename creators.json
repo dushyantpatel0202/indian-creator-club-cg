@@ -1,6 +1,173 @@
 {
   "creators": [
     {
+  "id": 1,
+  "name": "Neelmani Chandra",
+  "city": "jaijaipur",
+  "district": "sakti",
+  "latitude": 21.82872,
+  "longitude": 82.819724,
+  "niche": "short comedy",
+  "additionalNiches": [
+    "Hotel Promotion",
+    "Store Promotion",
+    "Event Coverage"
+  ],
+  "profileImage": "https://res.cloudinary.com/dlyzup9qp/image/upload/v1782551674/Screenshot_2026-06-27_144014_wiqopf.png",
+  "instagramFollowers": 38000,
+  "youtubeSubscribers": 394000,
+  "facebookFollowers": 0,
+  "avgReelViews": 10000,
+  "engagementRate": 0,
+  "availableDistricts": [
+    "Bilaspur"
+  ],
+  "socialLinks": {
+    "instagram": "https://www.instagram.com/the.chandra.ji/",
+    "youtube": "https://www.youtube.com/@neelmanichandra",
+    "facebook": "https://www.facebook.com/NeelmaniChandra",
+    "x": "",
+    "thread": "",
+    "snapchat": "",
+    "twitter": ""
+  },
+  "pricingInfo": {
+    "model": "starting_from",
+    "startingPrice": 25000,
+    "isNegotiable": true,
+    "description": "Prices vary based on project scope"
+  },
+  "charges": {
+    "reel": 2500,
+    "story": 750,
+    "post": 2500,
+    "collaboration": 15500,
+    "reelMaking": 7000
+  },
+  "serviceCharges": [
+    {
+      "service": "Reel Promotion",
+      "charge": 2250,
+      "model": "range",
+      "min": 2500,
+      "max": 50000,
+      "negotiable": true
+    },
+    {
+      "service": "Story Promotion",
+      "charge": 750,
+      "model": "fixed",
+      "min": 500,
+      "max": 1000,
+      "negotiable": false
+    },
+    {
+      "service": "Feed Post",
+      "charge": 2500,
+      "model": "range",
+      "min": 3000,
+      "max": 50000,
+      "negotiable": true
+    },
+    {
+      "service": "Professional Reel Shoot",
+      "charge": 7000,
+      "model": "fixed",
+      "min": 4000,
+      "max": 10000,
+      "negotiable": false
+    },
+    {
+      "service": "Brand Collaboration",
+      "charge": 15500,
+      "model": "range",
+      "min": 15000,
+      "max": 50000,
+      "negotiable": true
+    },
+    {
+      "service": "store promotion",
+      "charge": 2500,
+      "model": "fixed",
+      "min": 2500,
+      "max": 3000,
+      "negotiable": false
+    }
+  ],
+  "contact": {
+    "whatsapp": "7734906606",
+    "email": "icccgofficial@gmail.com",
+    "isPhonePublic": false,
+    "isEmailPublic": true
+  },
+  "customLinks": {
+    "facebook": "",
+    "whatsapp": "",
+    "instagram": "https://www.youtube.com/@neelmanichandra",
+    "telegram": ""
+  },
+  "platformStats": {
+    "instagram": {
+      "followers": 38000,
+      "avgViews": 10000,
+      "avgLikes": 0,
+      "avgComments": 0,
+      "engagementRate": 0,
+      "lastUpdated": "2026-06-27"
+    },
+    "youtube": {
+      "subscribers": 394000,
+      "avgViews": 59100,
+      "avgLikes": 0,
+      "avgComments": 0,
+      "engagementRate": 0,
+      "lastUpdated": "2026-06-27"
+    },
+    "facebook": {
+      "followers": 0,
+      "avgViews": 0,
+      "avgLikes": 0,
+      "avgComments": 0,
+      "engagementRate": 0,
+      "lastUpdated": "2026-06-27"
+    }
+  },
+  "audienceInsights": {
+    "topLocations": [
+      "Bilaspur"
+    ],
+    "ageGroup": "18-34",
+    "genderSplit": {
+      "male": 55,
+      "female": 45
+    },
+    "source": "self_reported"
+  },
+  "pastBrands": [],
+  "barter": false,
+  "isUGCCreator": false,
+  "creatorGender": "Male",
+  "languages": [
+    "Hindi",
+    "Chhattisgarhi"
+  ],
+  "responseTime": "within 24 hours",
+  "turnaroundDays": 3,
+  "profileLastUpdated": "2026-06-27",
+  "primaryNiche": "short comedy",
+  "description": "I am a content creator who specializes in creating engaging short-form comedy videos for social media. I enjoy turning creative ideas into content that connects with audiences and drives engagement.",
+  "verified": false,
+  "featured": false,
+  "services": [
+    "Reel Promotion",
+    "Story Promotion",
+    "Feed Post",
+    "Professional Reel Shoot",
+    "Brand Collaboration",
+    "store promotion"
+  ]
+},
+    {
       "id": 55,
       "name": "Sample Name 1",
       "city": "Chandrapur",
