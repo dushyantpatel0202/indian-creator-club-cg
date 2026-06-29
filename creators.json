@@ -186,186 +186,8 @@
         "telegram": ""
       }
     },
-    {
-      "id": 2,
-      "name": "Kuhu Chandra",
-      "city": "Bilaspur",
-      "district": "Bilaspur",
-      "latitude": 22.0796,
-      "longitude": 82.1409,
-      "niche": "Beauty",
-      "profileImage": "https://res.cloudinary.com/demo/image/upload/w_200,h_200,c_fill,r_max/v1/samples/people/woman-girl.jpg",
-      "instagramFollowers": 90000,
-      "youtubeSubscribers": 25000,
-      "facebookFollowers": 12000,
-      "avgReelViews": 45000,
-      "engagementRate": 7.2,
-      "availableDistricts": [
-        "Bilaspur",
-        "Raipur"
-      ],
-      "socialLinks": {
-        "instagram": "https://instagram.com/priyasharma_beauty",
-        "youtube": "https://youtube.com/@priyasharmabeauty",
-        "facebook": "https://facebook.com/priyasharmabeauty",
-        "x": "",
-        "snapchat": "",
-        "thread": "",
-        "twitter": ""
-      },
-      "pricingInfo": {
-        "model": "negotiable",
-        "isNegotiable": true,
-        "description": "Open to negotiation based on project requirements and budget"
-      },
-      "charges": {
-        "reel": 3500,
-        "story": 800,
-        "post": 2500,
-        "collaboration": 5000,
-        "reelMaking": 3000
-      },
-      "serviceCharges": [
-        {
-          "service": "Reel Promotion",
-          "charge": 3500,
-          "model": "fixed",
-          "negotiable": false
-        },
-        {
-          "service": "Story Promotion",
-          "charge": 800,
-          "model": "fixed",
-          "negotiable": false
-        },
-        {
-          "service": "Feed Post",
-          "charge": 2500,
-          "model": "fixed",
-          "negotiable": false
-        },
-        {
-          "service": "UGC Video",
-          "charge": 4000,
-          "model": "negotiable",
-          "negotiable": true
-        },
-        {
-          "service": "Professional Reel Shoot",
-          "charge": 3000,
-          "model": "starting_from",
-          "startingPrice": 2500,
-          "negotiable": true
-        },
-        {
-          "service": "Brand Collaboration",
-          "charge": 5000,
-          "model": "negotiable",
-          "negotiable": true
-        },
-        {
-          "service": "Makeup Tutorial",
-          "charge": 4500,
-          "model": "fixed",
-          "negotiable": false
-        },
-        {
-          "service": "Product Unboxing",
-          "charge": 2800,
-          "model": "range",
-          "min": 2000,
-          "max": 4000,
-          "negotiable": true
-        },
-        {
-          "service": "Skincare Routine",
-          "charge": 3200,
-          "model": "fixed",
-          "negotiable": false
-        }
-      ],
-      "contact": {
-        "phone": "918888888888",
-        "whatsapp": "918888888888",
-        "email": "priya@example.com",
-        "isPhonePublic": false,
-        "isEmailPublic": true
-      },
-      "description": "Beauty and lifestyle creator from Bilaspur. Expert in makeup tutorials, skincare, and product reviews.",
-      "verified": false,
-      "featured": true,
-      "services": [
-        "Reel Promotion",
-        "Story Promotion",
-        "Feed Post",
-        "UGC Video",
-        "Professional Reel Shoot",
-        "Brand Collaboration",
-        "Makeup Tutorial",
-        "Product Unboxing",
-        "Skincare Routine"
-      ],
-      "creatorGender": "Female",
-      "languages": [
-        "Hindi",
-        "Chhattisgarhi"
-      ],
-      "isUGCCreator": true,
-      "profileLastUpdated": "2025-06-01",
-      "platformStats": {
-        "instagram": {
-          "followers": 90000,
-          "avgViews": 45000,
-          "avgLikes": 2268,
-          "avgComments": 324,
-          "engagementRate": 7.2,
-          "lastUpdated": "2025-06-01"
-        },
-        "youtube": {
-          "subscribers": 25000,
-          "avgViews": 3750,
-          "avgLikes": 375,
-          "avgComments": 75,
-          "engagementRate": 5,
-          "lastUpdated": "2025-06-01"
-        },
-        "facebook": {
-          "followers": 12000,
-          "avgViews": 960,
-          "avgLikes": 480,
-          "avgComments": 60,
-          "engagementRate": 3.6,
-          "lastUpdated": "2025-06-01"
-        }
-      },
-      "audienceInsights": {
-        "topLocations": [
-          "Bilaspur",
-          "Raipur",
-          "Bilaspur"
-        ],
-        "ageGroup": "18-34",
-        "genderSplit": {
-          "male": 55,
-          "female": 45
-        },
-        "source": "self_reported"
-      },
-      "pastBrands": [],
-      "barter": false,
-      "responseTime": "within 24 hours",
-      "turnaroundDays": 3,
-      "primaryNiche": "Beauty",
-      "additionalNiches": [],
-      "customLinks": {
-        "facebook": "",
-        "whatsapp": "",
-        "instagram": "",
-        "telegram": ""
-      }
-    },
       {
-  "id": 3,
+  "id": 2,
   "name": "Neelmani Chandra",
   "city": "jaijaipur",
   "district": "sakti",
@@ -533,6 +355,175 @@
     "Brand Collaboration",
     "store promotion"
   ]
+},
+{
+  "id": 3,
+  "name": "kuhu Chandra",
+  "city": "Telibandha",
+  "district": "Raipur",
+  "latitude": 22.03,
+  "longitude": 79.97,
+  "niche": "Fashion",
+  "additionalNiches": [
+    "Beauty",
+    "Fashion",
+    "Education",
+    "Real Estate",
+    "Hotel Promotion",
+    "Restaurant Promotion",
+    "Store Promotion"
+  ],
+  "profileImage": "https://res.cloudinary.com/dlyzup9qp/image/upload/v1782739337/Screenshot_2026-06-29_185025_jpu9cm.png",
+  "instagramFollowers": 13600,
+  "youtubeSubscribers": 500,
+  "facebookFollowers": 0,
+  "avgReelViews": 50000,
+  "engagementRate": 50,
+  "availableDistricts": [
+    "Janjgir-Champa",
+    "Korba",
+    "Sakti"
+  ],
+  "socialLinks": {
+    "instagram": "https://www.instagram.com/kuhuchandra1234?igsh=MW83OGdnY2M0bXFl",
+    "youtube": "https://youtube.com/@kuhuchandra1234?si=YUAXeVeRCu2q8Y6j",
+    "facebook": "",
+    "x": "Fl",
+    "thread": "",
+    "snapchat": "",
+    "twitter": ""
+  },
+  "pricingInfo": {
+    "model": "starting_from",
+    "startingPrice": 2000,
+    "isNegotiable": true,
+    "description": "prices vary based on creators discription"
+  },
+  "charges": {
+    "reel": 0,
+    "story": 0,
+    "post": 0,
+    "collaboration": 0,
+    "reelMaking": 0
+  },
+  "serviceCharges": [
+    {
+      "service": "Reel Promotion",
+      "charge": 4000,
+      "model": "range",
+      "min": 2000,
+      "max": 6000,
+      "negotiable": true
+    },
+    {
+      "service": "Story Promotion",
+      "charge": 1050,
+      "model": "range",
+      "min": 600,
+      "max": 1500,
+      "negotiable": true
+    },
+    {
+      "service": "Feed Post",
+      "charge": 3000,
+      "model": "range",
+      "min": 2000,
+      "max": 4000,
+      "negotiable": true
+    },
+    {
+      "service": "Professional Reel Shoot",
+      "charge": 5000,
+      "model": "range",
+      "min": 3000,
+      "max": 7000,
+      "negotiable": true
+    },
+    {
+      "service": "Brand Collaboration",
+      "charge": 7000,
+      "model": "range",
+      "min": 5000,
+      "max": 9000,
+      "negotiable": true
+    }
+  ],
+  "contact": {
+    "whatsapp": "9244991462",
+    "email": "kumkumchandra632@gmail.com",
+    "isPhonePublic": false,
+    "isEmailPublic": true
+  },
+  "customLinks": {
+    "facebook": "",
+    "whatsapp": "",
+    "instagram": "",
+    "telegram": ""
+  },
+  "platformStats": {
+    "instagram": {
+      "followers": 13600,
+      "avgViews": 50000,
+      "avgLikes": 30000,
+      "avgComments": 20000,
+      "engagementRate": 50,
+      "lastUpdated": "2026-06-29"
+    },
+    "youtube": {
+      "subscribers": 500,
+      "avgViews": 0,
+      "avgLikes": 0,
+      "avgComments": 0,
+      "engagementRate": 0,
+      "lastUpdated": "2026-06-29"
+    },
+    "facebook": {
+      "followers": 0,
+      "avgViews": 0,
+      "avgLikes": 0,
+      "avgComments": 0,
+      "engagementRate": 0,
+      "lastUpdated": "2026-06-29"
+    }
+  },
+  "audienceInsights": {
+    "topLocations": [
+      "Raipur",
+      "Janjgir champa",
+      "sakti"
+    ],
+    "ageGroup": "18-34",
+    "genderSplit": {
+      "male": 70,
+      "female": 30
+    },
+    "source": "self_reported"
+  },
+  "pastBrands": [
+    "Local resturant & local stores"
+  ],
+  "barter": false,
+  "isUGCCreator": true,
+  "creatorGender": "Female",
+  "languages": [
+    "Hindi",
+    "English"
+  ],
+  "responseTime": "within 24 hours",
+  "turnaroundDays": 2,
+  "profileLastUpdated": "2026-06-29",
+  "primaryNiche": "Fashion",
+  "description": "I am kuhu chandra.I am a model & content creator.",
+  "verified": false,
+  "featured": true,
+  "services": [
+    "Reel Promotion",
+    "Story Promotion",
+    "Feed Post",
+    "Professional Reel Shoot",
+    "Brand Collaboration"
+  ]
 }
+
   ]
 }
