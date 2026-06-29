@@ -4,16 +4,16 @@
     {
       "id": 1,
       "name": "ICCCG Creator",
-      "city": "Chandrapur",
-      "district": "Raigarh",
-      "latitude": 21.706034,
-      "longitude": 83.232508,
-      "niche": "Travel",
+      "city": "Raipur",
+      "district": "Raipur",
+      "latitude": 21.258514,
+      "longitude": 81.605628,
+      "niche": "Business",
       "profileImage": "https://res.cloudinary.com/dlyzup9qp/image/upload/q_auto/f_auto/v1781682778/photo_vcvyrv.jpg",
-      "instagramFollowers": 150000,
-      "youtubeSubscribers": 50000,
-      "facebookFollowers": 2999,
-      "avgReelViews": 85000,
+      "instagramFollowers": 1000,
+      "youtubeSubscribers": 0,
+      "facebookFollowers": 0,
+      "avgReelViews": 0,
       "engagementRate": 6.5,
       "availableDistricts": [
         "Raipur",
@@ -21,9 +21,9 @@
         "Bilaspur"
       ],
       "socialLinks": {
-        "instagram": "https://instagram.com/rahulverma_travel",
-        "youtube": "https://youtube.com/@rahulvermatravel",
-        "facebook": "https://facebook.com/rahulvermatravel",
+        "instagram": "https://www.instagram.com/indiancreatorsclubcg?igsh=MXIxdDYwdXNrY2Ftbg==",
+        "youtube": "",
+        "facebook": "",
         "x": "",
         "snapchat": "",
         "thread": "",
@@ -45,21 +45,27 @@
       "serviceCharges": [
         {
           "service": "Reel Promotion",
-          "charge": 5000,
-          "model": "fixed",
-          "negotiable": false
+          "charge": 4500,
+          "model": "range",
+          "min": 2000,
+          "max": 50000,
+          "negotiable": true
         },
         {
           "service": "Story Promotion",
-          "charge": 1000,
-          "model": "fixed",
-          "negotiable": false
+          "charge": 4500,
+          "model": "range",
+          "min": 300,
+          "max": 6000,
+          "negotiable": true
         },
         {
           "service": "Feed Post",
-          "charge": 3000,
-          "model": "fixed",
-          "negotiable": false
+          "charge": 4500,
+          "model": "range",
+          "min": 3500,
+          "max": 6000,
+          "negotiable": true
         },
         {
           "service": "UGC Video",
@@ -78,7 +84,7 @@
         },
         {
           "service": "Brand Collaboration",
-          "charge": 7000,
+          "charge": 3000,
           "model": "negotiable",
           "negotiable": true
         },
@@ -112,7 +118,7 @@
         "isPhonePublic": false,
         "isEmailPublic": true
       },
-      "description": "Travel influencer exploring the hidden gems of Chhattisgarh. Specializes in tourism promotion and cultural content.",
+      "description": "Founder of Indian Creators Club Chhattisgarh (ICCCG), a platform that connects local businesses, startups, brands, and organizations with verified content creators and influencers across Chhattisgarh. We help brands run effective influencer marketing campaigns while creating paid collaboration opportunities for creators. Passionate about strengthening the creator economy and promoting local businesses through digital marketing and authentic content.",
       "verified": true,
       "featured": true,
       "services": [
@@ -507,7 +513,8 @@
   "creatorGender": "Female",
   "languages": [
     "Hindi",
-    "English"
+    "English",
+    "Chhattisgarhi"
   ],
   "responseTime": "within 24 hours",
   "turnaroundDays": 2,
@@ -524,6 +531,5 @@
     "Brand Collaboration"
   ]
 }
-
   ]
 }
