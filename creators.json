@@ -384,7 +384,7 @@
   "youtubeSubscribers": 500,
   "facebookFollowers": 0,
   "avgReelViews": 50000,
-  "engagementRate": 50,
+  "engagementRate": 5,
   "availableDistricts": [
     "Janjgir-Champa",
     "Korba",
@@ -523,6 +523,199 @@
   "description": "I am kuhu chandra.I am a model & content creator.",
   "verified": false,
   "featured": true,
+  "services": [
+    "Reel Promotion",
+    "Story Promotion",
+    "Feed Post",
+    "Professional Reel Shoot",
+    "Brand Collaboration"
+  ]
+},
+{
+  "id": 4,
+  "name": "Komaluraon",
+  "city": "Raigarh",
+  "district": "Raigarh",
+  "latitude": 21.53506,
+  "longitude": 83.2342,
+  "niche": "Daily vlog",
+  "additionalNiches": [
+    "Beauty",
+    "Fashion",
+    "Hotel Promotion",
+    "Restaurant Promotion",
+    "Photography",
+    "Lifestyle"
+  ],
+  "profileImage": "",
+  "instagramFollowers": 20600,
+  "youtubeSubscribers": 622,
+  "facebookFollowers": 0,
+  "avgReelViews": 20000,
+  "engagementRate": 5,
+  "availableDistricts": [
+    "Bastar",
+    "Balod",
+    "Baloda Bazar",
+    "Balrampur",
+    "Bemetara",
+    "Bijapur",
+    "Bilaspur",
+    "Dantewada",
+    "Dhamtari",
+    "Durg",
+    "Gariaband",
+    "Gaurela-Pendra-Marwahi",
+    "Janjgir-Champa",
+    "Jashpur",
+    "Kabirdham",
+    "Kanker",
+    "Kondagaon",
+    "Korba",
+    "Koriya",
+    "Mahasamund",
+    "Manendragarh",
+    "Mohla-Manpur",
+    "Mungeli",
+    "Narayanpur",
+    "Raigarh",
+    "Raipur",
+    "Rajnandgaon",
+    "Sakti",
+    "Sarangarh-Bilaigarh",
+    "Sukma",
+    "Surajpur",
+    "Surguja"
+  ],
+  "socialLinks": {
+    "instagram": "https://www.instagram.com/komaluraon?igsh=a2wxdW95dXFuczJr&utm_source=ig_contact_invite",
+    "youtube": "https://youtube.com/@komaluraon20012?si=imjJZMWR_7lDYp2t",
+    "facebook": "",
+    "x": "FuczJr&utm_source=ig_contact_invite",
+    "thread": "",
+    "snapchat": "",
+    "twitter": ""
+  },
+  "pricingInfo": {
+    "model": "starting_from",
+    "startingPrice": 350,
+    "isNegotiable": true,
+    "description": "prices vary based on creators description"
+  },
+  "charges": {
+    "reel": 0,
+    "story": 0,
+    "post": 0,
+    "collaboration": 0,
+    "reelMaking": 0
+  },
+  "serviceCharges": [
+    {
+      "service": "Reel Promotion",
+      "charge": 2000,
+      "model": "range",
+      "min": 1000,
+      "max": 3000,
+      "negotiable": true
+    },
+    {
+      "service": "Story Promotion",
+      "charge": 350,
+      "model": "range",
+      "min": 200,
+      "max": 500,
+      "negotiable": true
+    },
+    {
+      "service": "Feed Post",
+      "charge": 2000,
+      "model": "range",
+      "min": 1000,
+      "max": 3000,
+      "negotiable": true
+    },
+    {
+      "service": "Professional Reel Shoot",
+      "charge": 3000,
+      "model": "range",
+      "min": 2000,
+      "max": 4000,
+      "negotiable": true
+    },
+    {
+      "service": "Brand Collaboration",
+      "charge": 3000,
+      "model": "range",
+      "min": 2000,
+      "max": 4000,
+      "negotiable": true
+    }
+  ],
+  "contact": {
+    "whatsapp": "917734906606",
+    "email": "icccgofficial@gmail.com",
+    "isPhonePublic": false,
+    "isEmailPublic": true
+  },
+  "customLinks": {
+    "facebook": "",
+    "whatsapp": "",
+    "instagram": "",
+    "telegram": ""
+  },
+  "platformStats": {
+    "instagram": {
+      "followers": 0,
+      "avgViews": 0,
+      "avgLikes": 5000,
+      "avgComments": 1000,
+      "engagementRate": 0,
+      "lastUpdated": "2026-06-30"
+    },
+    "youtube": {
+      "subscribers": 622,
+      "avgViews": 0,
+      "avgLikes": 0,
+      "avgComments": 0,
+      "engagementRate": 0,
+      "lastUpdated": "2026-06-30"
+    },
+    "facebook": {
+      "followers": 0,
+      "avgViews": 0,
+      "avgLikes": 0,
+      "avgComments": 0,
+      "engagementRate": 0,
+      "lastUpdated": "2026-06-30"
+    }
+  },
+  "audienceInsights": {
+    "topLocations": [
+      "Raigarh",
+      "sakti"
+    ],
+    "ageGroup": "18-34",
+    "genderSplit": {
+      "male": 30,
+      "female": 70
+    },
+    "source": "self_reported"
+  },
+  "pastBrands": [],
+  "barter": true,
+  "isUGCCreator": true,
+  "creatorGender": "Female",
+  "languages": [
+    "Hindi",
+    "Chhattisgarhi"
+  ],
+  "responseTime": "within 6 hours",
+  "turnaroundDays": 3,
+  "profileLastUpdated": "2026-06-30",
+  "primaryNiche": "Daily vlog",
+  "description": "Hallo I’m komal",
+  "verified": false,
+  "featured": false,
   "services": [
     "Reel Promotion",
     "Story Promotion",
