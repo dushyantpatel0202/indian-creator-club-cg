@@ -1,0 +1,37 @@
+{
+  "brands": [
+    {
+      "id": 1,
+      "brandName": "sample brand",
+      "category": "Restaurant",
+      "district": "Raipur",
+      "city": "Pandri",
+      "contactName": "Aman Verma",
+      "whatsapp": "919876543210",
+      "budget": "₹3K - ₹10K",
+      "goal": "Store Footfall",
+      "servicesNeeded": "Food reels, cafe visit, Instagram story coverage",
+      "description": "Looking for local food and lifestyle creators to promote our new menu and increase weekend dine-in visits.",
+      "instagram": "https://instagram.com/raipurfoodstudio",
+      "website": "",
+      "createdAt": "2026-07-01"
+    },
+    {
+      "id": 2,
+      "brandName": "sample Fashion House",
+      "category": "Fashion Store",
+      "district": "Raigarh",
+      "city": "Boirdadar",
+      "contactName": "Komal Rao",
+      "whatsapp": "919812345678",
+      "budget": "Barter / Product Exchange",
+      "goal": "New Launch",
+      "servicesNeeded": "UGC try-on reels, product showcase, festive collection promo",
+      "description": "Need women fashion creators for launch of our festive collection with barter and paid upgrade options.",
+      "instagram": "",
+      "website": "",
+      "createdAt": "2026-07-01"
+    }
+   
+  ]
+}

@@ -33,6 +33,7 @@
         <div class="menu-item" id="nearMeMenu"><i class="fas fa-map-marker-alt"></i> Near Me</div>
         <div class="menu-divider"></div>
         <button class="list-profile-btn" id="listProfileBtn"><i class="fas fa-plus-circle"></i> List Your Profile</button>
+        <button class="list-brand-btn" id="listBrandBtn"><i class="fas fa-store"></i> List Your Store/Brand</button>
 
         <!-- ===== FILTERS SECTION ===== -->
         <div class="filter-section">
@@ -69,6 +70,7 @@
                 </div>
                 <div class="nav-right">
                     <button class="list-profile-desktop" id="listProfileDesktop"><i class="fas fa-plus-circle"></i> List Your Profile</button>
+                    <button class="list-brand-desktop" id="listBrandDesktop"><i class="fas fa-store"></i> List Your Store/Brand</button>
                     <button class="theme-toggle" id="themeToggle" title="Toggle day/night theme" aria-label="Toggle theme">
                         <span class="toggle-knob"><i class="fas fa-moon" aria-hidden="true"></i></span>
                     </button>
@@ -118,6 +120,25 @@
         </div>
     </section>
 
+    <!-- ===== PROMOTION BRANDS GRID ===== -->
+    <section class="promotion-section" aria-label="Stores and brands for promotion">
+        <div class="container">
+            <div class="section-header promotion-header">
+                <div>
+                    <h2><i class="fas fa-store" aria-hidden="true"></i> Stores & Brands For Promotion</h2>
+                    <p class="section-subtitle">Businesses looking for creators can list their promotion requirements here.</p>
+                </div>
+                <div class="header-right">
+                    <span class="creator-count" id="promotionCount">0 listings</span>
+                    <button class="list-brand-inline" id="listBrandInline"><i class="fas fa-bullhorn"></i> Add Promotion Listing</button>
+                </div>
+            </div>
+            <div class="promotion-grid" id="promotionGrid" role="list">
+                <div class="empty-state"><i class="fas fa-store-slash" aria-hidden="true"></i><p>Loading promotion listings...</p></div>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== MODAL (Profile) ===== -->
     <div class="modal" id="profileModal" role="dialog" aria-modal="true" aria-label="Creator profile">
         <div class="modal-content">
@@ -148,7 +169,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="whatsapp">WhatsApp Number *</label>
+                        <label for="whatsapp">WhatsApp Number <span style="font-weight:400;color:var(--text-muted);font-size:12px;">— hidden from public</span></label>
                         <input type="tel" id="whatsapp" required placeholder="919999999999" autocomplete="tel">
                     </div>
                     <div class="form-group">
@@ -179,7 +200,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Languages Spoken *</label>
+                    <label>Content Languages *</label>
                     <div style="display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border-color);border-radius:8px;">
                         <label class="district-check-label"><input type="checkbox" class="lang-cb" value="Hindi" checked> Hindi</label>
                         <label class="district-check-label"><input type="checkbox" class="lang-cb" value="Chhattisgarhi"> Chhattisgarhi</label>
@@ -204,7 +225,7 @@
                         <label for="barter">Accept Barter / Product Collabs?</label>
                         <select id="barter">
                             <option value="false">No — paid only</option>
-                            <option value="true">Yes — open to barter</option>
+                            <option value="true">Yes if product is valuable </option>
                         </select>
                     </div>
                 </div>
@@ -252,121 +273,47 @@
                     </div>
                     <div class="form-group">
                         <label for="city">City *</label>
-                        <input type="text" id="city" required placeholder="Your city" autocomplete="address-level2">
+                        <input type="text" id="city" required placeholder="Your city/village (Current location)" autocomplete="address-level2">
                     </div>
                 </div>
 
+                <!-- ===== NICHES SECTION ===== -->
                 <div class="form-group">
-                    <label>Available In (Districts) <span style="font-weight:400;color:var(--text-muted);font-size:12px;">— select all districts where you can work</span></label>
-                    <div class="district-actions">
-                        <button type="button" class="select-all" id="selectAllDistricts">✅ Select All</button>
-                        <button type="button" class="deselect-all" id="deselectAllDistricts">❌ Deselect All</button>
+                    <label>Niches * <span style="font-weight:400;color:var(--text-muted);font-size:12px;">— select up to 3 (shown on your profile)</span></label>
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                        <span style="font-size:12px;color:var(--text-muted);">Selected: <strong id="nicheCounter">0</strong>/3</span>
                     </div>
-                    <div id="availableDistrictsContainer" style="display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border-color);border-radius:8px;max-height:160px;overflow-y:auto;">
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Bastar"> Bastar</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Balod"> Balod</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Baloda Bazar"> Baloda Bazar</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Balrampur"> Balrampur</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Bemetara"> Bemetara</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Bijapur"> Bijapur</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Bilaspur"> Bilaspur</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Dantewada"> Dantewada</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Dhamtari"> Dhamtari</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Durg"> Durg</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Gariaband"> Gariaband</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Gaurela-Pendra-Marwahi"> Gaurela-Pendra-Marwahi</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Janjgir-Champa"> Janjgir-Champa</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Jashpur"> Jashpur</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Kabirdham"> Kabirdham</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Kanker"> Kanker</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Kondagaon"> Kondagaon</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Korba"> Korba</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Koriya"> Koriya</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Mahasamund"> Mahasamund</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Manendragarh"> Manendragarh</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Mohla-Manpur"> Mohla-Manpur</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Mungeli"> Mungeli</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Narayanpur"> Narayanpur</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Raigarh"> Raigarh</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Raipur"> Raipur</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Rajnandgaon"> Rajnandgaon</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Sakti"> Sakti</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Sarangarh-Bilaigarh"> Sarangarh-Bilaigarh</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Sukma"> Sukma</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Surajpur"> Surajpur</label>
-                        <label class="district-check-label"><input type="checkbox" class="avail-district-cb" value="Surguja"> Surguja</label>
-                    </div>
-                    <p style="font-size:11px;color:var(--text-muted);margin-top:5px;"><i class="fas fa-info-circle" aria-hidden="true"></i> Leave empty to use your home district only</p>
-                </div>
-
-                <div class="form-group">
-                    <label for="niche">Primary Niche * <span style="font-weight:400;color:var(--text-muted);font-size:12px;">— shown on cards</span></label>
-                    <select id="niche" required>
-                        <option value="">Select Niche</option>
-                        <option>Travel</option>
-                        <option>Beauty</option>
-                        <option>Food</option>
-                        <option>Fashion</option>
-                        <option>Tech</option>
-                        <option>Education</option>
-                        <option>Finance</option>
-                        <option>Fitness</option>
-                        <option>Automobile</option>
-                        <option>Real Estate</option>
-                        <option>Hotel Promotion</option>
-                        <option>Restaurant Promotion</option>
-                        <option>Store Promotion</option>
-                        <option>Tourism</option>
-                        <option>Wedding</option>
-                        <option>Local News</option>
-                        <option>Gaming</option>
-                        <option>Photography</option>
-                        <option>Lifestyle</option>
-                        <option>Event Coverage</option>
-                        <option>Health & Wellness</option>
-                        <option>Parenting</option>
-                        <option>Sustainable Living</option>
-                        <option>Other</option>
-                    </select>
-                    <input type="text" id="nicheOther" placeholder="Enter your niche" style="display:none;margin-top:8px;width:100%;padding:10px 12px;border-radius:8px;border:1px solid var(--border-color);background:rgba(255,255,255,0.05);color:var(--text-primary);font-size:14px;font-family:inherit;outline:none;">
-                </div>
-
-                <!-- ===== ADDITIONAL NICHES WITH CUSTOM INPUT ===== -->
-                <div class="form-group">
-                    <label>Additional Niches <span style="font-weight:400;color:var(--text-muted);font-size:12px;">— shown on full profile view only</span></label>
-                    <div id="additionalNichesContainer" style="display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border-color);border-radius:8px;min-height:50px;">
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Travel"> ✈️ Travel</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Beauty"> 💄 Beauty</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Food"> 🍜 Food</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Fashion"> 👗 Fashion</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Tech"> 💻 Tech</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Education"> 📚 Education</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Finance"> 💰 Finance</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Fitness"> 💪 Fitness</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Automobile"> 🚗 Automobile</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Real Estate"> 🏠 Real Estate</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Hotel Promotion"> 🏨 Hotel Promotion</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Restaurant Promotion"> 🍽️ Restaurant Promotion</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Store Promotion"> 🛍️ Store Promotion</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Tourism"> 🏞️ Tourism</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Wedding"> 💍 Wedding</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Local News"> 📰 Local News</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Gaming"> 🎮 Gaming</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Photography"> 📸 Photography</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Lifestyle"> 🌟 Lifestyle</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Event Coverage"> 🎪 Event Coverage</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Health & Wellness"> 🌿 Health & Wellness</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Parenting"> 👶 Parenting</label>
-                        <label class="niche-check-label"><input type="checkbox" class="extra-niche-cb" value="Sustainable Living"> 🌍 Sustainable Living</label>
+                    <div id="nichesContainer" style="display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border-color);border-radius:8px;min-height:50px;">
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Travel"> ✈️ Travel</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Beauty"> 💄 Beauty</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Food"> 🍜 Food</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Fashion"> 👗 Fashion</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Tech"> 💻 Tech</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Education"> 📚 Education</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Finance"> 💰 Finance</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Fitness"> 💪 Fitness</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Automobile"> 🚗 Automobile</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Real Estate"> 🏠 Real Estate</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Store Promotion"> 🛍️ Store Promotion</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Tourism"> 🏞️ Tourism</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Wedding"> 💍 Wedding</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Local News"> 📰 Local News</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Gaming"> 🎮 Gaming</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Photography"> 📸 Photography</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Lifestyle"> 🌟 Lifestyle</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Event Coverage"> 🎪 Event Coverage</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Health & Wellness"> 🌿 Health & Wellness</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Parenting"> 👶 Parenting</label>
+                        <label class="niche-check-label"><input type="checkbox" class="niche-cb" value="Sustainable Living"> 🌍 Sustainable Living</label>
                     </div>
                     <!-- Custom niche input with plus button -->
                     <div style="display:flex;gap:8px;margin-top:10px;align-items:center;">
-                        <input type="text" id="customNicheInput" placeholder="Enter custom niche..." maxlength="30" style="flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border-color);background:var(--surface-strong);color:var(--text-primary);font-size:14px;font-family:inherit;outline:none;">
+                        <input type="text" id="customNicheInput" placeholder="Enter custom niche (not in list above)..." maxlength="30" style="flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border-color);background:var(--surface-strong);color:var(--text-primary);font-size:14px;font-family:inherit;outline:none;">
                         <button type="button" id="addCustomNicheBtn" aria-label="Add custom niche" style="padding:10px 16px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-size:18px;cursor:pointer;transition:var(--transition);display:flex;align-items:center;justify-content:center;min-width:44px;height:44px;">
                             <i class="fas fa-plus" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <p style="font-size:11px;color:var(--text-muted);margin-top:5px;"><i class="fas fa-info-circle" aria-hidden="true"></i> Don't re-select your primary niche here. Use the input above to add custom niches.</p>
+                    <p style="font-size:11px;color:var(--text-muted);margin-top:5px;"><i class="fas fa-info-circle" aria-hidden="true"></i> Select up to 3 niches from the list, or add custom niches not listed above.</p>
                 </div>
                 
                 <div class="form-group">
@@ -420,49 +367,33 @@
                 <h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);padding-bottom:8px;">
                     <i class="fas fa-chart-bar" aria-hidden="true"></i> Social Media Stats
                 </h3>
-                <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;"><i class="fas fa-info-circle"></i> Fill in stats for the platforms you are active on. Per-platform avg views/likes/comments help brands evaluate your reach.</p>
+                <p style="font-size:13px;color:var(--text-muted);margin-bottom:14px;"><i class="fas fa-info-circle"></i> Fill in the follower/subscriber counts for your social media platforms.</p>
 
                 <div style="background:rgba(225,48,108,0.06);border:1px solid rgba(225,48,108,0.18);border-radius:10px;padding:12px 14px;margin-bottom:12px;">
                     <div style="font-size:13px;font-weight:600;color:#E1306C;margin-bottom:8px;"><i class="fab fa-instagram"></i> Instagram</div>
-                    <div class="form-row" style="margin-bottom:0;">
-                        <div class="form-group" style="margin-bottom:8px;"><label style="font-size:12px;">Followers</label><input type="number" id="instaFollowers" placeholder="0" min="0"></div>
-                        <div class="form-group" style="margin-bottom:8px;"><label style="font-size:12px;">Avg Reel Views</label><input type="number" id="avgViews" placeholder="0" min="0"></div>
-                    </div>
-                    <div class="form-row" style="margin-bottom:0;">
-                        <div class="form-group" style="margin-bottom:0;"><label style="font-size:12px;">Avg Likes</label><input type="number" id="instaAvgLikes" placeholder="0" min="0"></div>
-                        <div class="form-group" style="margin-bottom:0;"><label style="font-size:12px;">Avg Comments</label><input type="number" id="instaAvgComments" placeholder="0" min="0"></div>
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label style="font-size:12px;">Followers</label>
+                        <input type="number" id="instaFollowers" placeholder="0" min="0">
                     </div>
                 </div>
 
                 <div style="background:rgba(255,0,0,0.05);border:1px solid rgba(255,0,0,0.15);border-radius:10px;padding:12px 14px;margin-bottom:12px;">
                     <div style="font-size:13px;font-weight:600;color:#FF0000;margin-bottom:8px;"><i class="fab fa-youtube"></i> YouTube</div>
-                    <div class="form-row" style="margin-bottom:0;">
-                        <div class="form-group" style="margin-bottom:8px;"><label style="font-size:12px;">Subscribers</label><input type="number" id="ytSubs" placeholder="0" min="0"></div>
-                        <div class="form-group" style="margin-bottom:8px;"><label style="font-size:12px;">Avg Views</label><input type="number" id="ytAvgViews" placeholder="0" min="0"></div>
-                    </div>
-                    <div class="form-row" style="margin-bottom:0;">
-                        <div class="form-group" style="margin-bottom:0;"><label style="font-size:12px;">Avg Likes</label><input type="number" id="ytAvgLikes" placeholder="0" min="0"></div>
-                        <div class="form-group" style="margin-bottom:0;"><label style="font-size:12px;">Avg Comments</label><input type="number" id="ytAvgComments" placeholder="0" min="0"></div>
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label style="font-size:12px;">Subscribers</label>
+                        <input type="number" id="ytSubs" placeholder="0" min="0">
                     </div>
                 </div>
 
                 <div style="background:rgba(24,119,242,0.05);border:1px solid rgba(24,119,242,0.18);border-radius:10px;padding:12px 14px;margin-bottom:12px;">
                     <div style="font-size:13px;font-weight:600;color:#1877F2;margin-bottom:8px;"><i class="fab fa-facebook"></i> Facebook</div>
-                    <div class="form-row" style="margin-bottom:0;">
-                        <div class="form-group" style="margin-bottom:8px;"><label style="font-size:12px;">Followers</label><input type="number" id="fbFollowers" placeholder="0" min="0"></div>
-                        <div class="form-group" style="margin-bottom:8px;"><label style="font-size:12px;">Avg Views</label><input type="number" id="fbAvgViews" placeholder="0" min="0"></div>
-                    </div>
-                    <div class="form-row" style="margin-bottom:0;">
-                        <div class="form-group" style="margin-bottom:0;"><label style="font-size:12px;">Avg Likes</label><input type="number" id="fbAvgLikes" placeholder="0" min="0"></div>
-                        <div class="form-group" style="margin-bottom:0;"><label style="font-size:12px;">Avg Comments</label><input type="number" id="fbAvgComments" placeholder="0" min="0"></div>
+                    <div class="form-group" style="margin-bottom:0;">
+                        <label style="font-size:12px;">Followers</label>
+                        <input type="number" id="fbFollowers" placeholder="0" min="0">
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="engagementRate">Overall Engagement Rate (%)</label>
-                        <input type="number" step="0.1" id="engagementRate" placeholder="5.0" min="0" max="100">
-                    </div>
                     <div class="form-group">
                         <label for="turnaroundDays">Content Turnaround (days)</label>
                         <input type="number" id="turnaroundDays" placeholder="3" min="1" max="30">
@@ -504,32 +435,7 @@
                 </h3>
                 <div class="form-group">
                     <label for="pastBrands">Brands you've worked with <span style="font-size:11px;color:var(--text-muted);">— comma separated</span></label>
-                    <input type="text" id="pastBrands" placeholder="e.g. Haldiram's, Wow Skin, Local Restaurant">
-                </div>
-
-                <!-- Custom Links -->
-                <h3 style="margin-top:20px;margin-bottom:12px;font-size:16px;color:var(--text-secondary);border-bottom:1px solid var(--border-color);padding-bottom:8px;">
-                    <i class="fas fa-link" aria-hidden="true"></i> Profile / Contact Links <span style="font-weight:400;font-size:12px;color:var(--text-muted);">— optional, share your key links</span>
-                </h3>
-                <div class="form-row">
-                    <div class="form-group" style="margin-bottom:8px;">
-                        <label><i class="fab fa-facebook" style="color:#1877F2;"></i> Facebook Page/Group URL</label>
-                        <input type="url" id="portfolio1" placeholder="https://facebook.com/yourpage">
-                    </div>
-                    <div class="form-group" style="margin-bottom:8px;">
-                        <label><i class="fab fa-whatsapp" style="color:#25D366;"></i> WhatsApp Channel/Group URL</label>
-                        <input type="url" id="portfolio2" placeholder="https://whatsapp.com/channel/...">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group" style="margin-bottom:8px;">
-                        <label><i class="fab fa-instagram" style="color:#E1306C;"></i> Instagram Profile/Page URL</label>
-                        <input type="url" id="portfolio3" placeholder="https://instagram.com/yourhandle">
-                    </div>
-                    <div class="form-group" style="margin-bottom:8px;">
-                        <label><i class="fab fa-telegram" style="color:#229ED9;"></i> Telegram Group/Channel URL</label>
-                        <input type="url" id="portfolio4" placeholder="https://t.me/yourgroup">
-                    </div>
+                    <input type="text" id="pastBrands" placeholder="e.g. Haldiram's, Wow Skin, Local Restaurant, local hotel, local store">
                 </div>
                 
                 <!-- Service Charges -->
@@ -602,66 +508,6 @@
                     <div class="service-charge-row">
                         <div class="form-group" style="margin-bottom:0;">
                             <label style="font-size:11px;">Service Name</label>
-                            <input type="text" class="service-name-input" value="Feed Post" style="padding:8px 12px;font-size:13px;">
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label style="font-size:11px;">Charge (₹)</label>
-                            <input type="number" class="service-charge-input" placeholder="3000" style="padding:8px 12px;font-size:13px;">
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label style="font-size:11px;">Model</label>
-                            <select class="service-model-select" style="padding:8px 12px;font-size:13px;">
-                                <option value="fixed">Fixed</option>
-                                <option value="starting_from">Starting From</option>
-                                <option value="negotiable">Negotiable</option>
-                                <option value="range">Range</option>
-                            </select>
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label style="font-size:11px;">Min (₹)</label>
-                            <input type="number" class="service-min-input" placeholder="2000" style="padding:8px 12px;font-size:13px;">
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label style="font-size:11px;">Max (₹)</label>
-                            <input type="number" class="service-max-input" placeholder="4000" style="padding:8px 12px;font-size:13px;">
-                        </div>
-                        <button type="button" class="remove-service-btn" onclick="removeServiceRow(this)" style="margin-top:18px;" aria-label="Remove service">
-                            <i class="fas fa-trash" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                    <div class="service-charge-row">
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label style="font-size:11px;">Service Name</label>
-                            <input type="text" class="service-name-input" value="Professional Reel Shoot" style="padding:8px 12px;font-size:13px;">
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label style="font-size:11px;">Charge (₹)</label>
-                            <input type="number" class="service-charge-input" placeholder="4000" style="padding:8px 12px;font-size:13px;">
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label style="font-size:11px;">Model</label>
-                            <select class="service-model-select" style="padding:8px 12px;font-size:13px;">
-                                <option value="fixed">Fixed</option>
-                                <option value="starting_from" selected>Starting From</option>
-                                <option value="negotiable">Negotiable</option>
-                                <option value="range">Range</option>
-                            </select>
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label style="font-size:11px;">Min (₹)</label>
-                            <input type="number" class="service-min-input" placeholder="3000" style="padding:8px 12px;font-size:13px;">
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label style="font-size:11px;">Max (₹)</label>
-                            <input type="number" class="service-max-input" placeholder="6000" style="padding:8px 12px;font-size:13px;">
-                        </div>
-                        <button type="button" class="remove-service-btn" onclick="removeServiceRow(this)" style="margin-top:18px;" aria-label="Remove service">
-                            <i class="fas fa-trash" aria-hidden="true"></i>
-                        </button>
-                    </div>
-                    <div class="service-charge-row">
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label style="font-size:11px;">Service Name</label>
                             <input type="text" class="service-name-input" value="Brand Collaboration" style="padding:8px 12px;font-size:13px;">
                         </div>
                         <div class="form-group" style="margin-bottom:0;">
@@ -700,29 +546,104 @@
         </div>
     </div>
 
+    <!-- ===== MODAL (Brand) ===== -->
+    <div class="modal" id="brandModal" role="dialog" aria-modal="true" aria-label="List your store or brand">
+        <div class="modal-content" style="max-width:720px;">
+            <button class="close-modal" id="closeBrandModal" aria-label="Close brand form"><i class="fas fa-times" aria-hidden="true"></i></button>
+            <h2><i class="fas fa-store" aria-hidden="true"></i> List Your Store/Brand</h2>
+            <p>Add your promotion requirement so creators can discover your business on the main page.</p>
+            <form id="brandForm" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="brandName">Store / Brand Name *</label>
+                        <input type="text" id="brandName" required placeholder="Your business name">
+                    </div>
+                    <div class="form-group">
+                        <label for="brandCategory">Category *</label>
+                        <input type="text" id="brandCategory" required placeholder="Restaurant, Fashion, Salon, Cafe...">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="brandDistrict">District *</label>
+                        <input type="text" id="brandDistrict" required placeholder="Raipur">
+                    </div>
+                    <div class="form-group">
+                        <label for="brandCity">City / Area *</label>
+                        <input type="text" id="brandCity" required placeholder="Telibandha">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="brandContactName">Contact Person *</label>
+                        <input type="text" id="brandContactName" required placeholder="Owner or manager name">
+                    </div>
+                    <div class="form-group">
+                        <label for="brandWhatsapp">WhatsApp Number *</label>
+                        <input type="tel" id="brandWhatsapp" required placeholder="919999999999">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="brandBudget">Promotion Budget *</label>
+                        <select id="brandBudget" required>
+                            <option value="">Select budget range</option>
+                            <option value="Under ₹3K">Under ₹3K</option>
+                            <option value="₹3K - ₹10K">₹3K - ₹10K</option>
+                            <option value="₹10K - ₹25K">₹10K - ₹25K</option>
+                            <option value="₹25K+">₹25K+</option>
+                            <option value="Barter / Product Exchange">Barter / Product Exchange</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="brandGoal">Campaign Goal *</label>
+                        <select id="brandGoal" required>
+                            <option value="">Select goal</option>
+                            <option value="Store Footfall">Store Footfall</option>
+                            <option value="Product Promotion">Product Promotion</option>
+                            <option value="New Launch">New Launch</option>
+                            <option value="Event Promotion">Event Promotion</option>
+                            <option value="Brand Awareness">Brand Awareness</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="brandServicesNeeded">Creators / Services Needed *</label>
+                    <input type="text" id="brandServicesNeeded" required placeholder="Reel promotion, UGC video, store visit, food review">
+                </div>
+                <div class="form-group">
+                    <label for="brandDescription">Promotion Brief *</label>
+                    <textarea id="brandDescription" rows="4" required placeholder="Describe what you want promoted, target audience, timeline, and what kind of creator you need."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="brandInstagram">Instagram URL</label>
+                        <input type="url" id="brandInstagram" placeholder="https://instagram.com/yourbrand">
+                    </div>
+                    <div class="form-group">
+                        <label for="brandWebsite">Website / Google Map Link</label>
+                        <input type="url" id="brandWebsite" placeholder="https://yourbrand.com or Google Maps link">
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn"><i class="fas fa-paper-plane" aria-hidden="true"></i> Submit Brand Listing</button>
+            </form>
+        </div>
+    </div>
+
     <!-- ===== TOAST ===== -->
     <div id="toastContainer" role="alert" aria-live="polite"></div>
 
     <script>
-        // Show/hide "Other" text inputs for District and Niche selects
+        // Show/hide "Other" text inputs for District selects
         document.addEventListener('DOMContentLoaded', function() {
             const districtSel = document.getElementById('district');
             const districtOther = document.getElementById('districtOther');
-            const nicheSel = document.getElementById('niche');
-            const nicheOther = document.getElementById('nicheOther');
 
             districtSel.addEventListener('change', function() {
                 const show = this.value === 'Other';
                 districtOther.style.display = show ? 'block' : 'none';
                 districtOther.required = show;
                 if (!show) districtOther.value = '';
-            });
-
-            nicheSel.addEventListener('change', function() {
-                const show = this.value === 'Other';
-                nicheOther.style.display = show ? 'block' : 'none';
-                nicheOther.required = show;
-                if (!show) nicheOther.value = '';
             });
         });
     </script>

@@ -1,9 +1,12 @@
 // ===== CONFIG =====
 const ADMIN_WHATSAPP = '917734906606'; // Admin WhatsApp number (with country code)
+const BRAND_ADMIN_WHATSAPP = '7734906606';
+const BRAND_DATA_URL = 'brand.json';
 
 // ===== MAIN APPLICATION =====
 let creatorsData = [];
 let filtered = [];
+let promotionsData = [];
 let userLocation = null;
 let gpsReady = false;
 let nearMeActive = false;
@@ -30,12 +33,20 @@ const nearMeBtn = document.getElementById('nearmeBtn');
 const nearMeMenu = document.getElementById('nearMeMenu');
 const listProfileBtn = document.getElementById('listProfileBtn');
 const listProfileDesktop = document.getElementById('listProfileDesktop');
+const listBrandBtn = document.getElementById('listBrandBtn');
+const listBrandDesktop = document.getElementById('listBrandDesktop');
+const listBrandInline = document.getElementById('listBrandInline');
 const profileModal = document.getElementById('profileModal');
 const joinModal = document.getElementById('joinModal');
+const brandModal = document.getElementById('brandModal');
 const closeProfileModal = document.getElementById('closeProfileModal');
 const closeJoinModal = document.getElementById('closeJoinModal');
+const closeBrandModal = document.getElementById('closeBrandModal');
 const modalBody = document.getElementById('modalBody');
 const joinForm = document.getElementById('joinForm');
+const brandForm = document.getElementById('brandForm');
+const promotionGrid = document.getElementById('promotionGrid');
+const promotionCount = document.getElementById('promotionCount');
 
 // side filters
 const sideDistrict = document.getElementById('sideDistrict');
@@ -61,6 +72,36 @@ function showToast(msg, type = 'info') {
     setTimeout(() => { el.remove(); }, 4000);
 }
 
+// ===== NICHE COUNTER & LIMIT FUNCTIONS =====
+function updateNicheCounter() {
+    const checked = document.querySelectorAll('.niche-cb:checked');
+    const count = checked.length;
+    const counter = document.getElementById('nicheCounter');
+    if (counter) counter.textContent = count;
+    
+    // Disable/enable checkboxes based on limit
+    const allCheckboxes = document.querySelectorAll('.niche-cb');
+    if (count >= 3) {
+        allCheckboxes.forEach(cb => {
+            if (!cb.checked) {
+                cb.disabled = true;
+                const label = cb.closest('.niche-check-label');
+                if (label) label.classList.add('disabled');
+                const customLabel = cb.closest('.niche-tag-custom');
+                if (customLabel) customLabel.classList.add('disabled');
+            }
+        });
+    } else {
+        allCheckboxes.forEach(cb => {
+            cb.disabled = false;
+            const label = cb.closest('.niche-check-label');
+            if (label) label.classList.remove('disabled');
+            const customLabel = cb.closest('.niche-tag-custom');
+            if (customLabel) customLabel.classList.remove('disabled');
+        });
+    }
+}
+
 // ===== CUSTOM NICHE FUNCTIONS =====
 function addCustomNiche() {
     const input = document.getElementById('customNicheInput');
@@ -75,6 +116,15 @@ function addCustomNiche() {
         return;
     }
     
+    // Check current selected count
+    const defaultChecked = document.querySelectorAll('.niche-cb:checked').length;
+    const totalSelected = defaultChecked;
+    
+    if (totalSelected >= 3) {
+        showToast('⚠️ You can only select up to 3 niches total', 'warning');
+        return;
+    }
+    
     // Check if already exists in custom list
     const existing = customNiches.find(n => n.toLowerCase() === value.toLowerCase());
     if (existing) {
@@ -84,7 +134,7 @@ function addCustomNiche() {
     }
     
     // Check if it's already in the default list
-    const defaultLabels = document.querySelectorAll('.extra-niche-cb');
+    const defaultLabels = document.querySelectorAll('.niche-cb');
     let alreadyDefault = false;
     defaultLabels.forEach(cb => {
         if (cb.value.toLowerCase() === value.toLowerCase()) {
@@ -101,6 +151,7 @@ function addCustomNiche() {
     renderCustomNiches();
     input.value = '';
     updateCustomNicheCounter();
+    updateNicheCounter();
     showToast('✅ Added "' + value + '" niche', 'success');
 }
 
@@ -108,10 +159,11 @@ function removeCustomNiche(value) {
     customNiches = customNiches.filter(n => n !== value);
     renderCustomNiches();
     updateCustomNicheCounter();
+    updateNicheCounter();
 }
 
 function renderCustomNiches() {
-    const container = document.getElementById('additionalNichesContainer');
+    const container = document.getElementById('nichesContainer');
     // Remove existing custom tags (keep default ones)
     container.querySelectorAll('.niche-tag-custom').forEach(el => el.remove());
     
@@ -119,7 +171,7 @@ function renderCustomNiches() {
         const label = document.createElement('label');
         label.className = 'niche-tag-custom';
         label.innerHTML = `
-            <input type="checkbox" class="extra-niche-cb" value="${niche}">
+            <input type="checkbox" class="niche-cb" value="${niche}" checked>
             🏷️ ${niche}
             <span class="remove-custom-niche" onclick="event.stopPropagation(); removeCustomNiche('${niche}')">×</span>
         `;
@@ -128,7 +180,7 @@ function renderCustomNiches() {
 }
 
 function updateCustomNicheCounter() {
-    const container = document.getElementById('additionalNichesContainer');
+    const container = document.getElementById('nichesContainer');
     const count = customNiches.length;
     // Remove existing counter if any
     const existingCounter = container.querySelector('.custom-niche-counter');
@@ -145,7 +197,7 @@ function updateCustomNicheCounter() {
 
 function getAllSelectedNiches() {
     const selected = [];
-    document.querySelectorAll('.extra-niche-cb:checked').forEach(cb => {
+    document.querySelectorAll('.niche-cb:checked').forEach(cb => {
         selected.push(cb.value);
     });
     return selected;
@@ -265,6 +317,28 @@ function clearFilters() {
     showToast('🗑️ Filters cleared', 'info');
 }
 
+function normalizeWhatsAppNumber(number) {
+    const digits = (number || '').toString().replace(/\D/g, '');
+    if (digits.length === 10) return `91${digits}`;
+    return digits;
+}
+
+async function loadPromotions() {
+    try {
+        const res = await fetch(BRAND_DATA_URL);
+        if (!res.ok) throw new Error('Could not load brand.json');
+        const data = await res.json();
+        promotionsData = data.brands || data.promotions || [];
+        renderPromotions();
+    } catch (e) {
+        promotionsData = [];
+        if (promotionGrid) {
+            promotionGrid.innerHTML = `<div class="empty-state"><i class="fas fa-store-slash"></i><p>Unable to load brand listings.</p><p style="font-size:13px;color:var(--text-muted);margin-top:8px;">Add entries to <strong>brand.json</strong> or use the brand converter page.</p></div>`;
+        }
+        if (promotionCount) promotionCount.textContent = '0 listings';
+    }
+}
+
 // ===== LOAD DATA WITH RETRY =====
 async function loadData(retries = 3) {
     try {
@@ -281,6 +355,7 @@ async function loadData(retries = 3) {
         populateSideFilters();
         loadFilters();
         render();
+        loadPromotions();
         getUserLocationSilent();
         showToast('✅ ' + creatorsData.length + ' creators loaded successfully!', 'success');
     } catch (e) {
@@ -294,6 +369,48 @@ async function loadData(retries = 3) {
             showToast('⚠️ Could not load creators.json. Check console for details.', 'warning');
         }
     }
+}
+
+function renderPromotions() {
+    if (!promotionGrid || !promotionCount) return;
+
+    promotionCount.textContent = `${promotionsData.length} listings`;
+
+    if (!promotionsData.length) {
+        promotionGrid.innerHTML = '<div class="empty-state"><i class="fas fa-store-slash"></i><p>No promotion listings yet. Add the first one.</p></div>';
+        return;
+    }
+
+    promotionGrid.innerHTML = promotionsData.map(item => `
+        <article class="promotion-card" role="listitem">
+            <div class="promotion-card-head">
+                <div>
+                    <div class="promotion-card-title">${item.brandName}</div>
+                    <div class="promotion-card-category">${item.category}</div>
+                </div>
+                <span class="promotion-budget-badge">${item.budget}</span>
+            </div>
+            <div class="promotion-meta">
+                <span class="promotion-pill"><i class="fas fa-bullseye"></i> ${item.goal}</span>
+                <span class="promotion-pill"><i class="fas fa-map-marker-alt"></i> ${item.district}, ${item.city}</span>
+            </div>
+            <div class="promotion-desc">${item.description}</div>
+            <div class="promotion-services"><strong>Needed:</strong> ${item.servicesNeeded}</div>
+            <div class="promotion-footer">
+                <div class="promotion-contact">
+                    <div><i class="fas fa-user-tie"></i> ${item.contactName}</div>
+                    <div><i class="fas fa-calendar-alt"></i> ${item.createdAt}</div>
+                </div>
+                <div class="promotion-actions">
+                    <a class="promotion-link-btn primary" href="https://wa.me/${normalizeWhatsAppNumber(item.whatsapp)}" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i> Contact
+                    </a>
+                    ${item.instagram ? `<a class="promotion-link-btn secondary" href="${item.instagram}" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>` : ''}
+                    ${item.website ? `<a class="promotion-link-btn secondary" href="${item.website}" target="_blank" rel="noopener noreferrer"><i class="fas fa-link"></i> Link</a>` : ''}
+                </div>
+            </div>
+        </article>
+    `).join('');
 }
 
 function populateSideFilters() {
@@ -428,20 +545,8 @@ function getRelevanceScore(creator, query) {
 
 // ===== SORTING FUNCTION =====
 function sortCreators(creators, searchQuery = '') {
-    const premium = [];
-    const featured = [];
-    const regular = [];
-    
-    creators.forEach(c => {
-        if (c.featured && c.verified) {
-            premium.push(c);
-        } else if (c.featured) {
-            featured.push(c);
-        } else {
-            regular.push(c);
-        }
-    });
-    
+    const result = [...creators];
+
     const sortByRelevance = (a, b) => {
         if (searchQuery) {
             const scoreA = getRelevanceScore(a, searchQuery);
@@ -450,7 +555,7 @@ function sortCreators(creators, searchQuery = '') {
         }
         return a.name.localeCompare(b.name);
     };
-    
+
     if (nearMeActive && userLocation) {
         // Cache distances once — avoids recalculating on every sort comparison
         const distCache = new Map();
@@ -470,16 +575,12 @@ function sortCreators(creators, searchQuery = '') {
             return getDist(a) - getDist(b);
         };
 
-        premium.sort(sortByDistRelevance);
-        featured.sort(sortByDistRelevance);
-        regular.sort(sortByDistRelevance);
+        result.sort(sortByDistRelevance);
     } else {
-        premium.sort(sortByRelevance);
-        featured.sort(sortByRelevance);
-        regular.sort(sortByRelevance);
+        result.sort(sortByRelevance);
     }
-    
-    return [...premium, ...featured, ...regular];
+
+    return result;
 }
 
 // ===== RENDER SINGLE CREATOR CARD =====
@@ -492,9 +593,6 @@ function renderCreatorCard(creator, dist, q) {
     }
     const avatar = `<div class="avatar-inner">${avatarContent}</div>`;
     const nicheEmoji = getEmoji(creator.niche);
-
-    const isPremium = creator.featured && creator.verified;
-    const isFeaturedOnly = creator.featured && !creator.verified;
 
     let relevanceBadge = '';
     if (q) {
@@ -523,8 +621,7 @@ function renderCreatorCard(creator, dist, q) {
                 <div class="creator-info">
                     <div class="creator-name">
                         ${creator.name}
-                        ${isPremium ? ' <i class="fas fa-crown" style="color:#FFD700;font-size:14px;"></i>' : ''}
-                        ${isFeaturedOnly ? ' <i class="fas fa-star" style="color:#FFD700;font-size:14px;"></i>' : ''}
+                        ${creator.verified ? getVerifiedBadge(14) : ''}
                         ${relevanceBadge}
                     </div>
                     <div class="creator-niche">${nicheEmoji} ${creator.niche}</div>
@@ -553,7 +650,6 @@ function renderCreatorCard(creator, dist, q) {
                 ` : `
                     <span class="social-link"><i class="fab fa-facebook"></i> <span class="count">${formatNum(creator.facebookFollowers)}</span></span>
                 `}
-                <span class="engagement-badge"><i class="fas fa-bolt"></i> ${creator.engagementRate}%</span>
             </div>
             ${(creator.isUGCCreator || creator.barter) ? `<div style="display:flex;gap:4px;margin:3px 0;">${creator.isUGCCreator ? '<span style="background:rgba(76,175,80,0.12);color:#4CAF50;padding:2px 8px;border-radius:50px;font-size:10px;font-weight:600;"><i class="fas fa-film"></i> UGC</span>' : ''}${creator.barter ? '<span style="background:rgba(255,165,0,0.12);color:#FFA500;padding:2px 8px;border-radius:50px;font-size:10px;font-weight:600;"><i class="fas fa-exchange-alt"></i> Barter</span>' : ''}</div>` : ''}
         `;
@@ -606,8 +702,7 @@ function renderCreatorCard(creator, dist, q) {
             <div class="creator-info">
                 <div class="creator-name">
                     ${creator.name}
-                    ${isPremium ? ' <i class="fas fa-crown" style="color:#FFD700;font-size:14px;"></i>' : ''}
-                    ${isFeaturedOnly ? ' <i class="fas fa-star" style="color:#FFD700;font-size:14px;"></i>' : ''}
+                    ${creator.verified ? getVerifiedBadge(14) : ''}
                     ${relevanceBadge}
                 </div>
                 <div class="creator-niche">${nicheEmoji} ${creator.niche}</div>
@@ -636,10 +731,6 @@ function renderCreatorCard(creator, dist, q) {
             ` : `
                 <span class="social-link"><i class="fab fa-facebook"></i> <span class="count">${formatNum(creator.facebookFollowers)}</span></span>
             `}
-            <span class="engagement-badge"><i class="fas fa-bolt"></i> ${creator.engagementRate}%</span>
-        </div>
-        <div style="font-size:13px;color:var(--text-secondary);margin:4px 0;">
-            <i class="fas fa-eye"></i> Avg Views: ${formatNum(creator.avgReelViews)}
         </div>
         ${pricingHTML}
         ${servicesHTML}
@@ -700,7 +791,7 @@ function render() {
     if (hasActiveFilter) {
         const filteredIds = new Set(result.map(c => c.id));
         otherCreators = creatorsData.filter(c => !filteredIds.has(c.id));
-        // Sort others: premium (featured+verified) → star (featured only) → distance
+        // Sort remaining creators by distance/relevance
         otherCreators = sortCreators(otherCreators, '');
     }
 
@@ -824,6 +915,14 @@ function calcDist(lat1, lng1, lat2, lng2) {
     return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
+// ===== VERIFIED BADGE (Twitter-style blue tick) =====
+function getVerifiedBadge(size = 16) {
+    return `<svg class="verified-badge" width="${size}" height="${size}" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-left:3px;">
+        <path d="M11 0L13.35 1.69L16.24 1.4L17.09 4.18L19.6 5.65L18.79 8.4L20.5 10.74L18.79 13.08L19.6 15.83L17.09 17.3L16.24 20.08L13.35 19.79L11 21.48L8.65 19.79L5.76 20.08L4.91 17.3L2.4 15.83L3.21 13.08L1.5 10.74L3.21 8.4L2.4 5.65L4.91 4.18L5.76 1.4L8.65 1.69L11 0Z" fill="#1D9BF0"/>
+        <path d="M7.5 11L9.75 13.25L14.5 8.5" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`;
+}
+
 function formatNum(n) {
     if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
     if (n >= 1e3) return (n / 1e3).toFixed(1) + 'K';
@@ -873,8 +972,6 @@ function openProfile(id) {
     if (!c) return;
 
     const dist = userLocation ? calcDist(userLocation.lat, userLocation.lng, c.latitude, c.longitude) : null;
-    const isPremium = c.featured && c.verified;
-    const isFeaturedOnly = c.featured && !c.verified;
 
     let socialLinksHTML = '';
     if (c.socialLinks) {
@@ -937,9 +1034,7 @@ function openProfile(id) {
                             ${profileImgHtml}
                         </div>
                     </div>
-                    <h3 style="font-size:22px;">${c.name}</h3>
-                    ${isPremium ? '<div style="background:linear-gradient(135deg,#FFD700,#FFA500);color:#1A1A2E;padding:4px 16px;border-radius:50px;font-weight:700;display:inline-block;font-size:13px;margin-bottom:4px;"><i class="fas fa-crown"></i> Premium</div>' : ''}
-                    ${isFeaturedOnly ? '<div style="background:linear-gradient(135deg,#6C63FF,#5A52D5);color:#fff;padding:4px 16px;border-radius:50px;font-weight:700;display:inline-block;font-size:13px;margin-bottom:4px;"><i class="fas fa-star"></i> Featured</div>' : ''}
+                    <h3 style="font-size:22px;">${c.name}${c.verified ? getVerifiedBadge(18) : ''}</h3>
                     <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:6px 0;">
                         ${c.isUGCCreator ? '<span style="background:rgba(76,175,80,0.15);color:#4CAF50;padding:3px 12px;border-radius:50px;font-size:12px;font-weight:600;"><i class="fas fa-film"></i> UGC Creator</span>' : ''}
                         ${c.barter ? '<span style="background:rgba(255,165,0,0.15);color:#FFA500;padding:3px 12px;border-radius:50px;font-size:12px;font-weight:600;"><i class="fas fa-exchange-alt"></i> Open to Barter</span>' : ''}
@@ -957,65 +1052,25 @@ function openProfile(id) {
                     ${(c.languages && c.languages.length > 0) ? `<div style="font-size:12px;color:var(--text-muted);margin-top:4px;"><i class="fas fa-language"></i> ${c.languages.join(' • ')}</div>` : ''}
                     <p style="color:var(--text-secondary);font-size:14px;margin:12px 0;">${c.description || ''}</p>
 
-                    <!-- Platform Stats -->
-                    ${c.platformStats ? `
+                    <!-- Platform Stats - Only Followers/Subscribers -->
                     <h4 style="text-align:left;margin:16px 0 8px;">📊 Platform Statistics</h4>
-                    <div style="display:grid;grid-template-columns:1fr;gap:8px;margin:0 0 12px;">
-                        ${c.platformStats.instagram && (c.instagramFollowers || c.platformStats.instagram.followers) ? `
-                        <div style="background:rgba(225,48,108,0.07);border:1px solid rgba(225,48,108,0.18);border-radius:10px;padding:10px 12px;">
-                            <div style="font-size:12px;font-weight:700;color:#E1306C;margin-bottom:6px;"><i class="fab fa-instagram"></i> Instagram</div>
-                            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;">
-                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.instagramFollowers || c.platformStats.instagram.followers)}</div><div style="font-size:10px;color:var(--text-muted);">Followers</div></div>
-                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.platformStats.instagram.avgViews || c.avgReelViews || 0)}</div><div style="font-size:10px;color:var(--text-muted);">Avg Views</div></div>
-                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.platformStats.instagram.avgLikes || 0)}</div><div style="font-size:10px;color:var(--text-muted);">Avg Likes</div></div>
-                                <div><div style="font-weight:700;font-size:14px;">${c.platformStats.instagram.engagementRate || c.engagementRate || 0}%</div><div style="font-size:10px;color:var(--text-muted);">ER</div></div>
-                            </div>
-                        </div>` : ''}
-                        ${c.platformStats.youtube && (c.youtubeSubscribers || c.platformStats.youtube.subscribers) ? `
-                        <div style="background:rgba(255,0,0,0.06);border:1px solid rgba(255,0,0,0.15);border-radius:10px;padding:10px 12px;">
-                            <div style="font-size:12px;font-weight:700;color:#FF0000;margin-bottom:6px;"><i class="fab fa-youtube"></i> YouTube</div>
-                            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;">
-                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.youtubeSubscribers || c.platformStats.youtube.subscribers)}</div><div style="font-size:10px;color:var(--text-muted);">Subs</div></div>
-                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.platformStats.youtube.avgViews || 0)}</div><div style="font-size:10px;color:var(--text-muted);">Avg Views</div></div>
-                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.platformStats.youtube.avgLikes || 0)}</div><div style="font-size:10px;color:var(--text-muted);">Avg Likes</div></div>
-                                <div><div style="font-weight:700;font-size:14px;">${c.platformStats.youtube.engagementRate || 0}%</div><div style="font-size:10px;color:var(--text-muted);">ER</div></div>
-                            </div>
-                        </div>` : ''}
-                        ${c.platformStats.facebook && (c.facebookFollowers || c.platformStats.facebook.followers) ? `
-                        <div style="background:rgba(24,119,242,0.06);border:1px solid rgba(24,119,242,0.15);border-radius:10px;padding:10px 12px;">
-                            <div style="font-size:12px;font-weight:700;color:#1877F2;margin-bottom:6px;"><i class="fab fa-facebook"></i> Facebook</div>
-                            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;">
-                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.facebookFollowers || c.platformStats.facebook.followers)}</div><div style="font-size:10px;color:var(--text-muted);">Followers</div></div>
-                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.platformStats.facebook.avgViews || 0)}</div><div style="font-size:10px;color:var(--text-muted);">Avg Views</div></div>
-                                <div><div style="font-weight:700;font-size:14px;">${formatNum(c.platformStats.facebook.avgLikes || 0)}</div><div style="font-size:10px;color:var(--text-muted);">Avg Likes</div></div>
-                                <div><div style="font-weight:700;font-size:14px;">${c.platformStats.facebook.engagementRate || 0}%</div><div style="font-size:10px;color:var(--text-muted);">ER</div></div>
-                            </div>
-                        </div>` : ''}
-                    </div>` : `
                     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0;">
-                        <div style="background:var(--surface-soft);padding:8px;border-radius:8px;border:1px solid var(--border-color);">
-                            <div style="font-weight:700;">${formatNum(c.instagramFollowers)}</div>
-                            <div style="font-size:11px;color:var(--text-muted);">Instagram</div>
+                        <div style="background:rgba(225,48,108,0.07);border:1px solid rgba(225,48,108,0.18);border-radius:10px;padding:10px 12px;text-align:center;">
+                            <div style="font-size:12px;font-weight:700;color:#E1306C;"><i class="fab fa-instagram"></i> Instagram</div>
+                            <div style="font-weight:700;font-size:18px;margin-top:4px;">${formatNum(c.instagramFollowers || 0)}</div>
+                            <div style="font-size:10px;color:var(--text-muted);">Followers</div>
                         </div>
-                        <div style="background:var(--surface-soft);padding:8px;border-radius:8px;border:1px solid var(--border-color);">
-                            <div style="font-weight:700;">${formatNum(c.youtubeSubscribers)}</div>
-                            <div style="font-size:11px;color:var(--text-muted);">YouTube</div>
+                        <div style="background:rgba(255,0,0,0.06);border:1px solid rgba(255,0,0,0.15);border-radius:10px;padding:10px 12px;text-align:center;">
+                            <div style="font-size:12px;font-weight:700;color:#FF0000;"><i class="fab fa-youtube"></i> YouTube</div>
+                            <div style="font-weight:700;font-size:18px;margin-top:4px;">${formatNum(c.youtubeSubscribers || 0)}</div>
+                            <div style="font-size:10px;color:var(--text-muted);">Subscribers</div>
                         </div>
-                        <div style="background:var(--surface-soft);padding:8px;border-radius:8px;border:1px solid var(--border-color);">
-                            <div style="font-weight:700;">${formatNum(c.facebookFollowers)}</div>
-                            <div style="font-size:11px;color:var(--text-muted);">Facebook</div>
+                        <div style="background:rgba(24,119,242,0.06);border:1px solid rgba(24,119,242,0.15);border-radius:10px;padding:10px 12px;text-align:center;">
+                            <div style="font-size:12px;font-weight:700;color:#1877F2;"><i class="fab fa-facebook"></i> Facebook</div>
+                            <div style="font-weight:700;font-size:18px;margin-top:4px;">${formatNum(c.facebookFollowers || 0)}</div>
+                            <div style="font-size:10px;color:var(--text-muted);">Followers</div>
                         </div>
                     </div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0;">
-                        <div style="background:var(--surface-soft);padding:8px;border-radius:8px;border:1px solid var(--border-color);">
-                            <div style="font-weight:700;">${formatNum(c.avgReelViews)}</div>
-                            <div style="font-size:11px;color:var(--text-muted);">Avg Reel Views</div>
-                        </div>
-                        <div style="background:var(--surface-soft);padding:8px;border-radius:8px;border:1px solid var(--border-color);">
-                            <div style="font-weight:700;">${c.engagementRate}%</div>
-                            <div style="font-size:11px;color:var(--text-muted);">Engagement Rate</div>
-                        </div>
-                    </div>`}
 
                     ${c.audienceInsights && (c.audienceInsights.ageGroup || (c.audienceInsights.topLocations && c.audienceInsights.topLocations.length > 0)) ? `
                     <h4 style="text-align:left;margin:16px 0 8px;">👥 Audience Insights</h4>
@@ -1030,15 +1085,6 @@ function openProfile(id) {
                     <h4 style="text-align:left;margin:16px 0 8px;">🤝 Past Brand Collaborations</h4>
                     <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;">
                         ${c.pastBrands.map(b => `<span style="background:rgba(255,215,0,0.12);color:var(--accent);padding:4px 14px;border-radius:50px;font-size:12px;border:1px solid rgba(255,215,0,0.2);">🏢 ${b}</span>`).join('')}
-                    </div>` : ''}
-
-                    ${c.customLinks && (c.customLinks.facebook || c.customLinks.whatsapp || c.customLinks.instagram || c.customLinks.telegram) ? `
-                    <h4 style="text-align:left;margin:16px 0 8px;">🔗 Profile & Contact Links</h4>
-                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
-                        ${c.customLinks.facebook ? `<a href="${c.customLinks.facebook}" target="_blank" style="background:rgba(24,119,242,0.12);color:#1877F2;padding:6px 16px;border-radius:50px;font-size:12px;text-decoration:none;border:1px solid rgba(24,119,242,0.2);"><i class="fab fa-facebook"></i> Facebook</a>` : ''}
-                        ${c.customLinks.whatsapp ? `<a href="${c.customLinks.whatsapp}" target="_blank" style="background:rgba(37,211,102,0.12);color:#25D366;padding:6px 16px;border-radius:50px;font-size:12px;text-decoration:none;border:1px solid rgba(37,211,102,0.2);"><i class="fab fa-whatsapp"></i> WhatsApp</a>` : ''}
-                        ${c.customLinks.instagram ? `<a href="${c.customLinks.instagram}" target="_blank" style="background:rgba(225,48,108,0.12);color:#E1306C;padding:6px 16px;border-radius:50px;font-size:12px;text-decoration:none;border:1px solid rgba(225,48,108,0.2);"><i class="fab fa-instagram"></i> Instagram</a>` : ''}
-                        ${c.customLinks.telegram ? `<a href="${c.customLinks.telegram}" target="_blank" style="background:rgba(34,158,217,0.12);color:#229ED9;padding:6px 16px;border-radius:50px;font-size:12px;text-decoration:none;border:1px solid rgba(34,158,217,0.2);"><i class="fab fa-telegram"></i> Telegram</a>` : ''}
                     </div>` : ''}
 
                     ${c.pricingInfo ? `
@@ -1059,10 +1105,6 @@ function openProfile(id) {
                     </div>
 
                     <div style="background:var(--surface-soft);padding:10px;border-radius:8px;margin:8px 0;border:1px solid var(--border-color);">
-                        <p style="font-size:13px;color:var(--text-secondary);">
-                            <i class="fas fa-map-marker-alt" style="color:var(--primary);"></i> 
-                            Available in: ${c.availableDistricts ? c.availableDistricts.join(', ') : 'N/A'}
-                        </p>
                         ${c.responseTime ? `<p style="font-size:12px;color:var(--text-muted);margin-top:4px;"><i class="fas fa-clock"></i> Response: ${c.responseTime}${c.turnaroundDays ? ' • Turnaround: ' + c.turnaroundDays + ' days' : ''}</p>` : ''}
                         ${(c.profileLastUpdated) ? `<p style="font-size:11px;color:var(--text-muted);margin-top:2px;"><i class="fas fa-calendar-check"></i> Updated: ${c.profileLastUpdated}</p>` : ''}
                     </div>
@@ -1085,7 +1127,7 @@ function openProfile(id) {
 function contactWhatsApp(num, name) {
     if (!num) { showToast('⚠️ No WhatsApp number', 'warning'); return; }
     const greeting = `Hi ${name}! 👋 I came across your profile on CG Creators and I'm interested in your services.`;
-    const url = `https://wa.me/${num}?text=${encodeURIComponent(greeting)}`;
+    const url = `https://wa.me/${normalizeWhatsAppNumber(num)}?text=${encodeURIComponent(greeting)}`;
     
     // Try opening in new window
     const win = window.open(url, '_blank');
@@ -1153,6 +1195,15 @@ function closeMenu() {
     sideMenu.classList.remove('open');
     overlay.classList.remove('active');
 }
+
+function openBrandModal() {
+    if (brandModal) brandModal.classList.add('open');
+}
+
+function closeBrandListingModal() {
+    if (brandModal) brandModal.classList.remove('open');
+}
+
 menuToggle.addEventListener('click', openMenu);
 closeMenuBtn.addEventListener('click', closeMenu);
 overlay.addEventListener('click', closeMenu);
@@ -1212,9 +1263,6 @@ applySideFilters.addEventListener('click', () => {
     showToast('✅ Filters applied', 'success');
 });
 
-// ===== CLEAR FILTERS =====
-
-
 // ===== VIEW TOGGLE =====
 const viewToggleBtns = document.querySelectorAll('.view-toggle-btn');
 viewToggleBtns.forEach(btn => {
@@ -1229,8 +1277,6 @@ viewToggleBtns.forEach(btn => {
     });
 });
 
-
-
 // ===== LIST PROFILE =====
 listProfileBtn.addEventListener('click', () => {
     joinModal.classList.add('open');
@@ -1241,14 +1287,22 @@ listProfileDesktop.addEventListener('click', () => {
     joinModal.classList.add('open');
 });
 
+[listBrandBtn, listBrandDesktop, listBrandInline].forEach(btn => {
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+        openBrandModal();
+        closeMenu();
+    });
+});
+
 closeJoinModal.addEventListener('click', () => joinModal.classList.remove('open'));
 closeProfileModal.addEventListener('click', () => profileModal.classList.remove('open'));
+if (closeBrandModal) closeBrandModal.addEventListener('click', closeBrandListingModal);
 window.addEventListener('click', (e) => {
     if (e.target === profileModal) profileModal.classList.remove('open');
     if (e.target === joinModal) joinModal.classList.remove('open');
+    if (e.target === brandModal) closeBrandListingModal();
 });
-
-
 
 // ===== JOIN FORM =====
 joinForm.addEventListener('submit', (e) => {
@@ -1261,10 +1315,6 @@ joinForm.addEventListener('submit', (e) => {
         ? (document.getElementById('districtOther').value.trim() || 'Other')
         : districtRaw;
     const city = document.getElementById('city').value.trim();
-    const nicheRaw = document.getElementById('niche').value;
-    const niche = nicheRaw === 'Other'
-        ? (document.getElementById('nicheOther').value.trim() || 'Other')
-        : nicheRaw;
     const desc = document.getElementById('description').value.trim();
     const instaLink = document.getElementById('instagramLink').value.trim();
     const ytLink = document.getElementById('youtubeLink').value.trim();
@@ -1279,16 +1329,6 @@ joinForm.addEventListener('submit', (e) => {
     const instaFol = document.getElementById('instaFollowers').value || '0';
     const ytSubs = document.getElementById('ytSubs').value || '0';
     const fbFol = document.getElementById('fbFollowers').value || '0';
-    const avgViews = document.getElementById('avgViews').value || '0';
-    const engagementRate = document.getElementById('engagementRate').value || '0';
-    const instaAvgLikes = document.getElementById('instaAvgLikes')?.value || '0';
-    const instaAvgComments = document.getElementById('instaAvgComments')?.value || '0';
-    const ytAvgViews = document.getElementById('ytAvgViews')?.value || '0';
-    const ytAvgLikes = document.getElementById('ytAvgLikes')?.value || '0';
-    const ytAvgComments = document.getElementById('ytAvgComments')?.value || '0';
-    const fbAvgViews = document.getElementById('fbAvgViews')?.value || '0';
-    const fbAvgLikes = document.getElementById('fbAvgLikes')?.value || '0';
-    const fbAvgComments = document.getElementById('fbAvgComments')?.value || '0';
     const xLink = document.getElementById('xLink')?.value.trim() || '';
     const threadLink = document.getElementById('threadLink')?.value.trim() || '';
     const snapchatLink = document.getElementById('snapchatLink')?.value.trim() || '';
@@ -1297,20 +1337,12 @@ joinForm.addEventListener('submit', (e) => {
     const audienceGenderMale = document.getElementById('audienceGenderMale')?.value || '';
     const audienceLocations = document.getElementById('audienceLocations')?.value.trim() || '';
     const pastBrands = document.getElementById('pastBrands')?.value.trim() || '';
-    const customLinkFb = document.getElementById('portfolio1')?.value.trim() || '';
-    const customLinkWa = document.getElementById('portfolio2')?.value.trim() || '';
-    const customLinkIg = document.getElementById('portfolio3')?.value.trim() || '';
-    const customLinkTg = document.getElementById('portfolio4')?.value.trim() || '';
 
-    // Collect available districts
-    const availDistChecked = [...document.querySelectorAll('.avail-district-cb:checked')].map(cb => cb.value);
-    const availDistText = availDistChecked.length > 0 ? availDistChecked.join(', ') : district;
-
-    // Collect additional niches (including custom ones)
-    const extraNiches = getAllSelectedNiches();
+    // Collect niches (including custom ones)
+    const selectedNiches = getAllSelectedNiches();
     const allCustomNiches = customNiches;
-    const finalExtraNiches = [...new Set([...extraNiches, ...allCustomNiches])];
-    const finalExtraNichesText = finalExtraNiches.length > 0 ? finalExtraNiches.join(', ') : 'None';
+    const finalNiches = [...new Set([...selectedNiches, ...allCustomNiches])];
+    const finalNichesText = finalNiches.length > 0 ? finalNiches.join(', ') : 'None';
 
     const serviceCharges = getServiceCharges();
     let serviceChargesText = '';
@@ -1331,10 +1363,6 @@ joinForm.addEventListener('submit', (e) => {
         });
     }
 
-    const customLinksText = [customLinkFb && `• Facebook: ${customLinkFb}`, customLinkWa && `• WhatsApp: ${customLinkWa}`, customLinkIg && `• Instagram: ${customLinkIg}`, customLinkTg && `• Telegram: ${customLinkTg}`].filter(Boolean);
-    const portfolioText = customLinksText.length > 0
-        ? '\n🔗 *Profile & Contact Links:*\n' + customLinksText.join('\n')
-        : '';
     const optionalSocials = [xLink && `• X: ${xLink}`, threadLink && `• Threads: ${threadLink}`, snapchatLink && `• Snapchat: ${snapchatLink}`, twitterLink && `• Twitter: ${twitterLink}`].filter(Boolean).join('\n');
 
     const msg =
@@ -1345,9 +1373,7 @@ joinForm.addEventListener('submit', (e) => {
         `${creatorGender ? '👤 *Gender:* ' + creatorGender + '\n' : ''}` +
         `🗣️ *Languages:* ${languages.length > 0 ? languages.join(', ') : 'Hindi'}\n` +
         `📍 *District:* ${district}\n🏙️ *City:* ${city}\n` +
-        `🗺️ *Available In:* ${availDistText}\n` +
-        `🏷️ *Primary Niche:* ${niche}\n` +
-        `🎯 *Additional Niches:* ${finalExtraNichesText}\n` +
+        `🏷️ *Niches:* ${finalNichesText}\n` +
         `🎥 *UGC Creator:* ${isUGCCreator ? 'Yes' : 'No'}\n` +
         `🤝 *Barter:* ${barter ? 'Open to barter' : 'Paid only'}\n` +
         `⏱️ *Response Time:* ${responseTime}\n` +
@@ -1355,13 +1381,11 @@ joinForm.addEventListener('submit', (e) => {
         `📝 *Description:* ${desc}\n\n` +
         `🔗 *Social Links:*\n• Instagram: ${instaLink}\n• YouTube: ${ytLink}\n• Facebook: ${fbLink}${optionalSocials ? '\n' + optionalSocials : ''}\n\n` +
         `📊 *Social Stats:*\n` +
-        `📷 Instagram: ${instaFol} followers | Avg views: ${avgViews} | Likes: ${instaAvgLikes} | Comments: ${instaAvgComments}\n` +
-        `▶️ YouTube: ${ytSubs} subs | Avg views: ${ytAvgViews} | Likes: ${ytAvgLikes} | Comments: ${ytAvgComments}\n` +
-        `📘 Facebook: ${fbFol} followers | Avg views: ${fbAvgViews} | Likes: ${fbAvgLikes} | Comments: ${fbAvgComments}\n` +
-        `⚡ Engagement Rate: ${engagementRate}%\n\n` +
+        `📷 Instagram: ${instaFol} followers\n` +
+        `▶️ YouTube: ${ytSubs} subscribers\n` +
+        `📘 Facebook: ${fbFol} followers\n\n` +
         `${audienceAgeGroup || audienceGenderMale || audienceLocations ? '👥 *Audience:*\n' + (audienceAgeGroup ? `• Age: ${audienceAgeGroup}\n` : '') + (audienceGenderMale ? `• Gender: ${audienceGenderMale}% Male / ${100 - parseInt(audienceGenderMale)}% Female\n` : '') + (audienceLocations ? `• Locations: ${audienceLocations}\n` : '') + '\n' : ''}` +
         `${pastBrands ? '🏢 *Past Brands:* ' + pastBrands + '\n\n' : ''}` +
-        `${portfolioText ? portfolioText + '\n\n' : ''}` +
         `${serviceChargesText ? serviceChargesText + '\n\n' : ''}` +
         `📅 *Application Date:* ${new Date().toLocaleDateString('en-IN')}\n🕐 *Time:* ${new Date().toLocaleTimeString('en-IN')}\n\n*Please review this application and contact the creator.*`;
 
@@ -1372,26 +1396,21 @@ joinForm.addEventListener('submit', (e) => {
     setTimeout(() => {
         joinModal.classList.remove('open');
         joinForm.reset();
-        document.querySelectorAll('.avail-district-cb, .extra-niche-cb, .lang-cb').forEach(cb => cb.checked = false);
-        const portfolio4El = document.getElementById('portfolio4');
-        if (portfolio4El) portfolio4El.value = '';
+        document.querySelectorAll('.lang-cb').forEach(cb => cb.checked = false);
         // re-check Hindi by default
         const hindiCb = document.querySelector('.lang-cb[value="Hindi"]');
         if (hindiCb) hindiCb.checked = true;
         customNiches = [];
         renderCustomNiches();
         updateCustomNicheCounter();
+        updateNicheCounter();
         const districtOther = document.getElementById('districtOther');
-        const nicheOther = document.getElementById('nicheOther');
         if (districtOther) { districtOther.style.display = 'none'; districtOther.required = false; }
-        if (nicheOther) { nicheOther.style.display = 'none'; nicheOther.required = false; }
         const container = document.getElementById('serviceChargesContainer');
         container.innerHTML = '';
         const defaults = [
             { name: 'Reel Promotion', chargePh: '5000', minPh: '3000', maxPh: '7000', model: 'fixed' },
             { name: 'Story Promotion', chargePh: '1000', minPh: '600', maxPh: '1500', model: 'fixed' },
-            { name: 'Feed Post', chargePh: '3000', minPh: '2000', maxPh: '4000', model: 'fixed' },
-            { name: 'Professional Reel Shoot', chargePh: '4000', minPh: '3000', maxPh: '6000', model: 'starting_from' },
             { name: 'Brand Collaboration', chargePh: '7000', minPh: '5000', maxPh: '10000', model: 'negotiable' },
         ];
         defaults.forEach(d => {
@@ -1430,10 +1449,52 @@ joinForm.addEventListener('submit', (e) => {
             container.appendChild(row);
         });
         serviceRowCount = 5;
+        updateNicheCounter();
     }, 2000);
 });
 
+if (brandForm) {
+    brandForm.addEventListener('submit', (e) => {
+        e.preventDefault();
 
+        const submission = {
+            id: Date.now(),
+            brandName: document.getElementById('brandName').value.trim(),
+            category: document.getElementById('brandCategory').value.trim(),
+            district: document.getElementById('brandDistrict').value.trim(),
+            city: document.getElementById('brandCity').value.trim(),
+            contactName: document.getElementById('brandContactName').value.trim(),
+            whatsapp: document.getElementById('brandWhatsapp').value.trim(),
+            budget: document.getElementById('brandBudget').value,
+            goal: document.getElementById('brandGoal').value,
+            servicesNeeded: document.getElementById('brandServicesNeeded').value.trim(),
+            description: document.getElementById('brandDescription').value.trim(),
+            instagram: document.getElementById('brandInstagram').value.trim(),
+            website: document.getElementById('brandWebsite').value.trim(),
+            createdAt: new Date().toLocaleDateString('en-IN')
+        };
+
+        const adminMsg =
+            `🏪 *New Store/Brand Promotion Listing*\n\n` +
+            `🏷️ *Brand:* ${submission.brandName}\n` +
+            `📂 *Category:* ${submission.category}\n` +
+            `👤 *Contact Person:* ${submission.contactName}\n` +
+            `📱 *WhatsApp:* ${submission.whatsapp}\n` +
+            `📍 *Location:* ${submission.district}, ${submission.city}\n` +
+            `🎯 *Goal:* ${submission.goal}\n` +
+            `💰 *Budget:* ${submission.budget}\n` +
+            `🧰 *Needed:* ${submission.servicesNeeded}\n\n` +
+            `📝 *Brief:* ${submission.description}\n\n` +
+            `🔗 *Instagram:* ${submission.instagram || 'N/A'}\n` +
+            `🌐 *Website/Map:* ${submission.website || 'N/A'}\n` +
+            `📅 *Submitted:* ${submission.createdAt}`;
+
+        window.open(`https://wa.me/${normalizeWhatsAppNumber(BRAND_ADMIN_WHATSAPP)}?text=${encodeURIComponent(adminMsg)}`, '_blank');
+        brandForm.reset();
+        closeBrandListingModal();
+        showToast('✅ Brand listing sent to WhatsApp. Add it to brand.json using brand-json.html.', 'success');
+    });
+}
 
 // ===== KEYBOARD SHORTCUTS =====
 document.addEventListener('keydown', function(e) {
@@ -1441,6 +1502,7 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         if (profileModal.classList.contains('open')) profileModal.classList.remove('open');
         if (joinModal.classList.contains('open')) joinModal.classList.remove('open');
+        if (brandModal.classList.contains('open')) brandModal.classList.remove('open');
         if (sideMenu.classList.contains('open')) closeMenu();
     }
     // Ctrl+F to focus search
@@ -1450,9 +1512,9 @@ document.addEventListener('keydown', function(e) {
         searchInput.focus();
     }
 });
-// ===== INIT — single DOMContentLoaded =====
-document.addEventListener('DOMContentLoaded', function () {
 
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', function () {
     // Load data
     loadData();
 
@@ -1469,19 +1531,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const clearFiltersBtn = document.getElementById('clearFiltersBtn');
     if (clearFiltersBtn) clearFiltersBtn.addEventListener('click', clearFilters);
 
-    // Select / Deselect all districts
-    const selectAllBtn = document.getElementById('selectAllDistricts');
-    const deselectAllBtn = document.getElementById('deselectAllDistricts');
-    if (selectAllBtn) {
-        selectAllBtn.addEventListener('click', () => {
-            document.querySelectorAll('.avail-district-cb').forEach(cb => cb.checked = true);
-        });
-    }
-    if (deselectAllBtn) {
-        deselectAllBtn.addEventListener('click', () => {
-            document.querySelectorAll('.avail-district-cb').forEach(cb => cb.checked = false);
-        });
-    }
+    // Niche limit logic
+    const nicheCheckboxes = document.querySelectorAll('.niche-cb');
+    nicheCheckboxes.forEach(cb => {
+        cb.addEventListener('change', updateNicheCounter);
+    });
+    updateNicheCounter();
 
     // Custom niche input
     const addBtn = document.getElementById('addCustomNicheBtn');
