@@ -356,7 +356,6 @@ async function loadData(retries = 3) {
         loadFilters();
         render();
         loadPromotions();
-        getUserLocationSilent();
         showToast('✅ ' + creatorsData.length + ' creators loaded successfully!', 'success');
     } catch (e) {
         if (retries > 0) {
